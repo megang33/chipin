@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import firebase from "./utils/firebase"
 
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Routing } from './routing.js';
+import { Routing } from './components/routing.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +14,6 @@ root.render(
     <Router>
       <Routing />
     </Router>,
-    {/* <App /> */}
   </React.StrictMode>
 );
 
