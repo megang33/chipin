@@ -24,6 +24,12 @@ function App() {
               Profile (needs icon)
             </a>
           </text>
+          <text>
+            <a href='./map.js' className='link'>
+              Maps
+            </a>
+          </text>
+
         </div>
       </div>
       <h1>
