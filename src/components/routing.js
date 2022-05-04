@@ -9,7 +9,7 @@ import { Route, Routes} from 'react-router-dom';
 export const Routing = () => {
   return (
     <div>
-        <NavBar signedIn={true}/>
+        <NavBar signedIn={false}/>
         <Routes>
             <Route exact path='/' element={<App />} />
             <Route path='/signup' element={<SignUp/>} />
