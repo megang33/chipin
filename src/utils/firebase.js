@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite"
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,3 +18,21 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+export const auth = getAuth(app);
+export const signInWithGoogle = () => {
+    signInWithRedirect(auth, provider)
+        .then((result) => {
+            console.log(result);
+            //if existing user
+            //redirect to main landing page
+
+            //if new user
+            //create collection and doc for user
+            //redirect to sign up page to enter info
+        })
+        .catch((error) => {
+            console.log("error: " + error);
+            //redirect to first page with sign in with google
+        });
+}
