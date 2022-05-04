@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  return(
+    <div>
+      <div className='navbar'>
+        <button className='logo' href="landing.js">
+          ChipIn Logo
+        </button>
+        <div className='other_pages'>
+          <text>
+            <a href='./community.js' className='link'>
+              Community
+            </a>
+          </text>
+          <text>
+            <a href='./community.js' className='link'>
+              Find an event
+            </a>
+          </text>
+          <text>
+            <a href='./profile.js' className='link'>
+              Profile (needs icon)
+            </a>
+          </text>
+        </div>
+      </div>
+      <h1>
+        This is going to be filler text for the meanwhile to test.
+      </h1>
     </div>
   );
 }
