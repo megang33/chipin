@@ -24,8 +24,15 @@ export const signInWithGoogle = () => {
     signInWithRedirect(auth, provider)
         .then((result) => {
             console.log(result);
+            //if existing user
+            //redirect to main landing page
+
+            //if new user
+            //create collection and doc for user
+            //redirect to sign up page to enter info
         })
         .catch((error) => {
             console.log("error: " + error);
+            //redirect to first page with sign in with google
         });
 }
