@@ -5,10 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import firebase from "./utils/firebase"
 
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Routing } from './routing.js';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Routing />
+    </Router>,
+    {/* <App /> */}
   </React.StrictMode>
 );
 
