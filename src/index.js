@@ -13,8 +13,8 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routing />
-
-    </Router>,
+      
+    </Router>yuchen you stink
   </React.StrictMode>
 );
 

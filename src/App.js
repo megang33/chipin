@@ -15,12 +15,12 @@ function App() {
             </a>
           </text>
           <text>
-            <a href='./community.js' className='link'>
+            <a href='./map.html' className='link'>
               Find an event
             </a>
           </text>
           <text>
-            <a href='./profile.js' className='link'>
+            <a href='./events.js' className='link'>
               Profile (needs icon)
             </a>
           </text>
