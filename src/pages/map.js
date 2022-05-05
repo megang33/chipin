@@ -1,4 +1,6 @@
 import React from 'react'
+import './map.html'
+import './map.css'
 //this is a test of the github commit, push, etc.
 // Initialize and add the map
 function initMap() {
@@ -18,17 +20,17 @@ function initMap() {
 
 window.initMap = initMap;
 
-<script async
+{/* <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho&callback=initMap">
-</script>
+</script> */}
 
 
-const map = () => {
-    return (
-        <div>
-            <h3>Find a Map</h3>
-        </div>
-    )
-}
+// const map = () => {
+//     return (
+//         <div>
+//             <h3>Find a Map</h3>
+//         </div>
+//     )
+// }
 
-export default map
+export default initMap;
