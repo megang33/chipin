@@ -6,7 +6,7 @@ import { faUser, faLocationDot, faPhone, faAddressCard } from '@fortawesome/free
 import '../utils/firebase.js';
 import { updateDBdoc } from '../utils/firebase.js';
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [name, setName] = useState();
   const [affiliation, setAffiliation] = useState();
   const [number, setNumber] = useState();
@@ -22,6 +22,10 @@ const SignUp = () => {
     //add stuff to firebase
     e.preventDefault();
   }
+  // if (props.registered){
+
+  // }
+  // else{
 
   return (
     <div>

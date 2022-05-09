@@ -17,7 +17,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 export const auth = getAuth(app);
@@ -28,17 +28,25 @@ export const signInWithGoogle = async () => {
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         name: user.displayName,
         authProvider: "google",
         email: user.email,
+        registered: false,
       });
     }
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    return (docSnap);
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
+} catch (err) {
+  console.error(err);
+  alert(err.message);
+}
 };
 
 export const updateDBdoc = async (collection, body) => {
