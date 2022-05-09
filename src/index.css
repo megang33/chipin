@@ -33,3 +33,16 @@ form {
   width: 55%;
   margin: auto;
 }
+
+.flex-form {
+  display: flex;
+  align-items: center;
+}
+
+.submit-button {
+  margin: auto;
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
