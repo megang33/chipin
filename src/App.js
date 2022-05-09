@@ -1,42 +1,46 @@
 import React from 'react';
 import './App.css';
+import { signInWithGoogle } from './utils/firebase';
+import firebase from "./utils/firebase"
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Routing } from './components/routing.js';
 
-function App() {
-  return (
-    <div>
-      <div className='navbar'>
-        <button className='logo' href="landing.js">
-          ChipIn Logo
-        </button>
-        <div className='other_pages'>
-          <text>
-            <a href='./community.js' className='link'>
-              Community
-            </a>
-          </text>
-          <text>
-            <a href='./map.html' className='link'>
-              Find an event
-            </a>
-          </text>
-          <text>
-            <a href='./events.js' className='link'>
-              Profile (needs icon)
-            </a>
-          </text>
-          <text>
-            <a href='./map.js' className='link'>
-              Maps
-            </a>
-          </text>
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      online: false,
+      userInfo: null,
+    }
+  }
 
-        </div>
-      </div>
-      <h1>
-        This is going to be filler text for the meanwhile to test.
-      </h1>
-    </div>
-  );
+  async handleSignIn(){
+    const userInfo = await signInWithGoogle();
+    this.setState({
+      userInfo: userInfo,
+      online: true,
+    })
+  }
+
+  handleSignOut(){
+    this.setState({
+      online: false,
+      userInfo: null,
+    })
+  }
+
+  render(){
+    const doc = this.state.userInfo;
+    return(
+      <React.StrictMode>
+        <Router>
+          <Routing userInfo = {this.state.userInfo} handleSignIn={() => this.handleSignIn()} 
+            loggedIn={ this.state.online } registered = { this.state.online ? doc.get("registered") : null }
+            handleSignOut={() => this.handleSignOut()}/>
+        </Router> 
+      </React.StrictMode>
+    );
+  }
 }
 
 export default App;

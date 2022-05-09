@@ -1,20 +1,25 @@
 import React from 'react';
-import App from '../App.js';
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+
+import Landing from '../pages/landing.js';
 import SignUp from '../pages/signup.js';
 import Community from '../pages/community.js';
+import SignOut from '../pages/signout.js';
 import Event from '../pages/events.js'
 import NavBar from './navbar.js';
-import { Route, Routes} from 'react-router-dom';
+import Profile from '../pages/profile.js'
 
-export const Routing = () => {
+export const Routing = (props) => {
   return (
     <div>
-        <NavBar signedIn={false}/>
+        <NavBar signedIn={props.loggedIn} handleSignIn={props.handleSignIn} handleSignOut = {props.handleSignOut}/>
         <Routes>
-            <Route exact path='/' element={<App />} />
-            <Route path='/signup' element={<SignUp/>} />
+            <Route exact path='/' element={<Landing />} />
+            <Route path='/signup' element={props.registered ? <Navigate to='/'/>: <SignUp />} />
             <Route path='/community' element={<Community />} />
             <Route path='/events' element={<Event />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/signout' element={<SignOut />} />
         </Routes>
     </div>
   );
