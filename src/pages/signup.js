@@ -11,16 +11,20 @@ const SignUp = (props) => {
   const [affiliation, setAffiliation] = useState();
   const [number, setNumber] = useState();
   const [zipcode, setZip] = useState();
+
   const handleSubmit = (e) => {
+    // console.log(props.doc.get("uid"));
+    //add stuff to firebase
+    e.preventDefault();
     const body = {
       name: name,
       affiliation: affiliation,
       number: number,
       zipcode: zipcode,
     }
-    updateDBdoc("users", body);
-    //add stuff to firebase
-    e.preventDefault();
+    console.log(body);
+    console.log(props.uid);
+    updateDBdoc("users", body, props.uid);
   }
   // if (props.registered){
 

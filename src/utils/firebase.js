@@ -45,7 +45,7 @@ export const signInWithGoogle = async () => {
   }
 };
 
-export const updateDBdoc = async (collection, body) => {
-  await updateDoc(doc(db, collection, "jjoHaiYXCjhTyqugQk7bdJHLVr03"), body);
+export const updateDBdoc = async (collection, body, uid) => {
+  await updateDoc(doc(db, collection, uid), body);
   //auth.currentUser.uid - currently going to randomly generated id
 }
