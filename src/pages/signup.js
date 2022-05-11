@@ -21,10 +21,10 @@ const SignUp = (props) => {
       affiliation: affiliation,
       number: number,
       zipcode: zipcode,
+      registered: true,
     }
-    console.log(body);
-    console.log(props.uid);
     updateDBdoc("users", body, props.uid);
+    props.updateInfo(props.uid);
   }
   // if (props.registered){
 

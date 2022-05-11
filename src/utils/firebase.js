@@ -49,3 +49,10 @@ export const updateDBdoc = async (collection, body, uid) => {
   await updateDoc(doc(db, collection, uid), body);
   //auth.currentUser.uid - currently going to randomly generated id
 }
+
+export const updateStateDoc = (uid) => {
+  console.log("hi");
+  const docRef = doc(db, "users", uid);
+  const docSnap = getDoc(docRef);
+  return (docSnap);
+}

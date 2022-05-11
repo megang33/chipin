@@ -15,7 +15,7 @@ export const Routing = (props) => {
       <NavBar signedIn={props.loggedIn} handleSignIn={props.handleSignIn} handleSignOut={props.handleSignOut} />
       <Routes>
         <Route exact path='/' element={<Landing />} />
-        <Route path='/signup' element={props.registered ? <Navigate to='/' /> : <SignUp uid={props.uid} />} />
+        <Route path='/signup' element={props.registered ? <Navigate to='/' /> : <SignUp uid={props.uid} updateInfo={props.updateInfo} />} />
         <Route path='/community' element={<Community />} />
         <Route path='/events' element={<Event />} />
         <Route path='/profile' element={<Profile />} />

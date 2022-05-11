@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import { signInWithGoogle } from './utils/firebase';
-import firebase from "./utils/firebase"
+import { signInWithGoogle, updateStateDoc } from './utils/firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
+import firebase from "./utils/firebase"
 import { Routing } from './components/routing.js';
 
 class App extends React.Component {
@@ -12,6 +12,13 @@ class App extends React.Component {
       online: false,
       userInfo: null,
     }
+  }
+
+  async updateInfo(uid) {
+    const newUserInfo = await updateStateDoc(uid);
+    this.setState({
+      userInfo: newUserInfo
+    })
   }
 
   async handleSignIn() {
@@ -39,7 +46,7 @@ class App extends React.Component {
         <Router>
           <Routing uid={this.state.online ? doc.get("uid") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
             loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null}
-            handleSignOut={() => this.handleSignOut()} />
+            handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)}/>
         </Router>
       </React.StrictMode>
     );
