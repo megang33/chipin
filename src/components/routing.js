@@ -12,15 +12,15 @@ import Profile from '../pages/profile.js'
 export const Routing = (props) => {
   return (
     <div>
-        <NavBar signedIn={props.loggedIn} handleSignIn={props.handleSignIn} handleSignOut = {props.handleSignOut}/>
-        <Routes>
-            <Route exact path='/' element={<Landing />} />
-            <Route path='/signup' element={props.registered ? <Navigate to='/'/>: <SignUp />} />
-            <Route path='/community' element={<Community />} />
-            <Route path='/events' element={<Event />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/signout' element={<SignOut />} />
-        </Routes>
+      <NavBar signedIn={props.loggedIn} handleSignIn={props.handleSignIn} handleSignOut={props.handleSignOut} />
+      <Routes>
+        <Route exact path='/' element={<Landing />} />
+        <Route path='/signup' element={props.registered ? <Navigate to='/' /> : <SignUp uid={props.uid} />} />
+        <Route path='/community' element={<Community />} />
+        <Route path='/events' element={<Event />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/signout' element={<SignOut />} />
+      </Routes>
     </div>
   );
 };

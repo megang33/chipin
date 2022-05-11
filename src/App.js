@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Routing } from './components/routing.js';
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       online: false,
@@ -14,7 +14,7 @@ class App extends React.Component {
     }
   }
 
-  async handleSignIn(){
+  async handleSignIn() {
     const userInfo = await signInWithGoogle();
     this.setState({
       userInfo: userInfo,
@@ -22,22 +22,25 @@ class App extends React.Component {
     })
   }
 
-  handleSignOut(){
+  handleSignOut() {
     this.setState({
       online: false,
       userInfo: null,
     })
   }
 
-  render(){
+  render() {
     const doc = this.state.userInfo;
-    return(
+
+    //function to update information using db (realtime)
+
+    return (
       <React.StrictMode>
         <Router>
-          <Routing userInfo = {this.state.userInfo} handleSignIn={() => this.handleSignIn()} 
-            loggedIn={ this.state.online } registered = { this.state.online ? doc.get("registered") : null }
-            handleSignOut={() => this.handleSignOut()}/>
-        </Router> 
+          <Routing uid={this.state.online ? doc.get("uid") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
+            loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null}
+            handleSignOut={() => this.handleSignOut()} />
+        </Router>
       </React.StrictMode>
     );
   }
