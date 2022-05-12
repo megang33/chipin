@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  overflow: hidden; /* Used to prevent scroll */
 }
 
 code {
@@ -55,14 +55,41 @@ form {
 .round-rect {
   box-sizing: border-box;
 
-  clip: rect(0px,100%,600px,0px);
-
   position: absolute;
   width: 84%;
-  height: 120%;
+  height: 110%;
   left: 8%;
   top: 200px;
+  padding-bottom: 20px;
 
   border: 15px solid #7F867B;
   border-radius: 104px;
+}
+
+.stats-wrapper {
+  position: relative;
+}
+
+.big-num {
+  position: absolute;
+  top: -12px;
+  z-index: 2;
+}
+
+.unit-text {
+  position: absolute;
+  top: 69px;
+  width: 130px;
+  z-index: 2;
+}
+
+.solid-rect {
+  position: absolute;
+  width: 18%;
+  height: 24px;
+  top: 57px;
+
+  background: #D9BFB1;
+  border-radius: 5px;
+  z-index: 1;
 }
