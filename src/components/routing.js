@@ -4,6 +4,7 @@ import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import Landing from '../pages/landing.js';
 import SignUp from '../pages/signup.js';
 import Community from '../pages/community.js';
+import EventCreation from '../pages/event-creation.js';
 import SignOut from '../pages/signout.js';
 import Event from '../pages/events.js'
 import NavBar from './navbar.js';
@@ -20,6 +21,7 @@ export const Routing = (props) => {
         <Route path='/events' element={<Event />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/signout' element={<SignOut />} />
+        <Route path='/event-creation' element={<EventCreation />} />
       </Routes>
     </div>
   );

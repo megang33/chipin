@@ -16,16 +16,13 @@ code {
   width: 150px;
 }
 
-input[type=text], select {
+.signup-input {
   width: 100%;
   padding: 12px 20px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
-
-input {
   margin: 10px;
 }
 
@@ -45,4 +42,25 @@ form {
   height: 50px;
   border-radius: 20px;
   margin-top: 10px;
+}
+
+/* Event Details */
+
+.event-name {
+  width: 80%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 5px 6px 25px 5px;
+}
+
+.horiz-field {
+  width: 40%;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 5px 6px 25px 5px;
 }
