@@ -1,36 +1,46 @@
-// import React from 'react'
-// import './map.html'
-// import '../components/map.css'
-// //this is a test of the github commit, push, etc.
-// // Initialize and add the map
-// function initMap() {
-//     // The location of Uluru
-//     const uluru = { lat: -25.344, lng: 131.031 };
-//     // The map, centered at Uluru
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//         zoom: 4,
-//         center: uluru,
-//     });
-//     // The marker, positioned at Uluru
-//     const marker = new google.maps.Marker({
-//         position: uluru,
-//         map: map,
-//     });
-// }
+import React from 'react'
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
-// window.initMap = initMap;
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
 
-// {/* <script async
-//     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho&callback=initMap">
-// </script> */}
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
 
+function MyMap() {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho"
+  })
 
-// // const map = () => {
-// //     return (
-// //         <div>
-// //             <h3>Find a Map</h3>
-// //         </div>
-// //     )
-// // }
+  const [map, setMap] = React.useState(null)
 
-// export default initMap;
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
+      </GoogleMap>
+  ) : <></>
+}
+
+export default React.memo(MyMap)
