@@ -1,0 +1,35 @@
+.bar-rectangle {
+    height: 70px;
+    width: 100%;
+    background-color: #C7C2BB;
+    position: relative;
+}
+
+.logo {
+    position: relative;
+    left: 1%;
+    top: 50%;
+}
+
+.nav-item {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 34px;
+    color: #000000;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.links {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+/* #sign-button {
+    left: 88%;
+    top: 50%;
+} */
