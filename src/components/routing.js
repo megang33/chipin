@@ -8,6 +8,7 @@ import SignOut from '../pages/signout.js';
 import Event from '../pages/events.js'
 import NavBar from './navbar.js';
 import Profile from '../pages/profile.js'
+import TimeLine from '../pages/timeline.js';
 
 export const Routing = (props) => {
   return (
@@ -17,6 +18,7 @@ export const Routing = (props) => {
         <Route exact path='/' element={<Landing />} />
         <Route path='/signup' element={props.registered ? <Navigate to='/' /> : <SignUp uid={props.uid} updateInfo={props.updateInfo} />} />
         <Route path='/community' element={<Community />} />
+        <Route path='/timeline' element={<TimeLine name = { props.name } />} />
         <Route path='/events' element={<Event />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/signout' element={<SignOut />} />

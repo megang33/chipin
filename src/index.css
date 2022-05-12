@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -37,6 +38,9 @@ form {
 .flex-form {
   display: flex;
   align-items: center;
+  padding-bottom: 1%;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 .submit-button {
@@ -45,4 +49,20 @@ form {
   height: 50px;
   border-radius: 20px;
   margin-top: 10px;
+}
+
+/* Timeline page round rectangle */
+.round-rect {
+  box-sizing: border-box;
+
+  clip: rect(0px,100%,600px,0px);
+
+  position: absolute;
+  width: 84%;
+  height: 120%;
+  left: 8%;
+  top: 200px;
+
+  border: 15px solid #7F867B;
+  border-radius: 104px;
 }
