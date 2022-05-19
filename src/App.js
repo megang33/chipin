@@ -14,6 +14,16 @@ class App extends React.Component {
     }
   }
 
+  async componentDidMount(){
+    const doc = await updateStateDoc(localStorage.getItem("user-login"))
+    if (doc != null){
+      this.setState({
+        online: true,
+        userInfo: doc,
+      })
+    }
+  }
+
   async updateInfo(uid) {
     const newUserInfo = await updateStateDoc(uid);
     this.setState({
@@ -34,13 +44,17 @@ class App extends React.Component {
       online: false,
       userInfo: null,
     })
+    localStorage.removeItem("user-login")
   }
 
   render() {
     const doc = this.state.userInfo;
-
-    //function to update information using db (realtime)
-
+    const user = localStorage.getItem("user-login");
+    if (user === null && this.state.online){
+      localStorage.setItem("user-login", doc.get("uid"))
+    }
+    console.log(localStorage)
+    console.log(doc)
     return (
       <React.StrictMode>
         <Router>

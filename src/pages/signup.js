@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import '../utils/firebase.js';
 import { updateDBdoc } from '../utils/firebase.js';
+import { Link } from 'react-router-dom';
 
 const SignUp = (props) => {
   const [name, setName] = useState();
@@ -22,35 +23,33 @@ const SignUp = (props) => {
       number: number,
       zipcode: zipcode,
       registered: true,
+      groups: [],
+      numGroups: 0,
     }
-    updateDBdoc("users", body, props.uid);
+    updateDBdoc("users", props.uid, body);
     props.updateInfo(props.uid);
   }
-  // if (props.registered){
-
-  // }
-  // else{
 
   return (
     <div>
       <h1 style={{ textAlign: "center", paddingTop: "40px" }}>Let's get you started.</h1>
-      <form className='round-rect' onSubmit={e => { handleSubmit(e) }}>
+      <form className='round-rect' onSubmit={(e) => { handleSubmit(e) }}>
           <div style={{ paddingTop: "5%" }}>
             <div className="flex-form">
               <FontAwesomeIcon icon={faUser} />
-              <input name="name" type="text" placeholder="name" onChange={e => setName(e.target.value)} />
+              <input name="name" type="text" placeholder="name" onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="flex-form">
               <FontAwesomeIcon icon={faAddressCard} />
-              <input name="affiliation" type="text" placeholder="affiliation" onChange={e => setAffiliation(e.target.value)} />
+              <input name="affiliation" type="text" placeholder="affiliation" onChange={(e) => setAffiliation(e.target.value)} />
             </div>
             <div className="flex-form">
               <FontAwesomeIcon icon={faPhone} />
-              <input name="number" type="text" placeholder="phone number" onChange={e => setNumber(e.target.value)} />
+              <input name="number" type="text" placeholder="phone number" onChange={(e) => setNumber(e.target.value)} />
             </div>
             <div className="flex-form">
               <FontAwesomeIcon icon={faLocationDot} />
-              <input name="zipcode" type="text" placeholder="zip code" onChange={e => setZip(e.target.value)} />
+              <input name="zipcode" type="text" placeholder="zip code" onChange={(e) => setZip(e.target.value)} />
             </div>
             <div className="flex-form">
               <input className='submit-button' type='submit' />

@@ -3,6 +3,8 @@ const Events = () => {
   return (
     <div>
       <h3>Find an Event</h3>
+      
+      
     </div>
   )
 }

@@ -36,6 +36,7 @@ form {
 }
 
 .flex-form {
+  padding-left: 10px;
   display: flex;
   align-items: center;
   padding-bottom: 1%;
@@ -43,11 +44,14 @@ form {
   padding-right: 15%;
 }
 
-.submit-button {
-  margin: auto;
+.submit-button {  
+  font-style: normal;
+  font-size: medium;
+  font-weight: 500;
+  border: 0;
   width: 150px;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 30px;
   margin-top: 10px;
 }
 
@@ -65,4 +69,16 @@ form {
 
   border: 15px solid #7F867B;
   border-radius: 104px;
+}
+
+/* Community GroupsBar */
+
+.groupsHeader {
+  flex-grow: 1;   
+}
+
+.groups {
+  margin-right: 10%;
+  flex-grow: 1;
+  background-color: lightgrey;
 }
