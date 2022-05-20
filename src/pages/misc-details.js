@@ -1,58 +1,65 @@
 import React from 'react'
 
-export default class EventDetails extends React.Component {
+export default class MiscDetails extends React.Component {
     continue = e => {
         e.preventDefault();
         this.props.nextStep();
-        console.log("continued");
+    }
+    previous = e => {
+        e.preventDefault();
+        this.props.prevStep();
     }
     render() {
         const { values, handleChange } = this.props;
+        //contacts, banner, address
         return (
             <div>
-                <h1 style={{ textAlign: "center" }}>Enter Event Details</h1>
+                <h1 style={{ textAlign: "center" }}>Enter Misc Details</h1>
                 <form className="event-flex">
                     <label>
-                        Event Name:
+                        Primary Contact:
                         <input
                             className="event-name"
                             type="text"
-                            placeholder="Enter event name"
-                            onChange={e => this.props.handleChange('event_name', e)}
+                            placeholder="enter email"
+                            onChange={e => this.props.handleChange('primary_contact', e)}
                             required="true"
                         />
                     </label>
                     <label>
-                        Date:
-                        <input
-                            className="horiz-field"
-                            type="date"
-                            placeholder="Enter a Date"
-                            onChange={e => this.props.handleChange('date', e)}
-                            required="true"
-                        />
-                    </label>
-                    <label>
-                        Capacity:
-                        <input
-                            className="horiz-field"
-                            type="text"
-                            placeholder="Enter a Voluneer Capacity"
-                            onChange={e => this.props.handleChange('capacity', e)}
-                            required="true"
-                        />
-                    </label>
-                    <label>
-                        Description:
+                        Secondary Contact:
                         <input
                             className="event-name"
                             type="text"
+                            placeholder="(000)-000-0000"
+                            onChange={e => this.props.handleChange('secondary_contact', e)}
+                            required="optional"
+                        />
+                    </label>
+                    <label>
+                        Location:
+                        <input
+                            className="horiz-field"
+                            type="text"
+                            placeholder="street address, city, state, zipcode"
+                            onChange={e => this.props.handleChange('address', e)}
+                            required="true"
+                        />
+                    </label>
+                    <label>
+                        Banner:
+                        <input
+                            className="event-name"
+                            type="file"
                             placeholder="Enter a Description"
                             onChange={e => this.props.handleChange('description', e)}
                             required="true"
                         />
                     </label>
-                    <button onClick={this.continue}>Continue</button>
+                    <span>
+                        <button onClick={this.previous}>Back</button>
+                        <button onClick={this.continue}>Continue</button>
+                    </span>
                 </form>
             </div>
         )

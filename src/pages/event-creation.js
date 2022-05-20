@@ -1,5 +1,7 @@
 import React from 'react'
 import EventDetails from './event-details.js'
+import MiscDetails from './misc-details.js'
+import Confirmation from './confirmation.js'
 
 export default class EventCreation extends React.Component {
     state = {
@@ -18,7 +20,7 @@ export default class EventCreation extends React.Component {
     nextStep = () => {
         const { step } = this.state;
         this.setState({
-            step: step++
+            step: step + 1
         });
     }
 
@@ -26,7 +28,7 @@ export default class EventCreation extends React.Component {
     prevStep = () => {
         const { step } = this.state;
         this.setState({
-            step: step--
+            step: step - 1
         });
     }
 
@@ -56,14 +58,25 @@ export default class EventCreation extends React.Component {
                 )
             case 2:
                 return (
-                    <h1>misc details</h1>
+                    <MiscDetails
+                        prevStep={this.prevStep}
+                        nextStep={this.nextStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
                     //contacts, banner, address
                 )
-            case 4:
+            case 3:
                 return (
-                    <h1>Success</h1>
-                    //banner description
+                    <Confirmation
+                        prevStep={this.prevStep}
+                        nextStep={this.nextStep}
+                        values={values}
+                    //confirmation
+                    />
                 )
+            default:
+            //do nothing
         }
 
         return (

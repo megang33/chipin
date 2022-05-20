@@ -45,9 +45,15 @@ form {
 }
 
 /* Event Details */
+.event-flex {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
 .event-name {
-  width: 80%;
+  /* width: 80%; */
   padding: 12px 20px;
   display: inline-block;
   border: 1px solid #ccc;
@@ -57,7 +63,7 @@ form {
 }
 
 .horiz-field {
-  width: 40%;
+  /* width: 40%; */
   padding: 12px 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
