@@ -4,6 +4,8 @@ import { signInWithGoogle, updateStateDoc } from './utils/firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import firebase from "./utils/firebase"
 import { Routing } from './components/routing.js';
+import Card from "./components/MyCard"
+
 
 class App extends React.Component {
   constructor(props) {
@@ -42,13 +44,22 @@ class App extends React.Component {
     //function to update information using db (realtime)
 
     return (
+      <div className='App'>
+        <Card
+          title='Card Title'
+          imageURL=''
+          body='This is a test'
+        />
+      </div>
+      /*
       <React.StrictMode>
         <Router>
           <Routing uid={this.state.online ? doc.get("uid") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
             loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null}
-            handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)}/>
+            handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)} />
         </Router>
       </React.StrictMode>
+      */
     );
   }
 }

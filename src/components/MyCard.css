@@ -1,0 +1,25 @@
+.card-container {
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0px 0px 300px -5px;
+    display: 'flex',
+}
+
+.text-color {
+    color: yellow
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.Centering {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5;
+}
