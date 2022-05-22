@@ -1,14 +1,15 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import Autocomplete from './Autocomplete'
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '75%',
+  height: '85vh',
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523
+  lat: 34.071035488041986,
+  lng: -118.44324559994142
 };
 
 function MyMap() {
@@ -17,7 +18,7 @@ function MyMap() {
     googleMapsApiKey: "AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho"
   })
 
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = React.useState(/** @type google.maps.Map */null)
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
@@ -30,17 +31,28 @@ function MyMap() {
   }, [])
 
   return isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
-  ) : <></>
+    <div>
+      <div>
+        <Autocomplete suggestions={["apple", "orange", "grape", "aunty", "ant", "args"]}/>
+      </div>
+      <div>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={15}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+          options={{
+            zoomControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+          }}
+        >
+          <Marker position={center}/>
+        </GoogleMap>
+      </div>
+    </div>
+  ) : <h2>Map loading..</h2>
 }
 
 export default React.memo(MyMap)
