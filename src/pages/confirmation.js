@@ -15,7 +15,9 @@ export default class MiscDetails extends React.Component {
 
     render() {
         const { values } = this.props;
+        //add time!!!
         //contacts, banner, address
+        //banner doesn't work
         return (
             <div>
                 <h1 style={{ textAlign: "center" }}>Confirmation Details</h1>
