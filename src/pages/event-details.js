@@ -17,7 +17,7 @@ export default class EventDetails extends React.Component {
                     <div class="form-row">
                         <label style={{ margin: "7px" }}>Event Name:</label>
                         <input
-                            className="event-name"
+                            className="horiz-field"
                             type="text"
                             placeholder="Enter event name"
                             onChange={e => this.props.handleChange('event_name', e)}
@@ -49,14 +49,13 @@ export default class EventDetails extends React.Component {
                     <div class="form-row">
                         <label style={{ margin: "7px" }}>Description:</label>
                         <input
-                            className="event-name"
+                            className="horiz-field description"
                             type="text"
-                            placeholder="Enter a Description"
                             onChange={e => this.props.handleChange('description', e)}
                             required="true"
                         />
                     </div>
-                    <button onClick={this.continue}>Continue</button>
+                    <button className="forward-button" onClick={this.continue}><span>Continue</span></button>
                 </div>
             </form>
         )

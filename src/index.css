@@ -70,20 +70,129 @@ form {
   margin: 10px 5px;
 }
 
-.event-name {
-  /* width: 80%; */
+.horiz-field {
   padding: 12px 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  margin: 5px 6px 25px 5px;
+  margin: 5px 6px 5px 5px;
 }
 
-.horiz-field {
-  /* width: 40%; */
-  padding: 12px 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin: 5px 6px 25px 5px;
+.description {
+  height: 200px;
 }
+
+/* forward arrow button */
+.forward-button {
+  padding: 15px 30px;
+  background: #000;
+  border:0;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: helvetica;
+  font-size: 12px;
+  letter-spacing: 3px;
+  position: relative;
+  transition:         all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+  display: block;
+  margin: auto;
+}
+
+.forward-button span:after,
+.forward-button span:before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.forward-button span:after{
+    width: 30px;
+    height: 1px;
+    background: white;
+    transform: translateX(-3px);
+    margin-top: 0px;
+    opacity: 0;
+}
+.forward-button span:before{
+    content: "";
+    transform: rotate(-135deg) translateX(50%);
+    width: 11px;
+    height: 11px;
+    background: transparent;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    margin-top: -1px;
+}
+
+
+.forward-button:hover span{
+  padding: 15px 40px 15px 5px;
+}
+
+.forward-button:hover span:after,
+.forward-button:hover span:before{
+  opacity: 1;
+  right: 15px;
+}
+
+/* back arrow button */
+.back-button {
+  padding: 15px 20px;
+  background: #000;
+  border:0;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: helvetica;
+  font-size: 12px;
+  letter-spacing: 3px;
+  position: relative;
+  /* transition:         all .4s cubic-bezier(0.645, 0.045, 0.355, 1); */
+  cursor: pointer;
+  display: block;
+  margin: auto;
+}
+
+/* .back-button span:after,
+.back-button span:before{
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 25px;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.back-button span:after{
+    width: 30px;
+    height: 1px;
+    background: white;
+    transform: translateX(-3px);
+    margin-left: 6px;
+    margin-top: 8.3px;
+}
+
+.back-button span:before{
+    content: "";
+    transform: rotate(50deg) translateX(50%);
+    width: 11px;
+    height: 11px;
+    background: transparent;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+  margin-top: -1px;
+}
+
+
+.back-button:hover span{
+  padding: 15px 20px 15px 60px;
+}
+
+.back-button:hover span:after,
+.back-button:hover span:before{
+  opacity: 1;
+  right: 15px;
+} */
