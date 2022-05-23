@@ -47,7 +47,7 @@ export const signInWithGoogle = async () => {
 
 export const getDocInfo = async (collection, id, field) => {
   console.log(collection + ", " + id + ", " + field)
-  if (id != null){
+  if (id != null) {
     const docRef = doc(db, collection, id)
     const docSnap = await getDoc(docRef)
     const data = await docSnap.get(field);
@@ -61,7 +61,7 @@ export const initializeGroup = async (uid, name) => {
     name: name,
     founder: uid,
     numMembers: 1,
-    members: new Array(uid,),
+    members: new Array(uid),
     currentEvents: [],
     pastEvents: [],
     cumHours: 0,
@@ -77,14 +77,19 @@ export const initializeGroup = async (uid, name) => {
   await updateDBdoc("users", uid, userData)
 }
 
-export const updateDBdoc = async (collection, docs, body) => {
-  await updateDoc(doc(db, collection, docs), body);
+export const updateDBdoc = async (collection, uid, body) => {
+  try {
+    const docRef = await updateDoc(doc(db, collection, uid), body);
+    console.log("Document updated: ", docRef.id);
+  } catch (e) {
+    console.error("Error updating doc: ", e);
+  }
 }
 
 export const updateGroup = async (docUser, docGroup) => {
   let docRef = doc(db, "groups", docGroup)
   let docSnap = await getDoc(docRef)
-  if (docSnap._document === null){
+  if (docSnap._document === null) {
     return false;
   }
   const groupBody = {
@@ -101,8 +106,18 @@ export const updateGroup = async (docUser, docGroup) => {
   updateDBdoc("users", docUser, userBody)
 }
 
+//to add document for events page
+export const addDBdoc = async (c, body) => {
+  try {
+    const docRef = await addDoc(collection(db, c), body);
+    console.log("Document added: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding doc: ", e);
+  }
+}
+
 export const updateStateDoc = (uid) => {
-  if (uid){
+  if (uid) {
     const docRef = doc(db, "users", uid);
     const docSnap = getDoc(docRef);
     return (docSnap);

@@ -17,16 +17,13 @@ code {
   width: 150px;
 }
 
-input[type=text], select {
+.signup-input {
   width: 100%;
   padding: 12px 20px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
-
-input {
   margin: 10px;
 }
 
@@ -109,3 +106,114 @@ form {
   border-radius: 5px;
   z-index: 1;
 }
+/* Event Details */
+.form-header {
+  margin-bottom: 25px;
+  text-align: center;
+  border-bottom:1px solid #cccccc;
+}
+
+.form-body {
+  display:flex;
+  flex-direction:column;
+}
+
+.form-row {
+  flex:1;  
+  display:flex;
+  flex-direction:column; 
+  margin: 10px 5px;
+}
+
+.input-line {
+  flex:1;
+  display:flex;
+  flex-direction:row; 
+  margin: 10px 5px;
+}
+
+.horiz-field {
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 5px 6px 5px 5px;
+}
+
+.description {
+  height: 120px;
+}
+
+/* forward arrow button */
+.forward-button {
+  padding: 15px 30px;
+  background: #000;
+  border:0;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: helvetica;
+  font-size: 12px;
+  letter-spacing: 3px;
+  position: relative;
+  transition:         all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+  display: block;
+  margin: auto;
+}
+
+.forward-button span:after,
+.forward-button span:before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.forward-button span:after{
+    width: 30px;
+    height: 1px;
+    background: white;
+    transform: translateX(-3px);
+    margin-top: 0px;
+    opacity: 0;
+}
+.forward-button span:before{
+    content: "";
+    transform: rotate(-135deg) translateX(50%);
+    width: 11px;
+    height: 11px;
+    background: transparent;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    margin-top: -1px;
+}
+
+
+.forward-button:hover span{
+  padding: 15px 40px 15px 5px;
+}
+
+.forward-button:hover span:after,
+.forward-button:hover span:before{
+  opacity: 1;
+  right: 15px;
+}
+
+/* back arrow button */
+.back-button {
+  padding: 15px 20px;
+  background: #000;
+  border:0;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: helvetica;
+  font-size: 12px;
+  letter-spacing: 3px;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+}
+
