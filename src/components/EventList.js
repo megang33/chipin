@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import MyCard from './MyCard';
-import NavBar from './navbar';
+// import React, { Component } from 'react'
+// import MyCard from './MyCard';
+// import NavBar from './navbar';
 
-class EventList extends React.Component {
+// class EventList extends React.Component {
 
-    render() {
-        return <MyCard />
-    }
-}
-export default React.memo(EventList)
+//     render() {
+//         return <MyCard />
+//     }
+// }
+// export default React.memo(EventList)
