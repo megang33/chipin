@@ -34,7 +34,7 @@ export default function MediaCard() {
 
                 <CardMedia
                     component="img"
-                    height="150"
+                    height="250"
                     image="https://picsum.photos/200.jpg"
                     alt="green iguana"
                 />
@@ -46,9 +46,11 @@ export default function MediaCard() {
                         Lizard
                     </Typography>
 
+                    <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
+                        Date/Time: June 5th 1PM-3PM
+                    </Typography>
                     <Typography variant="body2" color="white" maxWidth={100}>
-                        Test are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        Location: UCLA,
                     </Typography>
                 </CardContent>
                 <CardActions

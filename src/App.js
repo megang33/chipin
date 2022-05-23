@@ -44,14 +44,6 @@ class App extends React.Component {
     //function to update information using db (realtime)
 
     return (
-      <div className='App'>
-        <Card
-          title='Card Title'
-          imageURL=''
-          body='This is a test'
-        />
-      </div>
-      /*
       <React.StrictMode>
         <Router>
           <Routing uid={this.state.online ? doc.get("uid") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
@@ -59,7 +51,6 @@ class App extends React.Component {
             handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)} />
         </Router>
       </React.StrictMode>
-      */
     );
   }
 }
