@@ -45,9 +45,23 @@ export const signInWithGoogle = async () => {
   }
 };
 
-export const updateDBdoc = async (collection, body, uid) => {
-  await updateDoc(doc(db, collection, uid), body);
-  //auth.currentUser.uid - currently going to randomly generated id
+export const updateDBdoc = async (collection, uid, body) => {
+  try {
+    const docRef = await updateDoc(doc(db, collection, uid), body);
+    console.log("Document updated: ", docRef.id);
+  } catch (e) {
+    console.error("Error updating doc: ", e);
+  }
+}
+
+//to add document for events page
+export const addDBdoc = async (c, body) => {
+  try {
+    const docRef = await addDoc(collection(db, c), body);
+    console.log("Document added: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding doc: ", e);
+  }
 }
 
 export const updateStateDoc = (uid) => {

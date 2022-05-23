@@ -3,7 +3,6 @@ import { useState } from 'react';
 import '../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard } from '@fortawesome/free-solid-svg-icons'
-import '../utils/firebase.js';
 import { updateDBdoc } from '../utils/firebase.js';
 
 const SignUp = (props) => {
@@ -23,7 +22,7 @@ const SignUp = (props) => {
       zipcode: zipcode,
       registered: true,
     }
-    updateDBdoc("users", body, props.uid);
+    updateDBdoc("users", props.uid, body);
     props.updateInfo(props.uid);
   }
   // if (props.registered){
