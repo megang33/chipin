@@ -7,7 +7,7 @@ import '../index.css'
 const GroupCard = (props) => {
   console.log(props.name)
   return(
-    <div>
+    <div className='group-card-container'>
       <button>
         <div>
           <img src={props.img} width="100px"/>
@@ -64,7 +64,7 @@ class GroupBar extends React.Component {
       const groups = this.state.groups
       console.log(groups);
       list = groups.map((group) => {
-        return <li style={{listStyle: 'none', marginRight:'25%'}}>{group}</li>;
+        return <li className='group-card-list' style={{listStyle: 'none', marginRight:'25%'}}>{group}</li>;
       })
     }
     return(
@@ -97,7 +97,7 @@ const Community = (props) => {
     return(
       <div>
         <h3>Welcome to your community.</h3>
-        <div style={{display: 'flex', marginRight: '50rem', backgroundColor: "lightgrey"}}>
+        <div style={{display: 'flex', marginRight: '50rem', backgroundColor: "#D9BFB1"}}>
           <form onSubmit={(e) => joinGroup(props.uid, e)} style={{display: "flex"}}>
             <input name="input" type="text" placeholder='group code...' onChange={(e) => setCode(e.target.value)} ></input>
             <input type="submit" value="Join Group"></input>
@@ -107,11 +107,14 @@ const Community = (props) => {
             <input type="submit" value="New Group" ></input>
           </form>
         </div>
-        <div style={{display: 'flex', float: 'right', flexDirection: 'column' }}>
-          <h2 className='groupsHeader'>Your Groups</h2>
-          <GroupBar uid={props.uid}/>
-        </div>
 
+        <div className='group-bar-contain'>
+          <div style={{display: 'flex', float: 'right', flexDirection: 'column', top: "1px", paddingRight: "10px" }}>
+            <h2 className='groups-header'>Your Groups</h2>
+            <GroupBar uid={props.uid}/>
+          </div>
+        </div>
+        
       </div>
     );
   }

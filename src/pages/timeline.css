@@ -1,0 +1,38 @@
+.round-rect {
+    box-sizing: border-box;
+  
+    position: absolute;
+    width: 84%;
+    height: 110%;
+    left: 8%;
+    top: 175px;
+    padding-bottom: 20px;
+  
+    border: 15px solid #7F867B;
+    border-radius: 104px;
+  }
+  
+  .big-num {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: -12px;
+    z-index: 2;
+  }
+  
+  .unit-text {
+    position: relative;
+    top: 69px;
+    width: 130px;
+    z-index: 2;
+    display: inline-block;
+  }
+
+  #community-head {
+    position: absolute;
+    width: 221px;
+    height: 40px;
+    left: 76px;
+    top: 100px;
+    font-size: 32px;
+  }
