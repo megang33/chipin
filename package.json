@@ -9,12 +9,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@mui/material": "^5.8.0",
-<<<<<<< HEAD
-    "@react-google-maps/api": "^2.11.4",
-=======
     "@reach/combobox": "^0.17.0",
     "@react-google-maps/api": "^2.11.8",
->>>>>>> a894eec36f2b5f0a2c182c728530f7aa4d19c70c
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",

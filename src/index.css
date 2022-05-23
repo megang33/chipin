@@ -255,3 +255,48 @@ form {
 .suggestions li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
+
+.internal-header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.stats-wrapper {
+  position: relative;
+}
+
+/* Community GroupsBar */
+
+.groups-header {
+  flex-grow: 1;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.groups {
+  height: 100%;
+  flex-basis: 100%;
+  margin-right: 10%;
+  flex-grow: 1;
+  background-color: #D9BFB1;
+}
+
+.group-bar-contain {
+  background-color: #D9BFB1;
+  position: absolute;
+  right: 20px;
+  height: 100%;
+  border-radius: 50px;
+}
+
+.group-card-container {
+  position: relative;
+  width: 265px;
+}
+
+.group-card-list {
+  position: relative;
+  width: 100%;
+}
