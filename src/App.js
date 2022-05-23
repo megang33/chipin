@@ -4,6 +4,7 @@ import { signInWithGoogle, updateStateDoc } from './utils/firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import firebase from "./utils/firebase"
 import { Routing } from './components/routing.js';
+import NavBar from './components/navbar.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -58,7 +59,8 @@ class App extends React.Component {
     return (
       <React.StrictMode>
         <Router>
-          <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
+          {/* <NavBar signedIn={this.state.loggedIn} handleSignIn={this.state.handleSignIn} handleSignOut={this.state.handleSignOut} /> */}
+          <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} numGroups={this.state.online ? doc.get("numGroups") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
             loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null}
             handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)}/>
         </Router>

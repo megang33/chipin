@@ -55,49 +55,8 @@ form {
   margin-top: 10px;
 }
 
-/* Timeline page round rectangle */
-.round-rect {
-  box-sizing: border-box;
+/* Timeline page */
 
-  position: absolute;
-  width: 84%;
-  height: 110%;
-  left: 8%;
-  top: 200px;
-  padding-bottom: 20px;
-
-  border: 15px solid #7F867B;
-  border-radius: 104px;
-}
-
-/* Community GroupsBar */
-
-.groupsHeader {
-  flex-grow: 1;   
-}
-
-.groups {
-  margin-right: 10%;
-  flex-grow: 1;
-  background-color: lightgrey;
-}
-
-.stats-wrapper {
-  position: relative;
-}
-
-.big-num {
-  position: absolute;
-  top: -12px;
-  z-index: 2;
-}
-
-.unit-text {
-  position: absolute;
-  top: 69px;
-  width: 130px;
-  z-index: 2;
-}
 
 .solid-rect {
   position: absolute;
@@ -108,4 +67,49 @@ form {
   background: #D9BFB1;
   border-radius: 5px;
   z-index: 1;
+}
+
+.internal-header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.stats-wrapper {
+  position: relative;
+}
+
+/* Community GroupsBar */
+
+.groups-header {
+  flex-grow: 1;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.groups {
+  height: 100%;
+  flex-basis: 100%;
+  margin-right: 10%;
+  flex-grow: 1;
+  background-color: #D9BFB1;
+}
+
+.group-bar-contain {
+  background-color: #D9BFB1;
+  position: absolute;
+  right: 20px;
+  height: 100%;
+  border-radius: 50px;
+}
+
+.group-card-container {
+  position: relative;
+  width: 265px;
+}
+
+.group-card-list {
+  position: relative;
+  width: 100%;
 }
