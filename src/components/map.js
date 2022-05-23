@@ -2,10 +2,11 @@ import React from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Autocomplete from './Autocomplete'
 import MyCard from './MyCard.js'
+import EventList from './EventList';
+import './map.css'
 
 const containerStyle = {
-  width: '75%',
-  height: '85vh',
+  height: '80vh',
 };
 
 const center = {
@@ -32,32 +33,34 @@ function MyMap() {
   }, [])
 
   return isLoaded ? (
-    <div>
-      <div>
-        <Autocomplete suggestions={["apple", "orange", "grape", "aunty", "ant", "args"]} />
-      </div>
-      <div>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={15}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-          options={{
-            zoomControl: false,
-            mapTypeControl: false,
-            fullscreenControl: false,
-          }}
-        >
-          <Marker position={center} />
-        </GoogleMap>
-      </div>
-      <div>
-        <MyCard>
 
-        </MyCard>
-      </div>
 
+    <div class="horizontal">
+      <div class="vertical">
+        <div>
+          <Autocomplete suggestions={["apple", "orange", "grape", "aunty", "ant", "args"]} />
+        </div>
+        <div>
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={15}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
+            options={{
+              zoomControl: false,
+              mapTypeControl: false,
+              fullscreenControl: false,
+            }}
+          >
+            <Marker position={center} />
+          </GoogleMap>
+        </div>
+      </div>
+      <div>
+        <EventList>
+        </EventList>
+      </div>
     </div>
   ) : <h2>Map loading..</h2>
 }
