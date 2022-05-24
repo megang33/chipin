@@ -37,7 +37,7 @@ function MyMap() {
 
     <div class="horizontal">
       <div class="vertical">
-        <div>
+        <div z-index="0">
           <Autocomplete suggestions={["apple", "orange", "grape", "aunty", "ant", "args"]} />
         </div>
         <div>
@@ -61,7 +61,7 @@ function MyMap() {
         <EventList>
         </EventList>
       </div>
-    </div>
+    </div >
   ) : <h2>Map loading..</h2>
 }
 
