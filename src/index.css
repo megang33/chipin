@@ -17,19 +17,6 @@ code {
   width: 150px;
 }
 
-.signup-input {
-  width: 100%;
-}
-input[type=text], select {
-  width: 50%;
-  padding: 12px 20px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin: 10px;
-}
-
 form {
   width: 55%;
   margin: auto;

@@ -13,7 +13,8 @@ export default class EventCreation extends React.Component {
         primary_contact: '',
         secondary_contact: '',
         address: '',
-        banner: ''
+        banner: '',
+        hours: ''
     }
 
     //go to next step
@@ -41,10 +42,10 @@ export default class EventCreation extends React.Component {
 
     render() {
         const { step, event_name, date, capacity, description, primary_contact, secondary_contact,
-            address, banner } = this.state;
+            address, banner, hours } = this.state;
         const values = {
             event_name, date, capacity, description, primary_contact, secondary_contact,
-            address, banner
+            address, banner, hours
         };
 
         switch (step) {

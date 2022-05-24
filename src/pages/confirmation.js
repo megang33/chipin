@@ -17,7 +17,8 @@ export default class MiscDetails extends React.Component {
             email: values.primary_contact,
             phone_number: values.secondary_contact,
             location: values.address,
-            banner: values.banner
+            banner: values.banner,
+            hours: values.hours
         }
         await addDBdoc("events", body);
         window.location = "/events";

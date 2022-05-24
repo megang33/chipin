@@ -39,8 +39,18 @@ export default class EventDetails extends React.Component {
                             <input
                                 className="horiz-field"
                                 type="text"
-                                placeholder="Enter a Capacity"
+                                placeholder="Enter Capacity"
                                 onChange={e => this.props.handleChange('capacity', e)}
+                                required={true}
+                            />
+                        </div>
+                        <div className="form-row">
+                            <label style={{ margin: "7px" }}>Hours:</label>
+                            <input
+                                className="horiz-field"
+                                type="text"
+                                placeholder="Enter Hours"
+                                onChange={e => this.props.handleChange('hours', e)}
                                 required={true}
                             />
                         </div>

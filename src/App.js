@@ -17,9 +17,9 @@ class App extends React.Component {
     }
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     const doc = await updateStateDoc(localStorage.getItem("user-login"))
-    if (doc != null){
+    if (doc != null) {
       this.setState({
         online: true,
         userInfo: doc,
@@ -42,6 +42,14 @@ class App extends React.Component {
     })
   }
 
+  async handleSignIn() {
+    const userInfo = await signInWithGoogle();
+    this.setState({
+      userInfo: userInfo,
+      online: true,
+    })
+  }
+
   handleSignOut() {
     this.setState({
       online: false,
@@ -53,7 +61,7 @@ class App extends React.Component {
   render() {
     const doc = this.state.userInfo;
     const user = localStorage.getItem("user-login");
-    if (user === null && this.state.online){
+    if (user === null && this.state.online) {
       localStorage.setItem("user-login", doc.get("uid"))
     }
     console.log(localStorage)
@@ -63,7 +71,7 @@ class App extends React.Component {
         <Router>
           {/* <NavBar signedIn={this.state.loggedIn} handleSignIn={this.state.handleSignIn} handleSignOut={this.state.handleSignOut} /> */}
           <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} numGroups={this.state.online ? doc.get("numGroups") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
-            loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null}
+            loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null} role={this.state.online ? doc.get("role") : null}
             handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)} />
         </Router>
       </React.StrictMode>

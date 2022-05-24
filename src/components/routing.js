@@ -14,12 +14,12 @@ import TimeLine from '../pages/timeline.js';
 export const Routing = (props) => {
   return (
     <div>
-      <NavBar signedIn={props.loggedIn} handleSignIn={props.handleSignIn} handleSignOut={props.handleSignOut} />
+      <NavBar signedIn={props.loggedIn} handleSignIn={props.handleSignIn} handleSignOut={props.handleSignOut} role={props.role} />
       <Routes>
         <Route exact path='/' element={<Landing />} />
         <Route path='/signup' element={props.registered ? <Navigate to='/' /> : <SignUp uid={props.uid} updateInfo={props.updateInfo} />} />
-        <Route path='/timeline' element={<TimeLine name = { props.name } uid={ props.uid } numGroups={ props.numGroups }/>} />
-        <Route path='/community' element={<Community uid={ props.uid } updateInfo={props.updateInfo}/>} />
+        <Route path='/timeline' element={<TimeLine name={props.name} uid={props.uid} numGroups={props.numGroups} />} />
+        <Route path='/community' element={<Community uid={props.uid} updateInfo={props.updateInfo} />} />
         <Route path='/events' element={<Event />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/signout' element={<SignOut />} />
