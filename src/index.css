@@ -99,9 +99,17 @@ form {
 .group-bar-contain {
   background-color: #D9BFB1;
   position: absolute;
-  right: 20px;
+  right: 0px;
   height: 100%;
   border-radius: 50px;
+  max-height: 575px;
+  /* width: 500px; */
+  overflow-y: scroll;
+  /* max-width: 400px; */
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .group-card-container {
@@ -113,6 +121,43 @@ form {
   position: relative;
   width: 100%;
 }
+
+.group-bar-inner {
+  display: flex;
+  float: right;
+  flex-direction: column;
+}
+
+.group-img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 215px;
+  height: 85px;
+  object-fit: cover;
+}
+
+.group-card-text {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 75px;
+  width: 215px;
+}
+
+.group-card-name {
+  position: relative;
+  font-size: 15px;
+  float: left;
+  margin-bottom: 0px;
+}
+
+.group-card-desc {
+  position: absolute;
+  float: left;
+  padding-top: 30px;
+}
+
 /* Event Details */
 .form-header {
   margin-bottom: 25px;

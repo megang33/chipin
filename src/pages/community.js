@@ -9,17 +9,22 @@ const GroupCard = (props) => {
   return(
     <div className='group-card-container'>
       <button>
-        <div>
-          <img src={props.img} width="100px"/>
+        <div style={{ width: "200px", height: "123px" }}>
+          <div>
+            <img className='group-img' src={props.img}/>
+          </div>
+          <div className='group-card-text'>
+            <div style={{ position: "relative", width: "100%" }}>
+              <h2 className='group-card-name'>{props.name}</h2>
+            </div>
+            <text className='group-card-desc'>filler description</text>
+          </div>
+          <div>
+            {/* insert an icon here */}
+            {props.numMembers}
+          </div>
         </div>
-        <div>
-          <h2>{props.name}</h2>
-          <text>filler description</text>
-        </div>
-        <div>
-          {/* insert an icon here */}
-          {props.numMembers}
-        </div>
+        
       </button>
     </div>
   );
@@ -109,7 +114,7 @@ const Community = (props) => {
         </div>
 
         <div className='group-bar-contain'>
-          <div style={{display: 'flex', float: 'right', flexDirection: 'column', top: "1px", paddingRight: "10px" }}>
+          <div className='group-bar-inner'>
             <h2 className='groups-header'>Your Groups</h2>
             <GroupBar uid={props.uid}/>
           </div>
