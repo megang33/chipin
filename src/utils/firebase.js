@@ -55,10 +55,14 @@ export const getDocInfo = async (collection, id, field) => {
   }
 }
 
-export const initializeGroup = async (uid, name) => {
+export const initializeGroup = async (uid, name, desc, img, purpose) => {
+  console.log(name + " " + desc + " " + img + " " + purpose)
   const newGroup = doc(collection(db, "groups"))    // Each group will guarantee have unique IDs. No chance for overlap.
   const data = {
     name: name,
+    desc: desc,
+    img: img,
+    purpose: purpose,
     founder: uid,
     numMembers: 1,
     members: new Array(uid,),
@@ -101,10 +105,11 @@ export const updateGroup = async (docUser, docGroup) => {
   updateDBdoc("users", docUser, userBody)
 }
 
-export const updateStateDoc = (uid) => {
-  if (uid){
-    const docRef = doc(db, "users", uid);
+export const getDocSnap = (collection, docs) => {
+  if (docs){
+    const docRef = doc(db, collection, docs);
     const docSnap = getDoc(docRef);
+    console.log(docSnap)
     return (docSnap);
   }
 }

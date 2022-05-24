@@ -25,6 +25,7 @@ const SignUp = (props) => {
       registered: true,
       groups: [],
       numGroups: 0,
+      numHours: 0,
     }
     updateDBdoc("users", props.uid, body);
     props.updateInfo(props.uid);

@@ -80,6 +80,10 @@ form {
   margin-right: 10%;
   flex-grow: 1;
   background-color: lightgrey;
+  max-height: 600px;
+  width: 300px;
+  overflow-y: scroll;
+  max-width: 400px;
 }
 
 .stats-wrapper {

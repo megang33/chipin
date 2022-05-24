@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { signInWithGoogle, updateStateDoc } from './utils/firebase';
+import { getDocSnap, signInWithGoogle } from './utils/firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import firebase from "./utils/firebase"
 import { Routing } from './components/routing.js';
@@ -15,17 +15,20 @@ class App extends React.Component {
   }
 
   async componentDidMount(){
-    const doc = await updateStateDoc(localStorage.getItem("user-login"))
+    console.log("hi")
+    const doc = await getDocSnap("users", localStorage.getItem("user-login"))
     if (doc != null){
       this.setState({
         online: true,
         userInfo: doc,
       })
     }
+    console.log("forcing")
+    this.forceUpdate();
   }
 
   async updateInfo(uid) {
-    const newUserInfo = await updateStateDoc(uid);
+    const newUserInfo = await getDocSnap("users", uid);
     this.setState({
       userInfo: newUserInfo
     })
@@ -53,8 +56,8 @@ class App extends React.Component {
     if (user === null && this.state.online){
       localStorage.setItem("user-login", doc.get("uid"))
     }
-    console.log(localStorage)
-    console.log(doc)
+    if (this.state.online === true)
+      console.log(doc.get("uid"))
     return (
       <React.StrictMode>
         <Router>
