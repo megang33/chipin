@@ -56,14 +56,15 @@ class App extends React.Component {
     if (user === null && this.state.online){
       localStorage.setItem("user-login", doc.get("uid"))
     }
-    console.log(localStorage)
-    console.log(doc)
+    // console.log(localStorage)
+    // console.log(doc)
     return (
       <React.StrictMode>
         <Router>
-          {/* <NavBar signedIn={this.state.loggedIn} handleSignIn={this.state.handleSignIn} handleSignOut={this.state.handleSignOut} /> */}
-          <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} numGroups={this.state.online ? doc.get("numGroups") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
-            loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null}
+          <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} 
+            numGroups={this.state.online ? doc.get("numGroups") : null} userInfo={this.state.userInfo} 
+            handleSignIn={() => this.handleSignIn()} loggedIn={this.state.online} 
+            registered={this.state.online ? doc.get("registered") : null}
             handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)} />
         </Router>
       </React.StrictMode>

@@ -8,8 +8,8 @@ const GroupCard = (props) => {
   console.log(props.name)
   return(
     <div className='group-card-container'>
-      <button>
-        <div style={{ width: "200px", height: "123px" }}>
+      <button style={{ borderRadius: '5px', borderWidth: '0px' }}>
+        <div style={{ width: "200px", height: "123px"}}>
           <div>
             <img className='group-img' src={props.img}/>
           </div>
@@ -113,10 +113,12 @@ const Community = (props) => {
           </form>
         </div>
 
-        <div className='group-bar-contain'>
-          <div className='group-bar-inner'>
-            <h2 className='groups-header'>Your Groups</h2>
-            <GroupBar uid={props.uid}/>
+        <div style={{ float: "right", marginTop: "-5%" }}>
+          <h2 className='groups-header'>your groups</h2>
+          <div className='group-bar-contain'>
+            <div className='group-bar-inner'>
+              <GroupBar uid={props.uid}/>
+            </div>
           </div>
         </div>
         
