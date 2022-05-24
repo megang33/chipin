@@ -1,10 +1,11 @@
 import React from 'react'
 import MyMap from '../components/map.js'
 import Autocomplete from '../components/Autocomplete.js'
-import MyCard from '../components/MyCard.js'
 import { db, getDocInfo } from '../utils/firebase';
 import { collection, query, where, getDocs, documentId, onSnapshot } from "firebase/firestore";
 import EventList from '../components/EventList.js'
+import '../components/EventList.css'
+import '../components/map.css'
 
 const suggestions = [];
 const q = query(collection(db, "events"));
@@ -29,7 +30,7 @@ const Events = () => {
         <MyMap />
       </div>
       <div>
-        <MyCard/>
+        <EventList/>
       </div>
     </div>
   )
