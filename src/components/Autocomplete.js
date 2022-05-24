@@ -82,14 +82,12 @@ class Autocomplete extends Component {
                 userInput
             }
         } = this;
-        // const {activeSuggestion, filteredSuggestions, showSuggestions, userInput} = this.state;
-        // const {onChange, onClick, onKeyDown} = this;
 
         let suggestionsListComponent;
         if (showSuggestions && userInput) {
             if (filteredSuggestions.length) {
                 suggestionsListComponent = (
-                    <ul class="suggestions">
+                    <ul className="suggestions">
                         {filteredSuggestions.map((suggestion, index) => {
                             let className;
                             if (index === activeSuggestion) className = "suggestion-active";

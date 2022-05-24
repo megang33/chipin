@@ -1,7 +1,5 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import Autocomplete from './Autocomplete'
-import MyCard from './MyCard.js'
 
 const containerStyle = {
   width: '75%',
@@ -34,9 +32,6 @@ function MyMap() {
   return isLoaded ? (
     <div>
       <div>
-        <Autocomplete suggestions={["apple", "orange", "grape", "aunty", "ant", "args"]} />
-      </div>
-      <div>
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
@@ -52,12 +47,6 @@ function MyMap() {
           <Marker position={center} />
         </GoogleMap>
       </div>
-      <div>
-        <MyCard>
-
-        </MyCard>
-      </div>
-
     </div>
   ) : <h2>Map loading..</h2>
 }
