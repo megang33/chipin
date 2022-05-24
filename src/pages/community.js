@@ -69,7 +69,7 @@ class GroupBar extends React.Component {
       const groups = this.state.groups
       console.log(groups);
       list = groups.map((group) => {
-        return <li className='group-card-list' style={{listStyle: 'none', marginRight:'25%'}}>{group}</li>;
+        return <li className='group-card-list' style={{listStyle: 'none', marginRight: "-8px"}}>{group}</li>;
       })
     }
     return(

@@ -85,7 +85,7 @@ form {
 .groups-header {
   flex-grow: 1;
   text-align: center;
-  margin-left: 5px;
+  margin-bottom: 0px;
 }
 
 .groups {
@@ -94,6 +94,7 @@ form {
   margin-right: 10%;
   flex-grow: 1;
   background-color: #D9BFB1;
+  padding-bottom: 50px;
 }
 
 .group-bar-contain {
@@ -102,7 +103,7 @@ form {
   right: 0px;
   height: 100%;
   border-radius: 50px;
-  max-height: 575px;
+  max-height: 567px;
   /* width: 500px; */
   overflow-y: scroll;
   /* max-width: 400px; */
@@ -120,12 +121,14 @@ form {
 .group-card-list {
   position: relative;
   width: 100%;
+  padding-top: 5px;
 }
 
 .group-bar-inner {
   display: flex;
   float: right;
   flex-direction: column;
+  /* max-height: 500px; */
 }
 
 .group-img {
