@@ -23,14 +23,16 @@ const Events = () => {
       <div>
         <h3>Find an Event</h3>
       </div>
-      <div>
-        <Autocomplete suggestions={suggestions} />
-      </div>
-      <div>
-        <MyMap />
-      </div>
-      <div>
-        <EventList/>
+      <div class="horizontal">
+        <div class="vertical">
+          <div>
+            <Autocomplete suggestions={suggestions} />
+          </div>
+          <div>
+            <MyMap />
+          </div>
+        </div>
+        <EventList />
       </div>
     </div>
   )
