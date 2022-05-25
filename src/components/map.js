@@ -4,6 +4,7 @@ import { GoogleMap, LoadScript, Marker, Geocoder } from '@react-google-maps/api'
 
 const containerStyle = {
   height: '80vh',
+  width: '1300px'
 };
 
 class MyMap extends React.Component {
