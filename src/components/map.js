@@ -1,53 +1,68 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, Geocoder } from '@react-google-maps/api';
+
 
 const containerStyle = {
   height: '80vh',
 };
 
-const center = {
-  lat: 34.071035488041986,
-  lng: -118.44324559994142
-};
+class MyMap extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      //latlng: getLatLngByZipcode(this.props.zipcode),
+    }
+    //this.latlng = this.getLatLngByZipcode(props.zipcode);
+    this.center = {
+      lat: 45,
+      lng: 45
+    } 
+  }
 
-function MyMap() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho"
-  })
+  // getLatLngByZipcode(zipcode) {
+  //   console.log("Zipcode: ", zipcode);
+  //   var latitude;
+  //   var longitude;
+  //   var geocoder = new window.google.maps.Geocoder();
+  //   var address = zipcode;
+  //   geocoder.geocode({ 'address': 'zipcode '+address }, function (results, status) {
+  //       if (status === window.google.maps.GeocoderStatus.OK) {
+  //           latitude = results[0].geometry.location.lat();
+  //           longitude = results[0].geometry.location.lng();
+  //           alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+  //       } else {
+  //           alert("Request failed.")
+  //       }
+  //   });
+  //   return [latitude, longitude];
+  // }
 
-  const [map, setMap] = React.useState(/** @type google.maps.Map */null)
-
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
-  return isLoaded ? (
-    <div>
+  render() {
+    return (
       <div>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={15}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-          options={{
-            zoomControl: false,
-            mapTypeControl: false,
-            fullscreenControl: false,
-          }}
+        <LoadScript
+          googleMapsApiKey="AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho"
+
+          //onLoad={this.getLatLngByZipcode(this.props.zipcode)}
         >
-          <Marker position={center} />
-        </GoogleMap>
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={this.center}
+            zoom={15}
+            // onLoad={onLoad}
+            // onUnmount={onUnmount}
+            options={{
+              zoomControl: false,
+              mapTypeControl: false,
+              fullscreenControl: false,
+            }}
+          >
+            <Marker position={this.center} />
+          </GoogleMap>
+        </LoadScript>
       </div>
-    </div>
-  ) : <h2>Map loading..</h2>
+    )
+  }
 }
 
-export default React.memo(MyMap)
+export default MyMap
