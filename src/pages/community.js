@@ -81,19 +81,24 @@ const GroupCard = (props) => {
   }
 
   return(
-    <div style={{flexGrow: 1}}>
+    <div className='group-card-container'>
       <button onClick={() => displayInfo()}>
-        <div>
-          <img src={props.img} width="100px"/>
+        <div style={{ width: "200px", height: "123px" }}>
+          <div>
+            <img className='group-img' src={props.img}/>
+          </div>
+          <div className='group-card-text'>
+            <div style={{ position: "relative", width: "100%" }}>
+              <h2 className='group-card-name'>{props.name}</h2>
+            </div>
+            <text className='group-card-desc'>filler description</text>
+          </div>
+          <div>
+            {/* insert an icon here */}
+            {props.numMembers}
+          </div>
         </div>
-        <div>
-          <h2>{props.name}</h2>
-          <text>filler description</text>
-        </div>
-        <div>
-          {/* insert an icon here */}
-          {props.numMembers}
-        </div>
+        
       </button>
     </div>
   );
@@ -139,7 +144,7 @@ class GroupBar extends React.Component {
       const groups = this.state.groups
       console.log(groups);
       list = groups.map((group) => {
-        return <li style={{listStyle: 'none', marginRight:'25%'}}>{group}</li>;
+        return <li className='group-card-list' style={{listStyle: 'none', marginRight:'25%'}}>{group}</li>;
       })
     }
     return(
@@ -217,21 +222,23 @@ const Community = (props) => {
 
     return(
       <div>
-        <h3 style={{marginLeft: "5%",}}>Welcome to your community.</h3>
-        <div style={{display: 'flex', marginRight: '50rem', backgroundColor: "lightgrey"}}>
+        <h3>Welcome to your community.</h3>
+        <div style={{display: 'flex', marginRight: '50rem', backgroundColor: "#D9BFB1"}}>
           <form onSubmit={(e) => joinGroup(props.uid, e)} style={{display: "flex"}}>
             <input name="input" type="text" placeholder='group code...' onChange={(e) => setCode(e.target.value)} ></input>
             <input type="submit" value="Join Group"></input>
           </form>
           <button onClick={() => createGroup()}>Create A Group</button>
         </div>
-        <div style={{display: 'flex', float: 'right', flexDirection: 'column' }}>
-          <h2 className='groupsHeader'>Your Groups</h2>
-          <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)}/>
+        <div className='group-bar-contain'>
+          <div className='group-bar-inner'>
+            <h2 className='groupsHeader'>Your Groups</h2>
+            <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)}/>
+          </div>
         </div>
         <div>
           {display}
-        </div>
+        </div>  
       </div>
     );
   }

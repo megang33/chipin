@@ -4,6 +4,9 @@ import { getDocSnap, signInWithGoogle } from './utils/firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import firebase from "./utils/firebase"
 import { Routing } from './components/routing.js';
+import NavBar from './components/navbar.js';
+import Card from "./components/MyCard"
+
 
 class App extends React.Component {
   constructor(props) {
@@ -42,6 +45,14 @@ class App extends React.Component {
     })
   }
 
+  async handleSignIn() {
+    const userInfo = await signInWithGoogle();
+    this.setState({
+      userInfo: userInfo,
+      online: true,
+    })
+  }
+
   handleSignOut() {
     this.setState({
       online: false,
@@ -53,7 +64,7 @@ class App extends React.Component {
   render() {
     const doc = this.state.userInfo;
     const user = localStorage.getItem("user-login");
-    if (user === null && this.state.online){
+    if (user === null && this.state.online) {
       localStorage.setItem("user-login", doc.get("uid"))
     }
     if (this.state.online === true)
@@ -61,9 +72,10 @@ class App extends React.Component {
     return (
       <React.StrictMode>
         <Router>
-          <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
-            loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null}
-            handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)}/>
+          {/* <NavBar signedIn={this.state.loggedIn} handleSignIn={this.state.handleSignIn} handleSignOut={this.state.handleSignOut} /> */}
+          <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} numGroups={this.state.online ? doc.get("numGroups") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
+            loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null} role={this.state.online ? doc.get("role") : null}
+            handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)} />
         </Router>
       </React.StrictMode>
     );

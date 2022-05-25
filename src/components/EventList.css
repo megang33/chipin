@@ -1,0 +1,6 @@
+    .myTray {
+        max-height: 90vh;
+        width: 500px;
+        overflow-y: scroll;
+        max-width: 400px;
+    }
