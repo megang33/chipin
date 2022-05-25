@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { initializeGroup, updateGroup, updateDBdoc, getDocInfo, getDocSnap} from '../utils/firebase';
 import '../index.css'
+import { getDoc } from 'firebase/firestore';
 const GroupCard = (props) => {
   const leaveGroup = async (user, group) => {
     const numGroups= await getDocInfo("users", user, "numGroups")
@@ -26,31 +27,55 @@ const GroupCard = (props) => {
   const getCumHours = async (group) => {
     const userArray = await getDocInfo("groups", group, "members");
     let total = 0;
-    for (let i = 0; i < group.length; i++){
+    for (let i = 0; i < userArray.length; i++){
       total += await getDocInfo("users", userArray[i], "numHours");
     }
+    console.log(total)
     return total;
   }
 
-  const displayInfo = () => {
+  const getMemList = async (group) => {
+    const userArray = await getDocInfo("groups", group, "members");
+    const nameArray = new Array(userArray.length)
+    for (let i = 0; i < userArray.length; i++){
+      nameArray[i] = await getDocInfo("users", userArray[i], "name");
+    }
+    const memList = nameArray.map((name) => {
+      return <li>{name}</li>
+    })
+    return (<div><ul>
+      {memList}
+    </ul>
+    </div>);
+  }
+
+  const displayInfo = async () => {
+    let hours = await getCumHours(props.id)
+    let members = await getMemList(props.id)
     props.setDisplay(
       <div className='groupsite' style={{marginLeft: "5%"}}>
         <div>
-          <h1>{props.name}</h1>
-          <p>Group code: {props.id}</p>
-          <p>Collective Hours: {0}</p>
+          <div>
+            <h1>{props.name}</h1>
+            <p>Group code: {props.id}</p>
+            <p>Collective Hours: {hours}</p>
+          </div>
+          <button>Edit</button>
+          <button onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
+          <div>
+            <p>{props.description}</p>
+            <p>{props.purpose}</p>
+          </div>
+          <h2>Events</h2>
+          <ul>
+            <li>filler event card one</li>
+            <li>filler event card two</li>
+          </ul>
         </div>
-        <button>Edit</button>
-        <button onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
         <div>
-          <p>{props.description}</p>
-          <p>{props.purpose}</p>
+          <h2>Member List</h2>
+          {members}
         </div>
-        <h2>Events</h2>
-        <ul>
-          <li>filler event card one</li>
-          <li>filler event card two</li>
-        </ul>
       </div>
     )
   }
