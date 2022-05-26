@@ -5,18 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { borderRadius, palette } from '@mui/system';
-import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@emotion/react';
 import Box from '@mui/material/Box';
 
-
-
-
-
-
-
-export default function MediaCard() {
+export default function MyCard() {
     return (
 
         <Card sx={{

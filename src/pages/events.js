@@ -24,7 +24,7 @@ class Events extends React.Component {
       uid: props.uid
     };
   }
-  
+
   async componentDidMount() {
     let uid = localStorage.getItem("user-login");
     let zc = await getDocInfo("users", uid, "zipcode")
@@ -38,17 +38,22 @@ class Events extends React.Component {
     const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} /> : <h2>Map loading..</h2>;
     return (
       <div>
-        <div>
-          <h3>Find an Event</h3>
-        </div>
-        <div>
-          <Autocomplete suggestions={suggestions} />
-        </div>
-        <div>
-          {zcnull}
-        </div>
-        <div>
-          <EventList/>
+        <div className='horizontal'>
+          <div className='vertical'>
+            <div>
+              <h3>Find an Event</h3>
+            </div>
+            <div>
+              <Autocomplete suggestions={suggestions} />
+            </div>
+            <div>
+              {zcnull}
+            </div>
+
+          </div>
+          <div>
+            <EventList suggestions={suggestions} />
+          </div>
         </div>
       </div>
     )
