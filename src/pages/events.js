@@ -53,7 +53,7 @@ class Events extends React.Component {
 
           </div>
           <div>
-            <EventList />
+            <EventList suggestions={suggestions} />
           </div>
         </div>
       </div>

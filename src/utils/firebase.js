@@ -48,8 +48,8 @@ export const signInWithGoogle = async () => {
 export const getDocInfo = async (collection, id, field) => {
   console.log(collection + ", " + id + ", " + field)
   if (id != null) {
-    const docRef = doc(db, collection, id)
-    const docSnap = await getDoc(docRef)
+    const docRef = doc(db, collection, id);
+    const docSnap = await getDoc(docRef);
     const data = await docSnap.get(field);
     return data;
   }
