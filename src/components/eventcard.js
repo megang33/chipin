@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,12 +7,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-export default function MyCard() {
+export default function EventCard() {
     return (
 
         <Card sx={{
-            maxWidth: 400,
-            maxHeight: 200,
+            maxWidth: 950,
+            maxHeight: 150,
             boxShadow: 20,
             backgroundColor: "#FFB743",
             borderRadius: 3,
@@ -37,10 +37,10 @@ export default function MyCard() {
                         Lizard
                     </Typography>
 
-                    <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
+                    <Typography variant="body2" color="white" maxWidth={400} fontSize="5">
                         Date/Time: June 5th 1PM-3PM
                     </Typography>
-                    <Typography variant="body2" color="white" maxWidth={100}>
+                    <Typography variant="body2" color="white" maxWidth={400}>
                         Location: UCLA,
                     </Typography>
                 </CardContent>
@@ -58,23 +58,21 @@ export default function MyCard() {
                     <Button
                         sx={{
                             outline: 'outset',
-                            width: 50
+                            width: 70,
+                            padding: 2,
+                            marginTop: 2,
+                            marginBottom: 2
                         }}
                         size="small"
                     >Locate</Button>
                     <Button
                         sx={{
                             outline: 'outset',
-                            width: 50
+                            width: 70,
+                            padding: 2,
+                            marginBottom: 2
                         }}
-                        size="small"
-                    >Contact</Button>
-                    <Button
-                        sx={{
-                            outline: 'outset',
-                            width: 50
-                        }}
-                        size="small">Learn More</Button>
+                        size="small">Register</Button>
                 </CardActions>
             </Box>
         </Card >
