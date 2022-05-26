@@ -9,7 +9,7 @@ import { borderRadius, palette } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 import Box from '@mui/material/Box';
-
+import { getDocInfo } from '../utils/firebase.js'
 
 
 
