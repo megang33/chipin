@@ -82,8 +82,8 @@ const GroupCard = (props) => {
 
   return(
     <div className='group-card-container'>
-      <button onClick={() => displayInfo()}>
-        <div style={{ width: "200px", height: "123px" }}>
+      <button style={{ borderRadius: '5px', borderWidth: '0px' }} onClick={() => displayInfo()}>
+        <div style={{ width: "200px", height: "123px"}}>
           <div>
             <img className='group-img' src={props.img}/>
           </div>
@@ -144,7 +144,7 @@ class GroupBar extends React.Component {
       const groups = this.state.groups
       console.log(groups);
       list = groups.map((group) => {
-        return <li className='group-card-list' style={{listStyle: 'none', marginRight:'25%'}}>{group}</li>;
+        return <li className='group-card-list' style={{listStyle: 'none', marginRight: "-8px"}}>{group}</li>;
       })
     }
     return(
@@ -230,10 +230,13 @@ const Community = (props) => {
           </form>
           <button onClick={() => createGroup()}>Create A Group</button>
         </div>
-        <div className='group-bar-contain'>
-          <div className='group-bar-inner'>
-            <h2 className='groupsHeader'>Your Groups</h2>
-            <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)}/>
+
+        <div style={{ float: "right", marginTop: "-5%" }}>
+          <h2 className='groups-header'>your groups</h2>
+          <div className='group-bar-contain'>
+            <div className='group-bar-inner'>
+              <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)}/>
+            </div>
           </div>
         </div>
         <div>
