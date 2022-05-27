@@ -1,5 +1,6 @@
 import React from 'react'
-import { GoogleMap, LoadScript, Marker, Geocoder } from '@react-google-maps/api';
+import { GoogleMap, LoadScriptNext, Marker } from '@react-google-maps/api';
+import Geocode from "react-geocode";
 
 
 const containerStyle = {
@@ -7,17 +8,28 @@ const containerStyle = {
   width: '1300px'
 };
 
+Geocode.setApiKey("AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho");
+Geocode.setRegion("en");
+//Geocode.setLocationType("ROOFTOP");
+//Geocode.enableDebug();
+
+
 class MyMap extends React.Component {
   constructor(props) {
     super(props);
+    var center;
+    Geocode.fromAddress(props.zipcode).then(
+      (response) => {
+        const {lat, lng} = response.results[0].geometry.location;
+        console.log(lat, lng);
+        console.log(typeof lat);
+        center = {lat: lat, lng: lng}
+      },
+      (error) => {console.error(error)}
+    )
     this.state = {
-      //latlng: getLatLngByZipcode(this.props.zipcode),
+      center: center
     }
-    //this.latlng = this.getLatLngByZipcode(props.zipcode);
-    this.center = {
-      lat: 45,
-      lng: 45
-    } 
   }
 
   // getLatLngByZipcode(zipcode) {
@@ -38,18 +50,18 @@ class MyMap extends React.Component {
   //   return [latitude, longitude];
   // }
 
+
+
   render() {
     return (
       <div>
-        <LoadScript
+        <LoadScriptNext
           googleMapsApiKey="AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho"
-
-          //onLoad={this.getLatLngByZipcode(this.props.zipcode)}
         >
           <GoogleMap
             mapContainerStyle={containerStyle}
-            center={this.center}
-            zoom={15}
+            center={this.state.center}
+            //zoom={15}
             // onLoad={onLoad}
             // onUnmount={onUnmount}
             options={{
@@ -58,9 +70,9 @@ class MyMap extends React.Component {
               fullscreenControl: false,
             }}
           >
-            <Marker position={this.center} />
+            <Marker position={this.state.center} />
           </GoogleMap>
-        </LoadScript>
+        </LoadScriptNext>
       </div>
     )
   }
