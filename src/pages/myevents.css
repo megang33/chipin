@@ -1,0 +1,95 @@
+.my-events-container {
+    position: relative;
+    width: 100%;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.myevent-card-container {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    border-width: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.myevent-img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 500px;
+    height: 150px;
+    object-fit: cover;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.myevent-card-text {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 150px;
+    width: 100%;
+}
+  
+.myevent-card-name {
+    position: relative;
+    font-size: 18px;
+    float: left;
+    padding-top: 10px;
+    padding-left: 30px;
+    margin-bottom: 0px;
+}
+  
+.myevent-card-desc {
+    position: relative;
+    float: left;
+    padding-left: 30px;
+}
+
+.myevent-buttons-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.myevent-button {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border-width: 0px;
+    font-size: 15px;
+}
+
+#manage-attendees {
+    position: relative;
+    width: 80%;
+    height: 50px;
+
+    background: #E8DBDE;
+    align-items: center;
+}
+
+.myevent-lower-buttons {
+    width: 80%;
+    margin-top: 20px;
+}
+
+#edit-myevent {
+    background: #E8DBDE;
+    width: 47.5%;
+    height: 50px;
+}
+
+#delete-myevent {
+    margin-left: 5%;
+    background: #DF3E5B;
+    width: 47.5%;
+    height: 50px;
+}

@@ -30,6 +30,7 @@ const NavBar = (props) => {
           <Link to="/community" className='nav-item'>community</Link>
           <Link to="/timeline" className='nav-item'>timeline</Link>
           <Link to="/event-creation" className='nav-item'>make an event</Link>
+          <Link to="/my-events" className='nav-item'>my events</Link> {/* Needs to be implemented */}
           <Link to="/profile" className='nav-item'>you</Link>
           <Link to="/signout" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
         </div>
