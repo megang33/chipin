@@ -1,16 +1,4 @@
-.round-rect {
-    box-sizing: border-box;
-  
-    position: absolute;
-    width: 84%;
-    height: 110%;
-    left: 8%;
-    top: 175px;
-    padding-bottom: 20px;
-  
-    border: 15px solid #7F867B;
-    border-radius: 104px;
-  }
+
   
   .big-num {
     display: flex;
