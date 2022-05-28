@@ -6,7 +6,7 @@ class EventList extends React.Component {
 
     render() {
         return (
-            <div class="myTray">
+            <div className="myTray">
                 <MyCard />
                 <MyCard />
                 <MyCard />
