@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 import '../index.css'
 import PropTypes from "prop-types";
 
@@ -22,7 +22,7 @@ class Autocomplete extends Component {
     }
 
     onChange = e => {
-        const { suggestions }  = this.props;
+        const { suggestions } = this.props;
         const userInput = e.currentTarget.value;
 
         const filteredSuggestions = suggestions.filter(
@@ -47,7 +47,7 @@ class Autocomplete extends Component {
     };
 
     onKeyDown = e => {
-        const {activeSuggestion, filteredSuggestions} = this.state;
+        const { activeSuggestion, filteredSuggestions } = this.state;
 
         if (e.keyCode === 13) {
             this.setState({
@@ -91,7 +91,7 @@ class Autocomplete extends Component {
                         {filteredSuggestions.map((suggestion, index) => {
                             let className;
                             if (index === activeSuggestion) className = "suggestion-active";
-    
+
                             return (
                                 <li className={className} key={suggestion} onClick={onClick}>
                                     {suggestion}
