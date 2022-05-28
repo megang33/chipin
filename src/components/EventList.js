@@ -15,6 +15,7 @@ class EventList extends Component {
         suggestions: []
     };
 
+
     constructor(props) {
         super(props);
         this.state = {
@@ -31,8 +32,11 @@ class EventList extends Component {
         const { suggestions } = this.props;
         console.log(suggestions)
 
+        const list = suggestions.map((name, idx) => {
+            return <div><MyCard eventName={name} /> </div>
+        })
         return (
-            <MyCard eventName={suggestions[0]} />
+            <div>{list}</div>
         )
     }
 
