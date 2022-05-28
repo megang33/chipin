@@ -3,7 +3,6 @@ import MyMap from '../components/map.js'
 import Autocomplete from '../components/Autocomplete.js'
 import { db, getDocInfo, auth } from '../utils/firebase';
 import { collection, query, where, getDocs, documentId, onSnapshot } from "firebase/firestore";
-import { Geocoder, geocode, geocoder, GeocoderStatus } from '@react-google-maps/api';
 import EventList from '../components/EventList.js'
 import '../components/EventList.css'
 import '../components/map.css'
