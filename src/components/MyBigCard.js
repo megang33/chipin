@@ -10,12 +10,6 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 import Box from '@mui/material/Box';
 
-
-
-
-
-
-
 export default function MediaCard() {
     return (
 
@@ -30,8 +24,7 @@ export default function MediaCard() {
             positon: 'absolute',
 
         }}>
-            <div className="Centering">
-
+            <div>
                 <CardMedia
                     component="img"
                     height="250"
@@ -70,6 +63,7 @@ export default function MediaCard() {
                             width: 50
                         }}
                         size="small"
+                        onClick={console.log("hi")}
                     >Locate</Button>
                     <Button
                         sx={{
