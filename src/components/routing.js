@@ -21,8 +21,8 @@ export const Routing = (props) => {
         <Route path='/signup' element={props.registered ? <Navigate to='/' /> : <SignUp uid={props.uid} updateInfo={props.updateInfo} />} />
         <Route path='/timeline' element={<TimeLine uid={ props.uid }/>} />
         <Route path='/community' element={<Community uid={ props.uid } updateInfo={props.updateInfo}/>} />
-        <Route path='/events' element={<Event />} />
         <Route path='/my-events' element={<MyEvents />} />
+        <Route path='/events' element={<Event uid={props.uid}/>} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/signout' element={<SignOut />} />
         <Route path='/event-creation' element={<EventCreation />} />
