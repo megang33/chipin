@@ -2,6 +2,7 @@ import React from 'react'
 import EventDetails from './event-details.js'
 import MiscDetails from './misc-details.js'
 import Confirmation from './confirmation.js'
+import './events.css'
 
 export default class EventCreation extends React.Component {
     state = {
