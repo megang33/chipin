@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import MyCard from './MyCard';
-import NavBar from './navbar';
+import MyCard from './MyCard.js';
 import './EventList.css'
 
 class EventList extends React.Component {
