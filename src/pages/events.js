@@ -28,7 +28,8 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
       'timeEnd': doc.data().timeEnd,
     }
     eventMap[doc.data().event_name] = fields;
-    console.log("event obj:", eventMap[doc.data().event_name])
+    //console.log("event obj:", eventMap[doc.data().event_name])
+    console.log("ADDRESSES: ", eventMap[doc.data().event_name].address)
   });
   console.log("Events: ", suggestions);
   console.log("event map:", eventMap);
@@ -143,9 +144,13 @@ class Events extends React.Component {
     })
   }
 
+  // pullData = data => {
+  //   console.log(data)
+  // }
+
   render() {
     console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap}/> : <h2>Map loading..</h2>;
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>

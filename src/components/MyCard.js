@@ -28,10 +28,13 @@ class MyCard extends Component {
         };
     }
 
+    // onClick = e => {
+    //     this.props.pullData("hi")
+    // }
+
     render() {
         const { alpha } = "test";
         const { eventName } = this.props
-        console.log({ eventName })
         return (
             <Card sx={{
                 maxWidth: 400,
