@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import MyCard from './MyCard.js';
-import ExpandedCard from './ExpandedCard.js';
+// import ExpandedCard from './ExpandedCard.js';
 import './EventList.css'
 import PropTypes from "prop-types";
 
