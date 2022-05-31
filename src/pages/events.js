@@ -15,7 +15,7 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     suggestions.push(doc.data().event_name);
     const fields = {
-      'event_name': doc.data().date,
+      'event_name': doc.data().event_name,
       'date': doc.data().date,
       'capacity': doc.data().capacity,
       'description': doc.data().description,
@@ -23,10 +23,11 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
       'phone': doc.data().phone_number,
       'address': doc.data().location,
       'banner': doc.data().banner,
-      'hours': doc.data().hours
+      'hours': doc.data().hours,
+      'timeStart': doc.data().timeStart,
+      'timeEnd': doc.data().timeEnd,
     }
     eventMap[doc.data().event_name] = fields;
-    console.log("doc data: ", doc.data())
     console.log("event obj:", eventMap[doc.data().event_name])
   });
   console.log("Events: ", suggestions);
@@ -144,7 +145,7 @@ class Events extends React.Component {
 
   render() {
     console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} /> : <h2>Map loading..</h2>;
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap}/> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>
