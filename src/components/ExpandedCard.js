@@ -5,33 +5,41 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import './MyCard.css'
 
 class ExpandedCard extends React.Component {
     render() {
-        const { eventName } = this.props;
-        console.log({ eventName })
+        const { event } = this.props;
         return (
 
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 350, backgroundColor: "#FFB743", borderRadius: 5, boxShadow: 20 }}>
                 <CardMedia
                     component="img"
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
+                    image="https://picsum.photos/200.jpg"
+                    //should be {event.banner}
+                    alt={event.event_name}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {eventName}
+                    <Typography gutterBottom variant="h5" component="div" className="spacing">
+                        {event.event_name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                  </Typography>
+                    <Typography variant="body2" color="text.secondary" className="spacing">
+                        date: {event.date} | hours: {event.hours} | capacity: {event.capacity}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" className="spacing">
+                        phone: {event.phone}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" className="spacing">
+                        email: {event.email}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" className="spacing">
+                        {event.description}
+                    </Typography>
                 </CardContent>
+
                 <CardActions>
-                    <Button size="small">Share</Button>
-                    <Button size="small">Learn More</Button>
+                    <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small">Register</Button>
                 </CardActions>
             </Card>
         );

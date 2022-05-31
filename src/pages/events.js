@@ -15,7 +15,7 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     suggestions.push(doc.data().event_name);
     const fields = {
-      'event_name': doc.data().date,
+      'event_name': doc.data().event_name,
       'date': doc.data().date,
       'capacity': doc.data().capacity,
       'description': doc.data().description,
@@ -161,7 +161,7 @@ class Events extends React.Component {
 
           </div>
           <div style={{ marginTop: 80 }}>
-            <EventList suggestions={suggestions} eventInfo={eventMap} />
+            <EventList suggestions={suggestions} eventMap={eventMap} />
           </div>
         </div>
       </div>

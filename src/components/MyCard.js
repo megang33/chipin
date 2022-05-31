@@ -99,6 +99,7 @@ class MyCard extends Component {
                                 width: 50
                             }}
                             size="small">Learn More</Button>
+                        {/* add an on click and setDisplay with it */}
                     </CardActions>
                 </Box>
             </Card >

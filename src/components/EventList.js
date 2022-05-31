@@ -29,14 +29,15 @@ class EventList extends Component {
 
     render() {
         console.log("Test2")
-        const { suggestions } = this.props;
+        const { suggestions, eventMap } = this.props;
         console.log(suggestions)
 
         const list = suggestions.map((name, idx) => {
             return <div style={{ marginRight: 5, marginTop: 2 }}><MyCard eventName={name} /> </div> //can add more margin here
         })
         return (
-            <div>{list}</div>
+            // <div>{list}</div>
+            <div style={{ marginRight: 5, marginTop: 2 }}><ExpandedCard event={eventMap[suggestions[3]]} /> </div>
         )
     }
 
