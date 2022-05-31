@@ -34,6 +34,10 @@ const SignUp = (props) => {
     props.updateInfo(props.uid);
   }
 
+  const onChangeValue = (event) => {
+    setRole(event.target.value == "volunteer" ? true : false)
+  }
+
   return (
     <div>
       <h1 style={{ textAlign: "center", paddingTop: "30px" }}>Let's get you started.</h1>
@@ -45,7 +49,10 @@ const SignUp = (props) => {
           </div>
           <div className="flex-form">
             <FontAwesomeIcon icon={faBriefcase} />
-            <input className='input-field' name="role" type="text" placeholder="role" onChange={(e) => setRole(e.target.value == "volunteer" ? true : false)} />
+            <div className='checkbox-container' onChange={onChangeValue}>
+              <input className='checkbox' value="volunteer" name="role" type="radio" placeholder="role" /><text className='check-text'>volunteer</text>
+              <input className='checkbox' value="organization" name="role" type="radio" placeholder="role" /><text className='check-text'>organization</text>
+            </div>
           </div>
           <div className="flex-form">
             <FontAwesomeIcon icon={faAddressCard} />
