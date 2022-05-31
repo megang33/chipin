@@ -5,14 +5,17 @@ import MyCard from '../components/MyCard.js'
 import { db, getDocInfo, updateDBdoc} from '../utils/firebase';
 import { collection, query, where, getDocs, documentId, onSnapshot, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import EventList from '../components/EventList.js'
+import '../components/EventList.css'
+import '../components/map.css'
 
 const suggestions = [];
 const q = query(collection(db, "events"));
 const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     suggestions.push(doc.data().event_name);
+    console.log("doc data: ", doc.data())
   });
-  //console.log("Events: ", suggestions);
+  console.log("Events: ", suggestions);
 });
 
 // Implement using time-based API? Note: more complicated, will require more research
@@ -107,26 +110,50 @@ const checkIn = async (uid, eid) => {
   updateDBdoc("events", eid, registeredUsers)
 }
 
+class Events extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      zipcode: null,
+      uid: props.uid
+    };
+  }
 
-const Events = () => {
-  const map = <MyMap/>
-  endEvent("jjoHaiYXCjhTyqugQk7bdJHLVr03", "xcdD1vd9BJkbbzcyAjUd")
-  return (
-    <div>
+  async componentDidMount() {
+    let uid = localStorage.getItem("user-login");
+    let zc = await getDocInfo("users", uid, "zipcode")
+    this.setState({
+      zipcode: zc
+    })
+  }
+
+  render() {
+    console.log("eventszc: ", this.state.zipcode);
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} /> : <h2>Map loading..</h2>;
+    return (
       <div>
-        <h3>Find an Event</h3>
+        <div className='horizontal'>
+          <div className='vertical'>
+            <div>
+              <h3>Find an Event</h3>
+            </div>
+            <div>
+              <Autocomplete suggestions={suggestions} />
+            </div>
+            <div>
+              {zcnull}
+            </div>
+
+          </div>
+          <div>
+            <EventList suggestions={suggestions} />
+          </div>
+        </div>
       </div>
-      <div>
-        <Autocomplete suggestions={suggestions} />
-      </div>
-      <div>
-        map
-      </div>
-      <div>
-        <MyCard/>
-      </div>
-    </div>
-  )
+    )
+  }
 }
+
+//const latlng = getLatLngByZipcode(zipcode);
 
 export default Events

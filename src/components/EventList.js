@@ -1,26 +1,44 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from "react";
 import MyCard from './MyCard.js';
 import './EventList.css'
+import PropTypes from "prop-types";
+import { Card } from "antd";
 
-class EventList extends React.Component {
+
+class EventList extends Component {
+
+    static propTypes = {
+        suggestions: PropTypes.instanceOf(Array)
+    };
+
+    static defaultProps = {
+        suggestions: []
+    };
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeSuggestion: 0,
+            filteredSuggestions: [],
+            showSuggestions: false,
+            userInput: "",
+        };
+    }
+
 
     render() {
+        console.log("Test2")
+        const { suggestions } = this.props;
+        console.log(suggestions)
+
+        const list = suggestions.map((name, idx) => {
+            return <div><MyCard eventName={name} /> </div>
+        })
         return (
-            <div class="myTray">
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-                <MyCard />
-            </div>
+            <div>{list}</div>
         )
     }
+
 }
 export default React.memo(EventList)
