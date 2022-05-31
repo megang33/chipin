@@ -2,38 +2,53 @@ import React from 'react'
 import MyMap from '../components/map.js'
 import Autocomplete from '../components/Autocomplete.js'
 import MyCard from '../components/MyCard.js'
-import { db, getDocInfo, updateDBdoc} from '../utils/firebase';
+import { db, getDocInfo, updateDBdoc } from '../utils/firebase';
 import { collection, query, where, getDocs, documentId, onSnapshot, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import EventList from '../components/EventList.js'
 import '../components/EventList.css'
 import '../components/map.css'
 
 const suggestions = [];
+const eventMap = {};
 const q = query(collection(db, "events"));
 const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     suggestions.push(doc.data().event_name);
+    const fields = {
+      'event_name': doc.data().date,
+      'date': doc.data().date,
+      'capacity': doc.data().capacity,
+      'description': doc.data().description,
+      'email': doc.data().email,
+      'phone': doc.data().phone_number,
+      'address': doc.data().location,
+      'banner': doc.data().banner,
+      'hours': doc.data().hours
+    }
+    eventMap[doc.data().event_name] = fields;
     console.log("doc data: ", doc.data())
+    console.log("event obj:", eventMap[doc.data().event_name])
   });
   console.log("Events: ", suggestions);
+  console.log("event map:", eventMap);
 });
 
 // Implement using time-based API? Note: more complicated, will require more research
 const initiateEvent = async (eid) => {
-    const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
-    const eventDate = await getDocInfo("events", eid, "date");
-    const startTime = await getDocInfo("events", eid, "timeStart")
+  const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
+  const eventDate = await getDocInfo("events", eid, "date");
+  const startTime = await getDocInfo("events", eid, "timeStart")
 
-    const ctime = new Date();
-    var currentDate = new Date(Date.UTC(ctime.getFullYear(), ctime.getMonth(), ctime.getDate(), ctime.getTimezoneOffset() / 60 + ctime.getHours(), ctime.getMinutes(), ctime.getSeconds()))
+  const ctime = new Date();
+  var currentDate = new Date(Date.UTC(ctime.getFullYear(), ctime.getMonth(), ctime.getDate(), ctime.getTimezoneOffset() / 60 + ctime.getHours(), ctime.getMinutes(), ctime.getSeconds()))
 
-    const yymmdd = eventDate.split('-')
-    const st = startTime.split(':')
-    var eventStart = new Date(Date.UTC(Number(yymmdd[0]), Number(yymmdd[1]) - 1, Number(yymmdd[2]), ctime.getTimezoneOffset() / 60 + Number(st[0]), Number(st[1]), 0))
+  const yymmdd = eventDate.split('-')
+  const st = startTime.split(':')
+  var eventStart = new Date(Date.UTC(Number(yymmdd[0]), Number(yymmdd[1]) - 1, Number(yymmdd[2]), ctime.getTimezoneOffset() / 60 + Number(st[0]), Number(st[1]), 0))
 
-    if (eventStart <= currentDate && hasEventEnded != true){
-      updateDBdoc("events", eid, {hasEventStarted: true})
-    }
+  if (eventStart <= currentDate && hasEventEnded != true) {
+    updateDBdoc("events", eid, { hasEventStarted: true })
+  }
 }
 
 const isActive = async (eid) => {
@@ -54,7 +69,7 @@ const endEvent = async (uid, eid) => {
   console.log(eventEnd)
   console.log(currentDate)
   console.log(eventEnd <= currentDate)
-  if (eventEnd <= currentDate && hasEventEnded != true){
+  if (eventEnd <= currentDate && hasEventEnded != true) {
     const updateEvent = {
       hasEventEnded: true,
     }
@@ -75,9 +90,9 @@ const registerToEvent = async (uid, eid) => {
   // 3. Add the event to the current list of events registered of the user.
   const registered = await getDocInfo("events", eid, "registered")
   const capacity = await getDocInfo("events", eid, "capacity")
-  if (registered.length < capacity){
+  if (registered.length < capacity) {
     const updateEvent = {
-      registered: arrayUnion(uid),  
+      registered: arrayUnion(uid),
     }
     const updateUser = {
       currentEvents: arrayUnion(eid),
@@ -101,7 +116,7 @@ const checkIn = async (uid, eid) => {
   // 1. get the array and find the index of the uid, if not present, it will return -1 array.indexOf
   // 2. place them in the verified array
   // 3. 
-  if (!isActive(eid)){
+  if (!isActive(eid)) {
     return;
   }
   const registeredUsers = {
@@ -145,8 +160,8 @@ class Events extends React.Component {
             </div>
 
           </div>
-          <div>
-            <EventList suggestions={suggestions} />
+          <div style={{ marginTop: 80 }}>
+            <EventList suggestions={suggestions} eventInfo={eventMap} />
           </div>
         </div>
       </div>
