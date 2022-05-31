@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import MyCard from './MyCard.js';
 import './EventList.css'
 import PropTypes from "prop-types";
-import { Card } from "antd";
 
 
 class EventList extends Component {
