@@ -3,7 +3,6 @@ import MyCard from './MyCard.js';
 import ExpandedCard from './ExpandedCard.js';
 import './EventList.css'
 import PropTypes from "prop-types";
-import { Card } from "antd";
 
 
 class EventList extends Component {

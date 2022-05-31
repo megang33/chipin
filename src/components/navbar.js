@@ -5,7 +5,7 @@ import './navbar.css';
 const NavBar = (props) => {
   console.log(props.role)
 
-  if (props.signedIn && props.role) {
+  if (props.signedIn && props.registered) {
     return (
       <div className='bar-rectangle' id='navbar-in'>
         <div>
@@ -17,12 +17,12 @@ const NavBar = (props) => {
           <Link to="/events" className='nav-item'>find an event</Link>
           {/* have to change link to maps page */}
           <Link to="/profile" className='nav-item'>you</Link>
-          <Link to="/signout" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
+          <Link to="/" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
         </div>
       </div>
     );
   }
-  else if (props.signedIn) {
+  else if (props.signedIn && props.role && props.registered) {
     return (
       <div className='bar-rectangle' id='navbar-in'>
         <div>
@@ -34,7 +34,7 @@ const NavBar = (props) => {
           <Link to="/event-creation" className='nav-item'>make an event</Link>
           <Link to="/my-events" className='nav-item'>my events</Link>
           <Link to="/profile" className='nav-item'>you</Link>
-          <Link to="/signout" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
+          <Link to="/" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
         </div>
       </div>
     );
@@ -47,7 +47,7 @@ const NavBar = (props) => {
         </div>
         <div className='links'>
           {/* <Link to="/community" className='nav-item'>community</Link> */}
-          <Link to="/signup" id='sign-button' className='nav-item' onClick={props.handleSignIn}>sign in</Link>
+          <Link to="/" id='sign-button' className='nav-item' onClick={props.handleSignIn}>sign in</Link>
           {/* <button onClick={signInWithGoogle}> Sign in with Google </button> */}
         </div>
       </div>
