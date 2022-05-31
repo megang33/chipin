@@ -46,6 +46,7 @@ export default class MiscDetails extends React.Component {
                     <li>{values.secondary_contact}</li>
                     <li>{values.address}</li>
                     <li>{values.banner}</li>
+                    <li>{values.hours}</li>
                 </ul>
                 <button onClick={this.submit}>submit</button>
             </div>

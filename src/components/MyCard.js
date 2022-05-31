@@ -29,7 +29,6 @@ class MyCard extends Component {
     }
 
     render() {
-        console.log("111")
         const { alpha } = "test";
         const { eventName } = this.props
         console.log({ eventName })
@@ -45,7 +44,7 @@ class MyCard extends Component {
                 positon: 'absolute',
 
             }}>
-                <div className="Centering">
+                <div className="centering">
 
                     <CardMedia
                         component="img"
