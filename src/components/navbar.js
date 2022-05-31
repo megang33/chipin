@@ -5,7 +5,7 @@ import './navbar.css';
 const NavBar = (props) => {
   console.log(props.role)
 
-  if (props.signedIn && props.registered) {
+  if (props.signedIn && props.role && props.registered) {
     return (
       <div className='bar-rectangle' id='navbar-in'>
         <div>
@@ -22,7 +22,7 @@ const NavBar = (props) => {
       </div>
     );
   }
-  else if (props.signedIn && props.role && props.registered) {
+  else if (props.signedIn && !props.role && props.registered) {
     return (
       <div className='bar-rectangle' id='navbar-in'>
         <div>
