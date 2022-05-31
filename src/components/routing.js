@@ -15,12 +15,12 @@ import MyEvents from '../pages/myevents.js';
 export const Routing = (props) => {
   return (
     <div>
-      <NavBar signedIn={props.loggedIn} handleSignIn={props.handleSignIn} handleSignOut={props.handleSignOut} role={props.role} />
+      <NavBar signedIn={props.loggedIn} handleSignIn={props.handleSignIn} handleSignOut={props.handleSignOut} role={props.role} registered={props.registered}/>
       <Routes>
-        <Route exact path='/' element={<Landing />} />
+        <Route exact path='/' element={<Landing registered={props.registered} handleSignIn={props.handleSignIn} signedIn={props.loggedIn}/>} />
         <Route path='/signup' element={props.registered ? <Navigate to='/' /> : <SignUp uid={props.uid} updateInfo={props.updateInfo} />} />
         <Route path='/timeline' element={<TimeLine uid={ props.uid }/>} />
-        <Route path='/community' element={<Community uid={ props.uid } updateInfo={props.updateInfo}/>} />
+        <Route path='/community' element={<Community uid={ props.uid } role={props.role} updateInfo={props.updateInfo}/>} />
         <Route path='/my-events' element={<MyEvents />} />
         <Route path='/events' element={<Event uid={props.uid}/>} />
         <Route path='/profile' element={<Profile />} />
