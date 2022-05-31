@@ -9,6 +9,12 @@ const containerStyle = {
   width: '1300px'
 };
 
+const options = {
+  zoomControl: false,
+  mapTypeControl: false,
+  fullscreenControl: false,
+}
+
 function MyMap(props) {
   const [center, changeCenter] = useState();
 
@@ -50,11 +56,7 @@ function MyMap(props) {
           zoom={25}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          options={{
-            zoomControl: false,
-            mapTypeControl: false,
-            fullscreenControl: false,
-          }}
+          options={options}
         >
           <Marker position={center}/>
         </GoogleMap>

@@ -12,6 +12,7 @@ const q = query(collection(db, "events"));
 const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     suggestions.push(doc.data().event_name);
+    console.log("doc data: ", doc.data())
   });
   console.log("Events: ", suggestions);
 });
