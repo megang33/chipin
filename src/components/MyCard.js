@@ -14,11 +14,15 @@ import PropTypes from "prop-types";
 class MyCard extends Component {
 
     static propTypes = {
-        eventName: PropTypes.instanceOf(String)
+        eventName: PropTypes.instanceOf(String),
+        eventLocation: PropTypes.instanceOf(String),
+        eventDate: PropTypes.instanceOf(String)
     };
 
     static defaultProps = {
-        eventName: ""
+        eventName: "",
+        eventLocation: "",
+        eventDate: ""
     }
 
     constructor(props) {
@@ -31,13 +35,17 @@ class MyCard extends Component {
     render() {
         const { alpha } = "test";
         const { eventName } = this.props
+        const { eventLocation } = this.props
+        const { eventDate } = this.props
         console.log({ eventName })
+        console.log({ eventDate })
+        console.log({ eventLocation })
         return (
             <Card sx={{
                 maxWidth: 400,
                 maxHeight: 200,
                 boxShadow: 20,
-                backgroundColor: "#FFB743",
+                backgroundColor: "#AEC6CF",
                 borderRadius: 3,
                 display: 'flex',
                 display: 'inline-flex',
@@ -62,10 +70,10 @@ class MyCard extends Component {
                         </Typography>
 
                         <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
-                            Date/Time: June 5th 1PM-3PM
+                            Date: {eventDate}
                         </Typography>
                         <Typography variant="body2" color="white" maxWidth={100}>
-                            Location: UCLA,
+                            Location: {eventLocation}
                         </Typography>
                     </CardContent>
                     <CardActions
@@ -79,26 +87,9 @@ class MyCard extends Component {
                         }}
                     >
 
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small"
-                        >Locate</Button>
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small"
-                        >Contact</Button>
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small">Learn More</Button>
+
+
+
                     </CardActions>
                 </Box>
             </Card >

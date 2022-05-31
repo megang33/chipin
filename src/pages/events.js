@@ -145,7 +145,7 @@ class Events extends React.Component {
 
   render() {
     console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap}/> : <h2>Map loading..</h2>;
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap} /> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>
@@ -162,7 +162,7 @@ class Events extends React.Component {
 
           </div>
           <div style={{ marginTop: 80 }}>
-            <EventList suggestions={suggestions} eventInfo={eventMap} />
+            <EventList eventInfo={eventMap} />
           </div>
         </div>
       </div>
