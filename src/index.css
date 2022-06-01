@@ -16,7 +16,13 @@ code {
 }
 
 .logo {
-  width: 150px;
+  height: 60px;
+}
+
+.logo-link {
+  position: absolute;
+  left: 15px;
+  top: 5px;
 }
 
 form {
