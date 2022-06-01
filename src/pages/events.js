@@ -15,6 +15,7 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     suggestions.push(doc.data().event_name);
     const fields = {
+      'id': doc.id,
       'event_name': doc.data().event_name,
       'date': doc.data().date,
       'capacity': doc.data().capacity,
@@ -99,8 +100,8 @@ export const registerToEvent = async (uid, eid) => {
     const updateUser = {
       currentEvents: arrayUnion(eid),
     }
-    updateDBdoc("events", eid, updateEvent)
-    updateDBdoc("users", uid, updateUser)
+    await updateDBdoc("events", eid, updateEvent)
+    await updateDBdoc("users", uid, updateUser)
   }
   return;
 }
@@ -146,8 +147,11 @@ class Events extends React.Component {
     super(props);
     this.state = {
       zipcode: null,
-      uid: props.uid
+      uid: props.uid,
+      recenter: null
     };
+
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   async componentDidMount() {
@@ -158,13 +162,17 @@ class Events extends React.Component {
     })
   }
 
-  // pullData = data => {
-  //   console.log(data)
-  // }
+  handleCardClick(zc) {
+    console.log('prt', zc)
+    this.setState({
+      recenter: zc
+    })
+    console.log('WORK', zc)
+  }
 
   render() {
-    console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap} eventNames={suggestions} /> : <h2>Map loading..</h2>;
+    //console.log("eventszc: ", this.state.zipcode);
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>
@@ -181,7 +189,7 @@ class Events extends React.Component {
 
           </div>
           <div style={{ marginTop: 80 }}>
-            <EventList suggestions={suggestions} eventMap={eventMap} />
+            <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} />
           </div>
         </div>
       </div>

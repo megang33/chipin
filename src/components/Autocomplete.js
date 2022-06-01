@@ -125,4 +125,4 @@ class Autocomplete extends Component {
     }
 }
 
-export default Autocomplete;
+export default Autocomplete
