@@ -15,7 +15,6 @@ const NavBar = (props) => {
           <Link to="/community" className='nav-item'>community</Link>
           <Link to="/timeline" className='nav-item'>timeline</Link>
           <Link to="/events" className='nav-item'>find an event</Link>
-          {/* have to change link to maps page */}
           <Link to="/profile" className='nav-item'>you</Link>
           <Link to="/" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
         </div>
