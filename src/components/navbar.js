@@ -42,7 +42,7 @@ const NavBar = (props) => {
     return (
       <div className='bar-rectangle' id='navbar-out'>
         <div>
-          <Link to="/"><img className='logo' src="https://tinyurl.com/mvc9bsk4" alt="ChipIn Logo" /></Link>
+          <Link to="/"><img className='logo' src="logo.png" alt="ChipIn Logo" /></Link>
         </div>
         <div className='links'>
           {/* <Link to="/community" className='nav-item'>community</Link> */}
