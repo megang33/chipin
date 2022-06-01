@@ -28,15 +28,13 @@ class MyCard extends Component {
         };
     }
 
-    // onClick = e => {
-    //     this.props.pullData("hi")
-    // }
 
     render() {
         const { alpha } = "test";
-        const { eventName } = this.props
+        const { eventName, } = this.props
         return (
-            <Card sx={{
+            <div onClick={() => this.props.handleCardClick(eventName)}>
+                <Card sx={{
                 maxWidth: 400,
                 maxHeight: 200,
                 boxShadow: 20,
@@ -46,7 +44,8 @@ class MyCard extends Component {
                 display: 'inline-flex',
                 positon: 'absolute',
 
-            }}>
+            }}
+            >
                 <div className="centering">
 
                     <CardMedia
@@ -81,30 +80,10 @@ class MyCard extends Component {
                             borderRadius: 10,
                         }}
                     >
-
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small"
-                        >Locate</Button>
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small"
-                        >Contact</Button>
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small">Learn More</Button>
                     </CardActions>
                 </Box>
             </Card >
+            </div>
         );
     }
 }

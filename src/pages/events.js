@@ -132,8 +132,11 @@ class Events extends React.Component {
     super(props);
     this.state = {
       zipcode: null,
-      uid: props.uid
+      uid: props.uid,
+      recenter: null
     };
+
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   async componentDidMount() {
@@ -144,13 +147,17 @@ class Events extends React.Component {
     })
   }
 
-  // pullData = data => {
-  //   console.log(data)
-  // }
+  handleCardClick(zc) {
+    console.log('prt', zc)
+    this.setState({
+      recenter: zc
+    })
+    console.log('WORK', zc)
+  }
 
   render() {
-    console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
+    //console.log("eventszc: ", this.state.zipcode);
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>
@@ -167,7 +174,7 @@ class Events extends React.Component {
 
           </div>
           <div style={{ marginTop: 80 }}>
-            <EventList suggestions={suggestions} eventInfo={eventMap} />
+            <EventList suggestions={suggestions} eventInfo={eventMap} handleCardClick={this.handleCardClick}/>
           </div>
         </div>
       </div>
