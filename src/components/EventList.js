@@ -1,40 +1,33 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, Component, Fragment } from "react";
 import MyCard from './MyCard.js';
+import ExpandedCard from './ExpandedCard.js';
+import { sortByDistance } from "../pages/events.js";
 import './EventList.css'
 import PropTypes from "prop-types";
 import { List } from "@mui/material";
 
 
-class EventList extends Component {
-    static propTypes = {
-        eventInfo: PropTypes.instanceOf(List)
-    };
+const EventList = (props) => {
+    const [orderedSuggestions, setOrderedSuggestions] = useState([])
 
-    static defaultProps = {
-        eventInfo: []
-    };
+    React.useEffect(() => {
+        const setUp = async () => {
+            let list
+            list = await sortByDistance(props.suggestions, props.zc)
+            console.log(list)
+            await setOrderedSuggestions(list.map((name) => {
+                    return <div><MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={props.eventMap} 
+                    suggestions={list} register={props.register} handleCardClick={props.handleCardClick} /> </div>
+                })
+            )
+        }
+        setUp()
+    }, [])
 
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeSuggestion: 0,
-            filteredSuggestions: [],
-            showSuggestions: false,
-            userInput: "",
-        };
-    }
-
-    render() {
-        const { suggestions, eventMap, register } = this.props;
-        const list = suggestions.map((name, idx) => {
-            return <div><MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={eventMap} suggestions={suggestions} register={register} handleCardClick={this.props.handleCardClick} /> </div>
-        })
-
-        return (
-            <div className="myTray">{list}</div>
-        )
-    }
+    return (
+        <div className="myTray">{orderedSuggestions}</div>
+    )
 
 }
+
 export default EventList;

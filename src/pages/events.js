@@ -1,12 +1,17 @@
 import React from 'react'
 import MyMap from '../components/map.js'
 import Autocomplete from '../components/Autocomplete.js'
+import { sort, sqrt } from 'mathjs'
 import MyCard from '../components/MyCard.js'
-import { db, getDocInfo, updateDBdoc } from '../utils/firebase';
+import Geocode from 'react-geocode'
+import { useJsApiLoader } from '@react-google-maps/api'
+import { db, getDocInfo, updateDBdoc} from '../utils/firebase';
 import { collection, query, where, getDocs, documentId, onSnapshot, arrayUnion, arrayRemove, getDoc, deleteDoc } from "firebase/firestore";
 import EventList from '../components/EventList.js'
 import '../components/EventList.css'
 import '../components/map.css'
+
+
 
 const suggestions = [];
 const eventMap = {};
@@ -69,9 +74,6 @@ export const endEvent = async (uid, eid) => {
   const yymmdd = eventDate.split('-')
   const st = endTime.split(':')
   var eventEnd = new Date(Date.UTC(Number(yymmdd[0]), Number(yymmdd[1]) - 1, Number(yymmdd[2]), ctime.getTimezoneOffset() / 60 + Number(st[0]), Number(st[1]), 0))
-  console.log(eventEnd)
-  console.log(currentDate)
-  console.log(eventEnd <= currentDate)
   if (eventEnd <= currentDate && hasEventEnded != true) {
     const updateEvent = {
       hasEventEnded: true,
@@ -142,12 +144,59 @@ export const deleteEvent = async (eid) => {
   deleteDoc("events", eid)
 }
 
+export const sortByDistance = async (events, zc) => {
+  Geocode.setApiKey("AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho");
+  let map = new Map()
+  let mapDistanced = new Map()
+  let ziplat, ziplng
+
+  const setLatLng = (lat, lng) => {
+    ziplat = lat
+    ziplng = lng
+  }
+
+  await Geocode.fromAddress(zc).then(
+    (response) => {
+      const {lat, lng} = response.results[0].geometry.location;
+      setLatLng(lat, lng)
+    },
+    (error) => {console.error(error)}
+  )
+
+  for (let i = 0; i < events.length; i++){
+    await Geocode.fromAddress(eventMap[events[i]].address).then(
+      (response) => {
+        const {lat, lng} = response.results[0].geometry.location;
+        map.set(events[i], [lat, lng])
+      },
+      (error) => {console.error(error)}
+    )
+  }
+  
+  await map.forEach((value, key) =>{
+    let tempLat = ziplat - value[0]
+    let tempLng = ziplng - value[1]
+    tempLat = tempLat * tempLat
+    tempLng = tempLng * tempLng
+    let distance = sqrt(tempLat + tempLng)
+    mapDistanced.set(key, distance)
+  })
+
+  const sortedMap = new Map([...mapDistanced.entries()].sort((a,b) => b[1] - a[1]).reverse())
+  let sortedList = new Array()
+  sortedMap.forEach((value, key) => {
+     sortedList.push(key)
+  })
+  return sortedList
+}
+
 class Events extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       zipcode: null,
       uid: props.uid,
+      sortedEvents: null,
       recenter: null
     };
 
@@ -170,7 +219,8 @@ class Events extends React.Component {
   }
 
   render() {
-    //console.log("eventszc: ", this.state.zipcode);
+    const elnull = this.state.zipcode ? <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} zc={this.state.zipcode}/> : <h2>List loading...</h2>
+    console.log("eventszc: ", this.state.zipcode);
     const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
     return (
       <div>
@@ -188,14 +238,11 @@ class Events extends React.Component {
 
           </div>
           <div style={{ marginTop: 80 }}>
-            <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} />
+            {elnull}
           </div>
         </div>
       </div>
     )
   }
 }
-
-//const latlng = getLatLngByZipcode(zipcode);
-
 export default Events
