@@ -2,15 +2,17 @@ import React, { Component, Fragment } from "react";
 import MyCard from './MyCard.js';
 import './EventList.css'
 import PropTypes from "prop-types";
+import { List } from "@mui/material";
+import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 
 
 class EventList extends Component {
     static propTypes = {
-        suggestions: PropTypes.instanceOf(Array)
+        eventInfo: PropTypes.instanceOf(List)
     };
 
     static defaultProps = {
-        suggestions: []
+        eventInfo: []
     };
 
 
