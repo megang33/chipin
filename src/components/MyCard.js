@@ -50,7 +50,7 @@ class MyCard extends Component {
                     <CardMedia
                         component="img"
                         height="250"
-                        image="https://picsum.photos/200.jpg"
+                        //image="https://picsum.photos/200.jpg"
                         alt="green iguana"
                     />
                 </div>

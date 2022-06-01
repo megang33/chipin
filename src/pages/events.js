@@ -3,7 +3,7 @@ import MyMap from '../components/map.js'
 import Autocomplete from '../components/Autocomplete.js'
 import MyCard from '../components/MyCard.js'
 import { db, getDocInfo, updateDBdoc} from '../utils/firebase';
-import { collection, query, where, getDocs, documentId, onSnapshot, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, documentId, onSnapshot, arrayUnion, arrayRemove, getDoc, deleteDoc } from "firebase/firestore";
 import EventList from '../components/EventList.js'
 import '../components/EventList.css'
 import '../components/map.css'
@@ -19,7 +19,7 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
 });
 
 // Implement using time-based API? Note: more complicated, will require more research
-const initiateEvent = async (eid) => {
+export const initiateEvent = async (eid) => {
     const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
     const eventDate = await getDocInfo("events", eid, "date");
     const startTime = await getDocInfo("events", eid, "timeStart")
@@ -36,11 +36,11 @@ const initiateEvent = async (eid) => {
     }
 }
 
-const isActive = async (eid) => {
+export const isActive = async (eid) => {
   return await getDocInfo("events", eid, "hasEventStarted")
 }
 
-const endEvent = async (uid, eid) => {
+export const endEvent = async (uid, eid) => {
   const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
   const eventDate = await getDocInfo("events", eid, "date");
   const endTime = await getDocInfo("events", eid, "timeEnd")
@@ -68,7 +68,7 @@ const endEvent = async (uid, eid) => {
   }
 }
 
-const registerToEvent = async (uid, eid) => {
+export const registerToEvent = async (uid, eid) => {
   // If the person presses the register button
   // 1. If the capacity has already been reached to max, simply break;
   // 2. Update the array of people registered
@@ -88,7 +88,7 @@ const registerToEvent = async (uid, eid) => {
   return;
 }
 
-const unregister = async (uid, eid) => {
+export const unregister = async (uid, eid) => {
   const updateEvent = {
     registered: arrayRemove(uid),
   }
@@ -96,7 +96,7 @@ const unregister = async (uid, eid) => {
 }
 
 // This function will be called such that, organization-called
-const checkIn = async (uid, eid) => {
+export const checkIn = async (uid, eid) => {
   // if
   // 1. get the array and find the index of the uid, if not present, it will return -1 array.indexOf
   // 2. place them in the verified array
@@ -108,6 +108,20 @@ const checkIn = async (uid, eid) => {
     checkedIn: arrayUnion(uid),
   }
   updateDBdoc("events", eid, registeredUsers)
+}
+
+export const deleteEvent = async (eid) => {
+  if (isActive(eid)){
+    return
+  }
+  const registered = await getDocInfo("events", eid, "registered")
+  for (let i = 0; i < registered.length; i++){
+    let updateUser = {
+      currentEvents: arrayRemove(eid)
+    }
+    updateDBdoc("users", registered[i], updateUser)
+  }
+  deleteDoc("events", eid)
 }
 
 class Events extends React.Component {
