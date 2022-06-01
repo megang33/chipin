@@ -181,7 +181,7 @@ class Events extends React.Component {
 
           </div>
           <div style={{ marginTop: 80 }}>
-            <EventList suggestions={suggestions} eventInfo={eventMap} />
+            <EventList suggestions={suggestions} eventMap={eventMap} />
           </div>
         </div>
       </div>
