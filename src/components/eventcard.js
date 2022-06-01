@@ -6,8 +6,18 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { getDoc, doc } from 'firebase/firestore';
+import { db, getDocSnap, getDocInfo } from '../utils/firebase.js'
 
-export default function EventCard() {
+const getEventInfo = async (eid) => {
+    const date = await getDocInfo("events", eid, "date")
+    //continue here
+    console.log(date)
+    return date
+}
+
+export default function EventCard(props) {
+    getEventInfo(props.eid);
     return (
 
         <Card sx={{

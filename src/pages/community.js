@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
-import { initializeGroup, updateGroup, updateDBdoc, getDocInfo, getDocSnap, removeDoc, uploadFile, getImageByFile } from '../utils/firebase';
+import { initializeGroup, updateGroup, updateDBdoc, getDocInfo, getDocSnap, removeDoc, uploadFile, getImageByFile, db } from '../utils/firebase';
 import '../index.css'
-import EventCard from '../components/eventcard.js'
-import { arrayRemove, getDoc } from 'firebase/firestore';
+import EventCard from '../components/eventCard.js'
+import { arrayRemove } from 'firebase/firestore';
 
 const GroupCard = (props) => {
   const [image, setImage] = useState()
@@ -57,18 +57,27 @@ const GroupCard = (props) => {
     console.log("hi")
     const members = await getDocInfo("groups", gid, "members")
     console.log(members)
-    for (let i = 0; i < members.length; i++){
-      let updateUser = { 
-                        groups: arrayRemove(gid),
-                        numGroups: await getDocInfo("users", members[i], "numGroups") - 1 
-                       }
+    for (let i = 0; i < members.length; i++) {
+      let updateUser = {
+        groups: arrayRemove(gid),
+        numGroups: await getDocInfo("users", members[i], "numGroups") - 1
+      }
       console.log(members[i])
       await updateDBdoc("users", members[i], updateUser)
     }
     removeDoc("groups", gid)
   }
 
+  const getEvents = async () => {
+    console.log(props.id)
+    const events = await getDocInfo("groups", props.id, "currentEvents")
+    return events.map((event) => {
+      return <div><EventCard eid={event}></EventCard></div>
+    });
+  }
+
   const displayInfo = async () => {
+    const eventCards = await getEvents()
     let hours = await getCumHours(props.id)
     let members = await getMemList(props.id)
     const founder = await getDocInfo("groups", props.id, "founder")
@@ -83,14 +92,14 @@ const GroupCard = (props) => {
           </div>
           <button>Edit</button>
           <button onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
-          { canDeleteGroup }
+          {canDeleteGroup}
           <div>
             <p>{props.description}</p>
             <p>{props.purpose}</p>
           </div>
           <h2>Events</h2>
           <div>
-            <EventCard />
+            {eventCards}
           </div>
         </div>
 
@@ -186,11 +195,6 @@ const Community = (props) => {
   const front = <div style={{ marginLeft: "5%" }}>
     <h1>Welcome to your Community Page!</h1>
     <h2>Use the group bar to navigate between groups!</h2>
-    {/* <text>
-      This is going to be filler text for where all group activity is going to take place,
-      where all relevant event details will appear and where you can navigate to individual
-      group pages!
-      </text> */}
   </div>
 
   const [groupCode, setCode] = useState();
@@ -245,7 +249,7 @@ const Community = (props) => {
     setDisplay(display);
   }
 
-  if (!props.role){
+  if (!props.role) {
     return (
       <div>
         <h3>Welcome to your community.</h3>
@@ -289,9 +293,9 @@ const Community = (props) => {
           {display}
         </div>
       </div>
-    );  
+    );
   }
-  
+
 }
 
 export default Community;

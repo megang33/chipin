@@ -115,7 +115,7 @@ export const updateGroup = async (docUser, docGroup) => {
 }
 
 export const getDocSnap = (collection, docs) => {
-  if (docs){
+  if (docs) {
     const docRef = doc(db, collection, docs);
     const docSnap = getDoc(docRef);
     console.log(docSnap)
@@ -150,7 +150,7 @@ export const getImageByFile = async (name, setLink) => {
   const imgref = ref(storage, "images/")
   await listAll(imgref).then((res) => {
     res.items.forEach((item) => {
-      if (item.name === name){
+      if (item.name === name) {
         getDownloadURL(item).then((url) => {
           setLink(url)
         })
