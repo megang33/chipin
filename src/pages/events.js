@@ -2,7 +2,7 @@ import React from 'react'
 import MyMap from '../components/map.js'
 import Autocomplete from '../components/Autocomplete.js'
 import MyCard from '../components/MyCard.js'
-import { db, getDocInfo, updateDBdoc} from '../utils/firebase';
+import { db, getDocInfo, updateDBdoc } from '../utils/firebase';
 import { collection, query, where, getDocs, documentId, onSnapshot, arrayUnion, arrayRemove, getDoc, deleteDoc } from "firebase/firestore";
 import EventList from '../components/EventList.js'
 import '../components/EventList.css'
@@ -37,9 +37,9 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
 
 // Implement using time-based API? Note: more complicated, will require more research
 export const initiateEvent = async (eid) => {
-    const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
-    const eventDate = await getDocInfo("events", eid, "date");
-    const startTime = await getDocInfo("events", eid, "timeStart")
+  const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
+  const eventDate = await getDocInfo("events", eid, "date");
+  const startTime = await getDocInfo("events", eid, "timeStart")
 
   const ctime = new Date();
   var currentDate = new Date(Date.UTC(ctime.getFullYear(), ctime.getMonth(), ctime.getDate(), ctime.getTimezoneOffset() / 60 + ctime.getHours(), ctime.getMinutes(), ctime.getSeconds()))
@@ -128,11 +128,11 @@ export const checkIn = async (uid, eid) => {
 }
 
 export const deleteEvent = async (eid) => {
-  if (isActive(eid)){
+  if (isActive(eid)) {
     return
   }
   const registered = await getDocInfo("events", eid, "registered")
-  for (let i = 0; i < registered.length; i++){
+  for (let i = 0; i < registered.length; i++) {
     let updateUser = {
       currentEvents: arrayRemove(eid)
     }
@@ -164,7 +164,7 @@ class Events extends React.Component {
 
   render() {
     console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap} eventNames={suggestions} /> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>
