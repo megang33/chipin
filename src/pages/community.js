@@ -1,10 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
-import { initializeGroup, updateGroup, updateDBdoc, getDocInfo, getDocSnap } from '../utils/firebase';
+import { initializeGroup, updateGroup, updateDBdoc, getDocInfo, getDocSnap, removeDoc, uploadFile, getImageByFile } from '../utils/firebase';
 import '../index.css'
 import EventCard from '../components/eventcard.js'
+import { arrayRemove, getDoc } from 'firebase/firestore';
 
 const GroupCard = (props) => {
+  const [image, setImage] = useState()
+
   const leaveGroup = async (user, group) => {
     const numGroups = await getDocInfo("users", user, "numGroups")
     const groupsArray = await getDocInfo("users", user, "groups")
@@ -50,11 +53,28 @@ const GroupCard = (props) => {
     </div>);
   }
 
+  const deleteGroup = async (gid) => {
+    console.log("hi")
+    const members = await getDocInfo("groups", gid, "members")
+    console.log(members)
+    for (let i = 0; i < members.length; i++){
+      let updateUser = { 
+                        groups: arrayRemove(gid),
+                        numGroups: await getDocInfo("users", members[i], "numGroups") - 1 
+                       }
+      console.log(members[i])
+      await updateDBdoc("users", members[i], updateUser)
+    }
+    removeDoc("groups", gid)
+  }
+
   const displayInfo = async () => {
     let hours = await getCumHours(props.id)
     let members = await getMemList(props.id)
+    const founder = await getDocInfo("groups", props.id, "founder")
+    let canDeleteGroup = (founder == props.uid) ? <button onClick={() => deleteGroup(props.id)}>Delete</button> : null
     props.setDisplay(
-      <div className='groupsite' style={{ marginLeft: "5%" }}>
+      <div className='group-info' style={{ marginLeft: "5%" }}>
         <div>
           <div>
             <h1>{props.name}</h1>
@@ -63,6 +83,7 @@ const GroupCard = (props) => {
           </div>
           <button>Edit</button>
           <button onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
+          { canDeleteGroup }
           <div>
             <p>{props.description}</p>
             <p>{props.purpose}</p>
@@ -72,7 +93,8 @@ const GroupCard = (props) => {
             <EventCard />
           </div>
         </div>
-        <div>
+
+        <div className='group-info-member-list'>
           <h2>Member List</h2>
           {members}
         </div>
@@ -80,12 +102,16 @@ const GroupCard = (props) => {
     )
   }
 
+  React.useEffect(() => {
+    getImageByFile(props.img, setImage)
+  }, [])
+
   return (
     <div className='group-card-container'>
       <button style={{ borderRadius: '5px', borderWidth: '0px' }} onClick={() => displayInfo()}>
         <div style={{ width: "200px", height: "123px" }}>
           <div>
-            <img className='group-img' src={props.img} />
+            <img className='group-img' src={image} />
           </div>
           <div className='group-card-text'>
             <div style={{ position: "relative", width: "100%" }}>
@@ -129,7 +155,6 @@ class GroupBar extends React.Component {
       const groups = await getDocInfo("users", uid, "groups")
       let arr = []
       for (let i = 0; i < numGroups; i += 1) {
-        console.log("name")
         arr[i] = <GroupCard name={await getDocInfo("groups", groups[i], "name")} img={await getDocInfo("groups", groups[i], "img")} setDisplay={this.props.setDisplay}
           description={await getDocInfo("groups", groups[i], "description")} purpose={await getDocInfo("groups", groups[i], "purpose")} id={groups[i]} uid={uid} />
       }
@@ -161,11 +186,11 @@ const Community = (props) => {
   const front = <div style={{ marginLeft: "5%" }}>
     <h1>Welcome to your Community Page!</h1>
     <h2>Use the group bar to navigate between groups!</h2>
-    <text>
+    {/* <text>
       This is going to be filler text for where all group activity is going to take place,
       where all relevant event details will appear and where you can navigate to individual
       group pages!
-      </text>
+      </text> */}
   </div>
 
   const [groupCode, setCode] = useState();
@@ -185,7 +210,7 @@ const Community = (props) => {
     setDisplay(front);
   }
 
-  const createGroup = () => {
+  const createGroup = async () => {
     var name;
     var description;
     var link;
@@ -202,7 +227,7 @@ const Community = (props) => {
             <input placeholder='description' onChange={e => { description = e.target.value }}></input>
           </div>
           <div>
-            <input placeholder='upload an image (link for now)' onChange={e => { link = e.target.value }}></input>
+            <input type="file" placeholder='Upload Image' onChange={e => { link = e.target.files[0].name; uploadFile(e.target.files[0]) }}></input>
           </div>
           <div>
             <input placeholder='purpose' onChange={e => { purpose = e.target.value }}></input>

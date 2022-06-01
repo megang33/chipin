@@ -181,7 +181,7 @@ form {
   right: 0px;
   height: 100%;
   border-radius: 50px;
-  max-height: 580px;
+  max-height: 700px;
   /* width: 500px; */
   overflow-y: scroll;
   /* max-width: 400px; */
@@ -239,6 +239,15 @@ form {
   position: absolute;
   float: left;
   padding-top: 30px;
+}
+
+.group-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.group-info-member-list {
+  padding-left: 50px;
 }
 
 /* Event Details */
@@ -397,7 +406,7 @@ form {
 
 /* Community GroupsBar */
 
-.groups-header {
+.groupsHeader {
   flex-grow: 1;
   text-align: center;
   margin-left: 5px;
@@ -406,7 +415,6 @@ form {
 .groups {
   height: 100%;
   flex-basis: 100%;
-  margin-right: 10%;
   flex-grow: 1;
   background-color: #D9BFB1;
 }
@@ -414,7 +422,7 @@ form {
 .group-bar-contain {
   background-color: #D9BFB1;
   position: absolute;
-  right: 20px;
+  right: 10px;
   height: 100%;
   border-radius: 50px;
 }
@@ -427,4 +435,5 @@ form {
 .group-card-list {
   position: relative;
   width: 100%;
+  margin-left: 10px;
 }

@@ -6,7 +6,7 @@
 }
 
 .text-color {
-    color: yellow
+    color: blue
 }
 
 .container {
@@ -21,4 +21,13 @@
     justify-content: center;
     align-items: center;
     border-radius: 5;
+}
+
+.reg-button{
+    color: white;
+    background-color: black;
+}
+
+.spacing{
+    margin-bottom: 10px;
 }

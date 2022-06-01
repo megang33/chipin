@@ -3,19 +3,24 @@ import EventDetails from './event-details.js'
 import MiscDetails from './misc-details.js'
 import Confirmation from './confirmation.js'
 import './events.css'
+import { getImageByFile, uploadFile } from '../utils/firebase.js'
+
 
 export default class EventCreation extends React.Component {
     state = {
         step: 1,
-        event_name: '',
+        eventName: '',
         date: '',
         capacity: '',
         description: '',
-        primary_contact: '',
-        secondary_contact: '',
-        address: '',
-        banner: '',
-        hours: ''
+        primaryContact: '',
+        secondaryContact: '',
+        location: '',
+        banner: null,
+        timeStart: '',
+        timeEnd: '',
+        hasEventEnded: false,
+        hasEventStarted: false,
     }
 
     //go to next step
@@ -41,12 +46,28 @@ export default class EventCreation extends React.Component {
         });
     }
 
+    uploadDBFile = async (file) => {
+        await uploadFile(file)
+        const setLink = (url) => {
+            this.setState({
+                banner: url
+            })
+        }
+        getImageByFile(file.name, setLink)
+    }
+
+    handleFileInput = async (e) => {
+        if (e.target.files[0]){
+            this.uploadDBFile(e.target.files[0])
+        }
+    }
+
     render() {
-        const { step, event_name, date, capacity, description, primary_contact, secondary_contact,
-            address, banner, hours } = this.state;
+        const { step, eventName, date, capacity, description, primaryContact, secondaryContact,
+            location, banner, timeStart, timeEnd, hasEventEnded, hasEventStarted } = this.state;
         const values = {
-            event_name, date, capacity, description, primary_contact, secondary_contact,
-            address, banner, hours
+            eventName, date, capacity, description, primaryContact, secondaryContact,
+            location, banner, timeStart, timeEnd, hasEventStarted, hasEventEnded
         };
 
         switch (step) {
@@ -56,7 +77,7 @@ export default class EventCreation extends React.Component {
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
                         values={values}
-                    /> //event_name, date, capacity, description
+                    /> //eventName, date, capacity, description
                 )
             case 2:
                 return (
@@ -64,9 +85,10 @@ export default class EventCreation extends React.Component {
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
+                        handleFileInput={this.handleFileInput}
                         values={values}
                     />
-                    //contacts, banner, address
+                    //contacts, banner, location
                 )
             case 3:
                 return (

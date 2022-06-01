@@ -3,7 +3,7 @@ import { useState } from 'react';
 import '../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard, faBriefcase } from '@fortawesome/free-solid-svg-icons'
-import { updateDBdoc } from '../utils/firebase.js';
+import { updateDBdoc, addDBdoc } from '../utils/firebase.js';
 
 const SignUp = (props) => {
   const [name, setName] = useState();
@@ -30,7 +30,15 @@ const SignUp = (props) => {
       currentEvents: [],
       eventsCompleted: 0,
     }
+    const orgBody = {
+      events: [],
+      name: affiliation,
+      numEvents: 0,
+      upcomingEvents: []
+    }
+
     updateDBdoc("users", props.uid, body);
+    addDBdoc("organizations", orgBody);
     props.updateInfo(props.uid);
   }
 
@@ -56,7 +64,7 @@ const SignUp = (props) => {
           </div>
           <div className="flex-form">
             <FontAwesomeIcon icon={faAddressCard} />
-            <input className='input-field' name="affiliation" type="text" placeholder="affiliation" onChange={(e) => setAffiliation(e.target.value)} />
+            <input className='input-field' name="affiliation" type="text" placeholder="affiliation / organization name" onChange={(e) => setAffiliation(e.target.value)} />
           </div>
           <div className="flex-form">
             <FontAwesomeIcon icon={faPhone} />

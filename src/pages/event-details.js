@@ -19,7 +19,7 @@ export default class EventDetails extends React.Component {
                             className="horiz-field"
                             type="text"
                             placeholder="Enter event name"
-                            onChange={e => this.props.handleChange('event_name', e)}
+                            onChange={e => this.props.handleChange('eventName', e)}
                             required={true}
                         />
                     </div>
@@ -45,24 +45,36 @@ export default class EventDetails extends React.Component {
                             />
                         </div>
                         <div className="form-row">
-                            <label style={{ margin: "7px" }}>Hours:</label>
+                            <label style={{ margin: "7px" }}>Start Time:</label>
                             <input
                                 className="horiz-field"
                                 type="text"
-                                placeholder="Enter Hours"
-                                onChange={e => this.props.handleChange('hours', e)}
+                                placeholder="Enter Starting Hours"
+                                onChange={e => this.props.handleChange('timeStart', e)}
+                                required={true}
+                            />
+                        </div>
+                        <div className="form-row">
+                            <label style={{ margin: "7px" }}>End Time:</label>
+                            <input
+                                className="horiz-field"
+                                type="text"
+                                placeholder="Enter Ending Time"
+                                onChange={e => this.props.handleChange('timeEnd', e)}
                                 required={true}
                             />
                         </div>
                     </div>
                     <div className="form-row">
                         <label style={{ margin: "7px" }}>Description:</label>
-                        <input
+                        <textarea className="horiz-field description" onChange={e => this.props.handleChange('description', e)}
+                            required={true} cols="40" rows="5"></textarea>
+                        {/* <input
                             className="horiz-field description"
                             type="text"
                             onChange={e => this.props.handleChange('description', e)}
                             required={true}
-                        />
+                        /> */}
                     </div>
                     <button className="forward-button" onClick={this.continue}><span>Continue</span></button>
                 </div>

@@ -1,18 +1,18 @@
 import React, { Component, Fragment } from "react";
 import MyCard from './MyCard.js';
-import ExpandedCard from './ExpandedCard.js';
 import './EventList.css'
 import PropTypes from "prop-types";
+import { List } from "@mui/material";
+import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 
 
 class EventList extends Component {
-
     static propTypes = {
-        suggestions: PropTypes.instanceOf(Array)
+        eventInfo: PropTypes.instanceOf(List)
     };
 
     static defaultProps = {
-        suggestions: []
+        eventInfo: []
     };
 
 
@@ -26,14 +26,15 @@ class EventList extends Component {
         };
     }
 
-
     render() {
-        const { suggestions } = this.props;
-        console.log(suggestions)
 
-        const list = suggestions.map((name) => {
-            return <div style={{ marginRight: 5, marginTop: 2 }}><MyCard eventName={name} handleCardClick={this.props.handleCardClick}/> </div> //can add more margin here
+        console.log("Test2")
+        const { suggestions, eventMap } = this.props;
+        console.log(suggestions)
+        const list = suggestions.map((name, idx) => {
+            return <div><MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={eventMap} suggestions={suggestions} handleCardClick={this.props.handleCardClick} /> </div>
         })
+
         return (
             <div>{list}</div>
         )

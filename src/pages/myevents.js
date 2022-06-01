@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import '../index.css';
 import './myevents.css';
+import { initiateEvent, isActive, endEvent, deleteEvent } from "./events.js"
 
 const MyEventCard = (props) => {
     return(
@@ -24,7 +25,7 @@ const MyEventCard = (props) => {
                         <button className='myevent-button' id='manage-attendees'>manage attendees</button>
                         <div className='myevent-lower-buttons'>
                             <button className='myevent-button' id='edit-myevent'>edit details</button>
-                            <button className='myevent-button' id='delete-myevent'>delete</button>
+                            <button className='myevent-button' id='delete-myevent' onClick={deleteEvent(props.eid)}>delete</button>
                         </div>
                     </div>
                 </div>
@@ -43,12 +44,12 @@ export default class MyEvents extends React.Component {
     }
 
     render() {
+        const managedEvents = getDocInfo("organizations", this.props.oid, "events")
         return(
             <div>
-                <h1 style={{ paddingLeft: "13%", paddingTop: "25px" }}>Upcoming events for INSERTGROUP</h1>
+                <h1 style={{ paddingLeft: "13%", paddingTop: "25px" }}>Upcoming events for {this.props.orgName}</h1>
                 <div className='round-rect'>
                     <div className='my-events-container'>
-                        {/* Content in here needs to be dynamic array of cards. */}
                         <div>
                             <MyEventCard></MyEventCard>
                         </div>

@@ -73,8 +73,10 @@ class App extends React.Component {
       <React.StrictMode>
         <Router>
           {/* <NavBar signedIn={this.state.loggedIn} handleSignIn={this.state.handleSignIn} handleSignOut={this.state.handleSignOut} /> */}
-          <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} numGroups={this.state.online ? doc.get("numGroups") : null} userInfo={this.state.userInfo} handleSignIn={() => this.handleSignIn()}
-            loggedIn={this.state.online} registered={this.state.online ? doc.get("registered") : null} role={this.state.online ? doc.get("role") : null}
+          <Routing uid={this.state.online ? doc.get("uid") : null} name={this.state.online ? doc.get("name") : null} 
+            numGroups={this.state.online ? doc.get("numGroups") : null} userInfo={this.state.userInfo} 
+            handleSignIn={() => this.handleSignIn()} loggedIn={this.state.online} orgName={this.state.online ? doc.get("affiliation") : null}
+            registered={this.state.online ? doc.get("registered") : null} role={this.state.online ? doc.get("role") : null}
             handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)} />
         </Router>
       </React.StrictMode>

@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs, setDoc, getDoc, query, where, doc, updateDoc, arrayUnion, FieldValue, DocumentSnapshot } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, setDoc, getDoc, query, where, doc, updateDoc, arrayUnion, FieldValue, DocumentSnapshot, deleteDoc } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getStorage, listAll, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,6 +20,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
+
+const storage = getStorage(app);
+export default storage
 
 export const auth = getAuth(app);
 export const signInWithGoogle = async () => {
@@ -121,10 +125,36 @@ export const getDocSnap = (collection, docs) => {
 
 //to add document for events page
 export const addDBdoc = async (c, body) => {
+  console.log(c)
+  console.log(body)
   try {
     const docRef = await addDoc(collection(db, c), body);
     console.log("Document added: ", docRef.id);
   } catch (e) {
     console.error("Error adding doc: ", e);
   }
+}
+
+export const removeDoc = async (collection, document) => {
+  const docRef = await doc(db, collection, document)
+  await deleteDoc(docRef)
+}
+
+export const uploadFile = async (file) => {
+  const upload = ref(storage, `images/${file.name}`)
+  const imgref = ref(storage, "images/")
+  await uploadBytes(upload, file)
+}
+
+export const getImageByFile = async (name, setLink) => {
+  const imgref = ref(storage, "images/")
+  await listAll(imgref).then((res) => {
+    res.items.forEach((item) => {
+      if (item.name === name){
+        getDownloadURL(item).then((url) => {
+          setLink(url)
+        })
+      }
+    })
+  })
 }

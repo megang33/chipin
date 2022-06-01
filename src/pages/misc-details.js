@@ -11,7 +11,6 @@ export default class MiscDetails extends React.Component {
     }
     render() {
         const { values, handleChange } = this.props;
-        //contacts, banner, address
         return (
             <form className="signup-form">
                 <div className="form-header">
@@ -24,7 +23,7 @@ export default class MiscDetails extends React.Component {
                             className="horiz-field"
                             type="text"
                             placeholder="Enter your organization's email"
-                            onChange={e => this.props.handleChange('primary_contact', e)}
+                            onChange={e => handleChange('primaryContact', e)}
                             required={true}
                         />
                     </div>
@@ -34,7 +33,7 @@ export default class MiscDetails extends React.Component {
                             className="horiz-field"
                             type="text"
                             placeholder="(000)-000-0000"
-                            onChange={e => this.props.handleChange('secondary_contact', e)}
+                            onChange={e => handleChange('secondaryContact', e)}
                             required={true}
                         />
                     </div>
@@ -44,7 +43,7 @@ export default class MiscDetails extends React.Component {
                             className="horiz-field"
                             type="text"
                             placeholder="street address, city, state, zipcode"
-                            onChange={e => this.props.handleChange('address', e)}
+                            onChange={e => handleChange('location', e)}
                             required={true}
                         />
                     </div>
@@ -53,7 +52,7 @@ export default class MiscDetails extends React.Component {
                         <input
                             className="horiz-field"
                             type="file"
-                            onChange={e => this.props.handleChange('banner', e)}
+                            onChange={e => this.props.handleFileInput(e)}
                             required={true}
                         />
                     </div>
