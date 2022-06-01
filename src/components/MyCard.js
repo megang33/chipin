@@ -45,75 +45,46 @@ class MyCard extends Component {
         if (!this.state.showComponent) {
             console.log("rendered");
             return (
-                <Card sx={{
-                    maxWidth: 500,
-                    maxHeight: 200,
-                    boxShadow: 20,
-                    backgroundColor: "#FFB743",
-                    borderRadius: 3,
-                    display: 'flex',
-                    display: 'inline-flex',
-                    positon: 'absolute',
+                <div
+                    onClick={this.showCard}
+                >
+                    <Card sx={{
+                        maxWidth: 500,
+                        maxHeight: 200,
+                        boxShadow: 20,
+                        backgroundColor: "#FFB743",
+                        borderRadius: 3,
+                        display: 'flex',
+                        display: 'inline-flex',
+                        positon: 'absolute',
 
-                }}>
-                    <CardMedia
-                        component="img"
-                        width="50"
-                        image="https://picsum.photos/200.jpg"
-                        alt="green iguana"
-                    />
-                    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                    }}>
+                        <CardMedia
+                            component="img"
+                            width="50"
+                            image="https://picsum.photos/200.jpg"
+                            alt="green iguana"
+                        />
+                        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
 
-                        <CardContent>
+                            <CardContent>
 
-                            <Typography gutterBottom variant="h5" component="div" color="white">
-                                {eventName}
-                            </Typography>
+                                <Typography gutterBottom variant="h5" component="div" color="white">
+                                    {eventName}
+                                </Typography>
 
-                            <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
-                                Date/Time:
+                                <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
+                                    Date/Time:
                                 {/* {eventMap[eventName].date} */}
-                            </Typography>
-                            <Typography variant="body2" color="white" maxWidth={100}>
-                                Location:
+                                </Typography>
+                                <Typography variant="body2" color="white" maxWidth={100}>
+                                    Location:
                                 {/* {eventMap[eventName].location} */}
-                            </Typography>
-                        </CardContent>
-                        <CardActions
-                            sx={{
-                                display: 'flex',
-                                alignContent: 'space-around',
-                                flexDirection: 'column',
-                                p: 1,
-                                m: 1,
-                                borderRadius: 10,
-                            }}
-                        >
-
-                            <Button
-                                sx={{
-                                    outline: 'outset',
-                                    width: 50
-                                }}
-                                size="small"
-                            >Locate</Button>
-                            <Button
-                                sx={{
-                                    outline: 'outset',
-                                    width: 50
-                                }}
-                                size="small"
-                            >Contact</Button>
-                            <Button
-                                sx={{
-                                    outline: 'outset',
-                                    width: 50
-                                }}
-                                size="small" onClick={this.showCard}>Learn More</Button>
-                            {/* add an on click and setDisplay with it */}
-                        </CardActions>
-                    </Box>
-                </Card >
+                                </Typography>
+                            </CardContent>
+                        </Box>
+                    </Card >
+                </div>
             );
         }
         else {
