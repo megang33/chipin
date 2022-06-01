@@ -30,4 +30,4 @@ const EventList = (props) => {
 
 }
 
-export default EventList;
+export default EventList

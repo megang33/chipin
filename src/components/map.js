@@ -57,7 +57,7 @@ function MyMap(props) {
           setMarkers(current => [...current, {
             lat: lat,
             lng: lng,
-            key: idx
+            key: idx,
           }])
         },
         (error) => {console.error(error)}
@@ -97,6 +97,10 @@ function MyMap(props) {
             <Marker
               //key={marker.key}
               position={{ lat: marker.lat, lng: marker.lng }}
+              icon={{
+                url: "/chipinArrow.png",
+                scaledSize: new window.google.maps.Size(30,50)
+              }}
             />
           ))}
         </GoogleMap>
