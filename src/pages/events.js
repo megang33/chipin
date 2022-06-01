@@ -15,6 +15,7 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     suggestions.push(doc.data().event_name);
     const fields = {
+      'id': doc.id,
       'event_name': doc.data().event_name,
       'date': doc.data().date,
       'capacity': doc.data().capacity,
@@ -99,8 +100,8 @@ export const registerToEvent = async (uid, eid) => {
     const updateUser = {
       currentEvents: arrayUnion(eid),
     }
-    updateDBdoc("events", eid, updateEvent)
-    updateDBdoc("users", uid, updateUser)
+    await updateDBdoc("events", eid, updateEvent)
+    await updateDBdoc("users", uid, updateUser)
   }
   return;
 }
@@ -188,7 +189,7 @@ class Events extends React.Component {
 
           </div>
           <div style={{ marginTop: 80 }}>
-            <EventList suggestions={suggestions} eventMap={eventMap} handleCardClick={this.handleCardClick}/>
+            <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} />
           </div>
         </div>
       </div>
