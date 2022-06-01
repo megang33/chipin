@@ -44,67 +44,59 @@ class MyCard extends Component {
 
     render() {
         const { alpha } = "test";
-        const { eventName } = this.props
-        const { eventLocation } = this.props
-        const { eventDate } = this.props
+        const { eventName, eventMap, eventLocation, eventDate, register } = this.props
         console.log({ eventName })
         console.log({ eventDate })
         console.log({ eventLocation })
-        return (
-            <Card sx={{
-                maxWidth: 400,
-                maxHeight: 200,
-                boxShadow: 20,
-                backgroundColor: "#AEC6CF",
-                borderRadius: 3,
-                display: 'flex',
-                display: 'inline-flex',
-                positon: 'absolute',
+        if (!this.state.showComponent) {
+            return (
+                <div onClick={this.showCard}>
+                    <Card sx={{
+                        maxWidth: 400,
+                        maxHeight: 200,
+                        boxShadow: 20,
+                        backgroundColor: "#AEC6CF",
+                        borderRadius: 3,
+                        display: 'flex',
+                        display: 'inline-flex',
+                        positon: 'absolute',
 
-            }}>
-                <CardMedia
-                    component="img"
-                    width="50"
-                    image="https://picsum.photos/200.jpg"
-                    alt="green iguana"
-                />
-                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                    }}>
+                        <CardMedia
+                            component="img"
+                            width="50"
+                            image="https://picsum.photos/200.jpg"
+                            alt="green iguana"
+                        />
+                        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
 
-                    <CardContent>
+                            <CardContent>
 
-                        <Typography gutterBottom variant="h5" component="div" color="white">
-                            {eventName}
-                        </Typography>
+                                <Typography gutterBottom variant="h5" component="div" color="white">
+                                    {eventName}
+                                </Typography>
 
-                        <Typography gutterBottom variant="h5" component="div" color="white">
-                            {eventName}
-                        </Typography>
+                                <Typography gutterBottom variant="h5" component="div" color="white">
+                                    {eventName}
+                                </Typography>
 
-                        <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
-                            Date: {eventDate}
-                        </Typography>
-                        <Typography variant="body2" color="white" maxWidth={100}>
-                            Location: {eventLocation}
-                        </Typography>
-                    </CardContent>
-                    <CardActions
-                        sx={{
-                            display: 'flex',
-                            alignContent: 'space-around',
-                            flexDirection: 'column',
-                            p: 1,
-                            m: 1,
-                            borderRadius: 10,
-                        }}
-                    >
-
-
-
-
-                    </CardActions>
-                </Box>
-            </Card >
-        );
+                                <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
+                                    Date: {eventDate}
+                                </Typography>
+                                <Typography variant="body2" color="white" maxWidth={100}>
+                                    Location: {eventLocation}
+                                </Typography>
+                            </CardContent>
+                        </Box>
+                    </Card >
+                </div>
+            );
+        }
+        else {
+            return (
+                <div style={{ marginRight: 5, marginTop: 2 }}><ExpandedCard event={eventMap[eventName]} showCard={this.showCard} register={register} /> </div>
+            );
+        }
     }
 }
 

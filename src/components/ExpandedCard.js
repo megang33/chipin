@@ -10,14 +10,20 @@ import './MyCard.css'
 export default function ExpandedCard(props, {
     showCard
 }) {
-    const { event } = props;
+    const { event, register } = props;
+    const alertPopup = async (e) => {
+        e.preventDefault();
+        await register("FdAp9fMre3ZPEOTNkQgPYBgHnQC3", event.id);
+        const content = "Succssfully registered for " + event.event_name + ". Navigate to your timeline to see your upcoming events!";
+        alert(content);
+    }
+
     return (
         <Card sx={{ maxWidth: 350, backgroundColor: "#FFB743", borderRadius: 5, boxShadow: 20 }}>
             <CardMedia
                 component="img"
                 height="140"
-                image="https://picsum.photos/200.jpg"
-                //should be {event.banner}
+                image={event.banner}
                 alt={event.event_name}
             />
             <CardContent>
@@ -39,7 +45,7 @@ export default function ExpandedCard(props, {
             </CardContent>
 
             <CardActions>
-                <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small">Register</Button>
+                <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small" onClick={(e) => alertPopup(e)}>Register</Button>
                 <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small" onClick={props.showCard}>Close</Button>
             </CardActions>
         </Card>
