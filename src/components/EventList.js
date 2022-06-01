@@ -1,44 +1,34 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, Component, Fragment } from "react";
 import MyCard from './MyCard.js';
 import ExpandedCard from './ExpandedCard.js';
+import { sortByDistance } from "../pages/events.js";
 import './EventList.css'
 import PropTypes from "prop-types";
 
 
-class EventList extends Component {
+const EventList = (props) => {
+    const [activeSuggestion, setActiveSuggestion] = useState(0)
+    const [filteredSuggestions, setFilteredSuggestions] = useState([])
+    const [showSuggestions, setShowSuggestions] = useState(false)
+    const [userInput, setUserInput] = useState("")
+    const [orderedSuggestions, setOrderedSuggestions] = useState([])
 
-    static propTypes = {
-        suggestions: PropTypes.instanceOf(Array)
-    };
+    React.useEffect(() => {
+        const setUp = async () => {
+            let list
+            list = await sortByDistance(props.suggestions, props.zc)
+            await setOrderedSuggestions(list.map((name) => {
+                    return <div style={{ marginRight: 5, marginTop: 2 }}><MyCard key={name} eventName={name} /> </div>
+                })
+            )
+        }
+        setUp()
+    }, [])
 
-    static defaultProps = {
-        suggestions: []
-    };
-
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeSuggestion: 0,
-            filteredSuggestions: [],
-            showSuggestions: false,
-            userInput: "",
-        };
-    }
-
-
-    render() {
-        console.log("Test2")
-        const { suggestions } = this.props;
-        console.log(suggestions)
-
-        const list = suggestions.map((name) => {
-            return <div style={{ marginRight: 5, marginTop: 2 }}><MyCard key={name} eventName={name} /> </div> //can add more margin here
-        })
-        return (
-            <div>{list}</div>
-        )
-    }
+    return (
+        <div>{orderedSuggestions}</div>
+    )
 
 }
+
 export default React.memo(EventList)

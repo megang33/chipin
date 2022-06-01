@@ -15,6 +15,8 @@
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.7.0",
     "materialui-grid": "^1.0.0",
+    "mathjs": "^10.6.1",
+    "promise": "^8.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-geocode": "^0.2.3",

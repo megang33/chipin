@@ -80,7 +80,7 @@ function MyMap(props) {
         >
           {markers.map((marker) => (
             <Marker
-              key={marker.key}
+              //key={marker.key}
               position={{ lat: marker.lat, lng: marker.lng }}
             />
           ))}
