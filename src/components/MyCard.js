@@ -14,14 +14,10 @@ import ExpandedCard from './ExpandedCard.js';
 class MyCard extends Component {
     static propTypes = {
         eventName: PropTypes.instanceOf(String),
-        eventLocation: PropTypes.instanceOf(String),
-        eventDate: PropTypes.instanceOf(String)
     };
 
     static defaultProps = {
         eventName: "",
-        eventLocation: "",
-        eventDate: ""
     }
 
     constructor(props) {
@@ -44,10 +40,8 @@ class MyCard extends Component {
 
     render() {
         const { alpha } = "test";
-        const { eventName, eventMap, eventLocation, eventDate, register } = this.props
+        const { eventName, eventMap, register } = this.props
         console.log({ eventName })
-        console.log({ eventDate })
-        console.log({ eventLocation })
         if (!this.state.showComponent) {
             return (
                 <div onClick={this.showCard}>
@@ -76,15 +70,11 @@ class MyCard extends Component {
                                     {eventName}
                                 </Typography>
 
-                                <Typography gutterBottom variant="h5" component="div" color="white">
-                                    {eventName}
-                                </Typography>
-
                                 <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
-                                    Date: {eventDate}
+                                    Date: {eventMap[eventName].date}
                                 </Typography>
                                 <Typography variant="body2" color="white" maxWidth={100}>
-                                    Location: {eventLocation}
+                                    Location: {eventMap[eventName].location}
                                 </Typography>
                             </CardContent>
                         </Box>

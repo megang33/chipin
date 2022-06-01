@@ -13,13 +13,15 @@ export default function ExpandedCard(props, {
     const { event, register } = props;
     const alertPopup = async (e) => {
         e.preventDefault();
-        await register("FdAp9fMre3ZPEOTNkQgPYBgHnQC3", event.id);
+        const uid = localStorage.getItem("user-login");
+        console.log(uid)
+        await register(uid, event.id);
         const content = "Succssfully registered for " + event.event_name + ". Navigate to your timeline to see your upcoming events!";
         alert(content);
     }
 
     return (
-        <Card sx={{ maxWidth: 350, backgroundColor: "#FFB743", borderRadius: 5, boxShadow: 20 }}>
+        <Card sx={{ maxWidth: 350, backgroundColor: "#AEC6CF", borderRadius: 5, boxShadow: 20 }}>
             <CardMedia
                 component="img"
                 height="140"
