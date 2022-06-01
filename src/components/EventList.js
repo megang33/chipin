@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import MyCard from './MyCard.js';
+import ExpandedCard from './ExpandedCard.js';
 import './EventList.css'
 import PropTypes from "prop-types";
 
@@ -31,8 +32,8 @@ class EventList extends Component {
         const { suggestions } = this.props;
         console.log(suggestions)
 
-        const list = suggestions.map((name, idx) => {
-            return <div><MyCard eventName={name} /> </div>
+        const list = suggestions.map((name) => {
+            return <div style={{ marginRight: 5, marginTop: 2 }}><MyCard key={name} eventName={name} /> </div> //can add more margin here
         })
         return (
             <div>{list}</div>

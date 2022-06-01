@@ -244,27 +244,53 @@ const Community = (props) => {
     setDisplay(display);
   }
 
-  return (
-    <div>
-      <h3>Welcome to your community.</h3>
-      <div style={{ display: 'flex', marginRight: '50rem', backgroundColor: "#D9BFB1" }}>
-        <form onSubmit={(e) => joinGroup(props.uid, e)} style={{ display: "flex" }}>
-          <input name="input" type="text" placeholder='group code...' onChange={(e) => setCode(e.target.value)} ></input>
-          <input type="submit" value="Join Group"></input>
-        </form>
-        <button onClick={() => createGroup()}>Create A Group</button>
-      </div>
-      <div className='group-bar-contain'>
-        <div className='group-bar-inner'>
-          <h2 className='groupsHeader'>Your Groups</h2>
-          <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)} />
+  if (!props.role){
+    return (
+      <div>
+        <h3>Welcome to your community.</h3>
+        <div style={{ display: 'flex', marginRight: '50rem', backgroundColor: "#D9BFB1" }}>
+          <form onSubmit={(e) => joinGroup(props.uid, e)} style={{ display: "flex" }}>
+            <input name="input" type="text" placeholder='group code...' onChange={(e) => setCode(e.target.value)} ></input>
+            <input type="submit" value="Join Group"></input>
+          </form>
+          <button onClick={() => createGroup()}>Create A Group</button>
+        </div>
+        <div className='group-bar-contain'>
+          <div className='group-bar-inner'>
+            <h2 className='groupsHeader'>Your Groups</h2>
+            <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)} />
+          </div>
+        </div>
+        <div>
+          {display}
         </div>
       </div>
+    );
+  }
+  else {
+    return (
       <div>
-        {display}
+        <h3>Welcome to your community.</h3>
+        <div style={{ display: 'flex', marginRight: '50rem', backgroundColor: "#D9BFB1" }}>
+          <form onSubmit={(e) => joinGroup(props.uid, e)} style={{ display: "flex" }}>
+            <input name="input" type="text" placeholder='group code...' onChange={(e) => setCode(e.target.value)} ></input>
+            <input type="submit" value="Join Group"></input>
+          </form>
+          <button onClick={() => createGroup()}>Create A Group</button>
+        </div>
+        <div className='group-bar-contain'>
+          <div className='group-bar-inner'>
+            <h2 className='groupsHeader'>Your Groups</h2>
+            <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)} />
+          </div>
+        </div>
+        <div>
+          {display}
+        </div>
       </div>
-    </div>
-  );
+    );  
+  }
+  
 }
 
 export default Community;

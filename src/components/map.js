@@ -17,17 +17,37 @@ const options = {
 
 function MyMap(props) {
   const [center, changeCenter] = useState();
+  const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
     Geocode.fromAddress(props.zipcode).then(
       (response) => {
         const {lat, lng} = response.results[0].geometry.location;
         console.log("!", lat, lng);
-        console.log(typeof lat);
         changeCenter({lat: lat, lng: lng})
+        setMarkers(current => [...current, {
+          lat: lat,
+          lng: lng,
+          key: 'center'
+        }])
       },
       (error) => {console.error(error)}
     )
+
+    props.eventNames.map((eventName) => {
+      Geocode.fromAddress(props.eventDict[eventName].address).then(
+        (response) => {
+          const {lat, lng} = response.results[0].geometry.location;
+          console.log(eventName, lat, lng);
+          setMarkers(current => [...current, {
+            lat: lat,
+            lng: lng,
+            key: eventName
+          }])
+        },
+        (error) => {console.error(error)}
+      )
+    })
   }, [])
 
   const { isLoaded } = useJsApiLoader({
@@ -35,11 +55,11 @@ function MyMap(props) {
     googleMapsApiKey: "AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho"
   })
 
-  const [map, setMap] = React.useState(/** @type google.maps.Map */null)
+  const [map, setMap] = useState(/** @type google.maps.Map */ (null))
 
   const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+    //const bounds = new window.google.maps.LatLngBounds(center);
+    //map.fitBounds(bounds);
     setMap(map)
   }, [])
 
@@ -53,37 +73,21 @@ function MyMap(props) {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={25}
+          zoom={15}
           onLoad={onLoad}
           onUnmount={onUnmount}
           options={options}
         >
-          <Marker position={center}/>
+          {markers.map((marker) => (
+            <Marker
+              key={marker.key}
+              position={{ lat: marker.lat, lng: marker.lng }}
+            />
+          ))}
         </GoogleMap>
       </div>
     </div>
   ) : <h2>Map loading..</h2>
 }
 
-export default MyMap
-
-
-
-
-//   // getLatLngByZipcode(zipcode) {
-//   //   console.log("Zipcode: ", zipcode);
-//   //   var latitude;
-//   //   var longitude;
-//   //   var geocoder = new window.google.maps.Geocoder();
-//   //   var address = zipcode;
-//   //   geocoder.geocode({ 'address': 'zipcode '+address }, function (results, status) {
-//   //       if (status === window.google.maps.GeocoderStatus.OK) {
-//   //           latitude = results[0].geometry.location.lat();
-//   //           longitude = results[0].geometry.location.lng();
-//   //           alert("Latitude: " + latitude + "\nLongitude: " + longitude);
-//   //       } else {
-//   //           alert("Request failed.")
-//   //       }
-//   //   });
-//   //   return [latitude, longitude];
-//   // }
+export default React.memo(MyMap)

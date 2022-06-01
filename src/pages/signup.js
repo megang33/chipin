@@ -3,7 +3,7 @@ import { useState } from 'react';
 import '../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard, faBriefcase } from '@fortawesome/free-solid-svg-icons'
-import { updateDBdoc } from '../utils/firebase.js';
+import { updateDBdoc, addDBdoc } from '../utils/firebase.js';
 
 const SignUp = (props) => {
   const [name, setName] = useState();
@@ -30,8 +30,18 @@ const SignUp = (props) => {
       currentEvents: [],
       eventsCompleted: 0,
     }
+    const orgBody = {
+      events: [],
+      name: affiliation,
+    }
+
     updateDBdoc("users", props.uid, body);
+    addDBdoc("organizations", orgBody);
     props.updateInfo(props.uid);
+  }
+
+  const onChangeValue = (event) => {
+    setRole(event.target.value == "volunteer" ? true : false)
   }
 
   return (
@@ -45,11 +55,14 @@ const SignUp = (props) => {
           </div>
           <div className="flex-form">
             <FontAwesomeIcon icon={faBriefcase} />
-            <input className='input-field' name="role" type="text" placeholder="role" onChange={(e) => setRole(e.target.value == "volunteer" ? true : false)} />
+            <div className='checkbox-container' onChange={onChangeValue}>
+              <input className='checkbox' value="volunteer" name="role" type="radio" placeholder="role" /><text className='check-text'>volunteer</text>
+              <input className='checkbox' value="organization" name="role" type="radio" placeholder="role" /><text className='check-text'>organization</text>
+            </div>
           </div>
           <div className="flex-form">
             <FontAwesomeIcon icon={faAddressCard} />
-            <input className='input-field' name="affiliation" type="text" placeholder="affiliation" onChange={(e) => setAffiliation(e.target.value)} />
+            <input className='input-field' name="affiliation" type="text" placeholder="affiliation / organization name" onChange={(e) => setAffiliation(e.target.value)} />
           </div>
           <div className="flex-form">
             <FontAwesomeIcon icon={faPhone} />

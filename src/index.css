@@ -49,6 +49,17 @@ form {
   padding: 10px;
 }
 
+.checkbox-container {
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+}
+
+.check-text {
+  padding-right: 10px;
+}
+
 .round-rect {
   box-sizing: border-box;
 
