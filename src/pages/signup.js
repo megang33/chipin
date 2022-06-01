@@ -33,6 +33,8 @@ const SignUp = (props) => {
     const orgBody = {
       events: [],
       name: affiliation,
+      numEvents: 0,
+      upcomingEvents: []
     }
 
     updateDBdoc("users", props.uid, body);

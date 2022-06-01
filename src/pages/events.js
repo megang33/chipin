@@ -20,6 +20,7 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     suggestions.push(doc.data().event_name);
     const fields = {
+      'id': doc.id,
       'event_name': doc.data().event_name,
       'date': doc.data().date,
       'capacity': doc.data().capacity,
@@ -42,9 +43,9 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
 
 // Implement using time-based API? Note: more complicated, will require more research
 export const initiateEvent = async (eid) => {
-    const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
-    const eventDate = await getDocInfo("events", eid, "date");
-    const startTime = await getDocInfo("events", eid, "timeStart")
+  const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
+  const eventDate = await getDocInfo("events", eid, "date");
+  const startTime = await getDocInfo("events", eid, "timeStart")
 
   const ctime = new Date();
   var currentDate = new Date(Date.UTC(ctime.getFullYear(), ctime.getMonth(), ctime.getDate(), ctime.getTimezoneOffset() / 60 + ctime.getHours(), ctime.getMinutes(), ctime.getSeconds()))
@@ -101,8 +102,8 @@ export const registerToEvent = async (uid, eid) => {
     const updateUser = {
       currentEvents: arrayUnion(eid),
     }
-    updateDBdoc("events", eid, updateEvent)
-    updateDBdoc("users", uid, updateUser)
+    await updateDBdoc("events", eid, updateEvent)
+    await updateDBdoc("users", uid, updateUser)
   }
   return;
 }
@@ -130,11 +131,11 @@ export const checkIn = async (uid, eid) => {
 }
 
 export const deleteEvent = async (eid) => {
-  if (isActive(eid)){
+  if (isActive(eid)) {
     return
   }
   const registered = await getDocInfo("events", eid, "registered")
-  for (let i = 0; i < registered.length; i++){
+  for (let i = 0; i < registered.length; i++) {
     let updateUser = {
       currentEvents: arrayRemove(eid)
     }
@@ -196,7 +197,10 @@ class Events extends React.Component {
       zipcode: null,
       uid: props.uid,
       sortedEvents: null,
+      recenter: null
     };
+
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   async componentDidMount() {
@@ -207,10 +211,18 @@ class Events extends React.Component {
     })
   }
 
+  handleCardClick(zc) {
+    console.log('prt', zc)
+    this.setState({
+      recenter: zc
+    })
+    console.log('WORK', zc)
+  }
+
   render() {
-    const elnull = this.state.zipcode ? <EventList suggestions={suggestions} eventInfo={eventMap} zc={this.state.zipcode}/> : <h2>List loading...</h2>
+    const elnull = this.state.zipcode ? <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} zc={this.state.zipcode}/> : <h2>List loading...</h2>
     console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>

@@ -22,7 +22,8 @@ export default class MiscDetails extends React.Component {
             timeStart: values.timeStart,
             timeEnd: values.timeEnd,
             hasEventStarted: values.hasEventStarted,
-            hasEventEnded: values.hasEventEnded
+            hasEventEnded: values.hasEventEnded,
+            registered: []
         }
         await addDBdoc("events", body);
         window.location = "/events";
@@ -51,7 +52,7 @@ export default class MiscDetails extends React.Component {
                     <li>{values.location}</li>
                     <li>
                         <div>Image: </div>
-                        <img src={values.banner} width="400px"/>
+                        <img src={values.banner} width="400px" />
                     </li>
                 </ul>
                 <button onClick={this.submit}>submit</button>

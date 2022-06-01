@@ -11,19 +11,27 @@ const Landing = (props) => {
     if (props.signedIn && props.registered) {
         return(
             <div className='landing-div'>
-                <h1 style={{ paddingTop: "100px" }}>Welcome to ChipIn!</h1>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                    <h1 style={{ fontSize: "40px", paddingTop: "100px", paddingBottom: "65px", paddingRight: "15px" }}>Welcome to </h1>
+                    <img style={{ height: "125px" }} src={require('../components/logo.png')} alt="ChipIn Logo" />
+                </div>
+                <text style={{ fontSize: "25px", marginTop: "-30px" }}>Building a community for the community.</text>
             </div>
         );
     }
     else {
         return(
             <div className='landing-div'>
-                <h1 style={{ paddingTop: "100px" }}>Welcome to ChipIn!</h1>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                    <h1 style={{ paddingTop: "100px", paddingBottom: "70px", paddingRight: "15px" }}>Welcome to </h1>
+                    <img style={{ height: "100px" }} src={require('../components/logo.png')} alt="ChipIn Logo" />
+                </div>
+                
+                <text style={{ marginTop: "-70px", paddingBottom: "50px" }}>Building a community for the community.</text>
                 <div className='landing-buttons'>
                     <Link to="/signup" style={{ textDecoration: "none" }} className='forward-button' onClick={props.handleSignIn}>sign up</Link>
                     <Link to="/" style={{ textDecoration: "none" }} className='forward-button' onClick={props.handleSignIn}>sign in</Link>
                 </div>
-                
             </div>
         );
     }

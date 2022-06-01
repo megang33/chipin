@@ -74,7 +74,7 @@ const GroupCard = (props) => {
     const founder = await getDocInfo("groups", props.id, "founder")
     let canDeleteGroup = (founder == props.uid) ? <button onClick={() => deleteGroup(props.id)}>Delete</button> : null
     props.setDisplay(
-      <div className='groupsite' style={{ marginLeft: "5%" }}>
+      <div className='group-info' style={{ marginLeft: "5%" }}>
         <div>
           <div>
             <h1>{props.name}</h1>
@@ -89,13 +89,16 @@ const GroupCard = (props) => {
             <p>{props.purpose}</p>
           </div>
           <h2>Events</h2>
-          <div>
+          <div className='scroll-container'>
             <EventCard />
           </div>
         </div>
-        <div>
+
+        <div className='group-info-member-list'>
           <h2>Member List</h2>
-          {members}
+          <div className='scroll-container'>
+            {members}
+          </div>
         </div>
       </div>
     )
@@ -185,11 +188,11 @@ const Community = (props) => {
   const front = <div style={{ marginLeft: "5%" }}>
     <h1>Welcome to your Community Page!</h1>
     <h2>Use the group bar to navigate between groups!</h2>
-    <text>
+    {/* <text>
       This is going to be filler text for where all group activity is going to take place,
       where all relevant event details will appear and where you can navigate to individual
       group pages!
-      </text>
+      </text> */}
   </div>
 
   const [groupCode, setCode] = useState();
@@ -280,7 +283,7 @@ const Community = (props) => {
         </div>
         <div className='group-bar-contain'>
           <div className='group-bar-inner'>
-            <h2 className='groupsHeader'>Your Groups</h2>
+            <h2 className='groups-header'>Your Groups</h2>
             <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)} />
           </div>
         </div>

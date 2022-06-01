@@ -18,12 +18,25 @@ const options = {
 function MyMap(props) {
   const [center, changeCenter] = useState();
   const [markers, setMarkers] = useState([]);
+  const [recenter, setRecenter] = useState();
+
+  function componentWillReceiveProps(nextProps) {
+    if (nextProps.recenter !== null && nextProps.recenter !== recenter) {
+      setRecenter(nextProps.recenter)
+      Geocode.fromAddress(nextProps.recenter).then(
+        (response) => {
+          const {lat, lng} = response.results[0].geometry.location;
+          map.panTo({lat: lat, lng: lng})
+        },
+        (error) => {console.error(error)}
+      )
+    }
+  }
 
   useEffect(() => {
     Geocode.fromAddress(props.zipcode).then(
       (response) => {
         const {lat, lng} = response.results[0].geometry.location;
-        console.log("!", lat, lng);
         changeCenter({lat: lat, lng: lng})
         setMarkers(current => [...current, {
           lat: lat,
@@ -34,15 +47,14 @@ function MyMap(props) {
       (error) => {console.error(error)}
     )
 
-    props.eventNames.map((eventName) => {
+    props.eventNames.map((eventName, idx) => {
       Geocode.fromAddress(props.eventDict[eventName].address).then(
         (response) => {
           const {lat, lng} = response.results[0].geometry.location;
-          console.log(eventName, lat, lng);
           setMarkers(current => [...current, {
             lat: lat,
             lng: lng,
-            key: eventName
+            key: idx
           }])
         },
         (error) => {console.error(error)}
@@ -76,6 +88,7 @@ function MyMap(props) {
           zoom={15}
           onLoad={onLoad}
           onUnmount={onUnmount}
+          componentWillReceiveProps={componentWillReceiveProps}
           options={options}
         >
           {markers.map((marker) => (
@@ -90,4 +103,4 @@ function MyMap(props) {
   ) : <h2>Map loading..</h2>
 }
 
-export default React.memo(MyMap)
+export default MyMap

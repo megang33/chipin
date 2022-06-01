@@ -6,106 +6,99 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { QuerySnapshot } from 'firebase/firestore';
 import PropTypes from "prop-types";
+import ExpandedCard from './ExpandedCard.js';
 
 
 
 class MyCard extends Component {
-
     static propTypes = {
-        eventName: PropTypes.instanceOf(String)
+        eventName: PropTypes.instanceOf(String),
+        eventLocation: PropTypes.instanceOf(String),
+        eventDate: PropTypes.instanceOf(String)
     };
 
     static defaultProps = {
-        eventName: ""
+        eventName: "",
+        eventLocation: "",
+        eventDate: ""
     }
 
     constructor(props) {
         super(props);
         this.state = {
             activeSuggestion: 0,
+            showComponent: false
         };
     }
 
-    // onClick = e => {
-    //     this.props.pullData("hi")
-    // }
+    onClick = () => {
+        if (this.state.showComponent) {
+            this.setState({ showComponent: false });
+        }
+        else {
+            this.setState({ showComponent: true });
+        }
+        console.log("clicked");
+
+        this.props.handleCardClick(this.props.eventName)
+    }
 
     render() {
         const { alpha } = "test";
-        const { eventName } = this.props
-        return (
-            <Card sx={{
-                maxWidth: 400,
-                maxHeight: 200,
-                boxShadow: 20,
-                backgroundColor: "#FFB743",
-                borderRadius: 3,
-                display: 'flex',
-                display: 'inline-flex',
-                positon: 'absolute',
+        const { eventName, eventMap, eventLocation, eventDate, register } = this.props
+        // console.log({ eventName })
+        // console.log({ eventDate })
+        // console.log({ eventLocation })
+        if (!this.state.showComponent) {
+            return (
+                <div onClick={this.onClick}>
+                    <Card sx={{
+                        maxWidth: 400,
+                        maxHeight: 200,
+                        boxShadow: 20,
+                        backgroundColor: "#AEC6CF",
+                        borderRadius: 3,
+                        display: 'flex',
+                        display: 'inline-flex',
+                        positon: 'absolute',
 
-            }}>
-                <div className="centering">
+                    }}>
+                        <CardMedia
+                            component="img"
+                            width="50"
+                            image="https://picsum.photos/200.jpg"
+                            alt="green iguana"
+                        />
+                        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
 
-                    <CardMedia
-                        component="img"
-                        height="250"
-                        //image="https://picsum.photos/200.jpg"
-                        alt="green iguana"
-                    />
+                            <CardContent>
+
+                                <Typography gutterBottom variant="h5" component="div" color="white">
+                                    {eventName}
+                                </Typography>
+
+                                <Typography gutterBottom variant="h5" component="div" color="white">
+                                    {eventName}
+                                </Typography>
+
+                                <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
+                                    Date: {eventDate}
+                                </Typography>
+                                <Typography variant="body2" color="white" maxWidth={100}>
+                                    Location: {eventLocation}
+                                </Typography>
+                            </CardContent>
+                        </Box>
+                    </Card >
                 </div>
-                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-
-                    <CardContent>
-
-                        <Typography gutterBottom variant="h5" component="div" color="white">
-                            {eventName}
-                        </Typography>
-
-                        <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
-                            Date/Time: June 5th 1PM-3PM
-                        </Typography>
-                        <Typography variant="body2" color="white" maxWidth={100}>
-                            Location: UCLA,
-                        </Typography>
-                    </CardContent>
-                    <CardActions
-                        sx={{
-                            display: 'flex',
-                            alignContent: 'space-around',
-                            flexDirection: 'column',
-                            p: 1,
-                            m: 1,
-                            borderRadius: 10,
-                        }}
-                    >
-
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small"
-                        >Locate</Button>
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small"
-                        >Contact</Button>
-                        <Button
-                            sx={{
-                                outline: 'outset',
-                                width: 50
-                            }}
-                            size="small">Learn More</Button>
-                    </CardActions>
-                </Box>
-            </Card >
-        );
+            );
+        }
+        else {
+            return (
+                <div style={{ marginRight: 5, marginTop: 2 }}><ExpandedCard event={eventMap[eventName]} showCard={this.onClick} register={register} /> </div>
+            );
+        }
     }
 }
 

@@ -47,7 +47,7 @@ export default class MyEvents extends React.Component {
         const managedEvents = getDocInfo("organizations", this.props.oid, "events")
         return(
             <div>
-                <h1 style={{ paddingLeft: "13%", paddingTop: "25px" }}>Upcoming events for INSERTGROUP</h1>
+                <h1 style={{ paddingLeft: "13%", paddingTop: "25px" }}>Upcoming events for {this.props.orgName}</h1>
                 <div className='round-rect'>
                     <div className='my-events-container'>
                         <div>
