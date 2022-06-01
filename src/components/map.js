@@ -18,36 +18,39 @@ const options = {
 function MyMap(props) {
   const [center, changeCenter] = useState();
   const [markers, setMarkers] = useState([]);
-  const [recenter, setRecenter] = useState();
+  const [recenter, setRecenter] = useState(null);
 
-  function componentWillReceiveProps(nextProps) {
-    if (nextProps.recenter !== null && nextProps.recenter !== recenter) {
-      setRecenter(nextProps.recenter)
-      Geocode.fromAddress(nextProps.recenter).then(
-        (response) => {
-          const {lat, lng} = response.results[0].geometry.location;
-          map.panTo({lat: lat, lng: lng})
-        },
-        (error) => {console.error(error)}
-      )
+  useEffect(() => {
+    console.log('test0')
+    setRecenter(props.recenter)
+    console.log('props', props.recenter)
+    console.log('center', recenter)
+    if (props.recenter === null) {
+      console.log('bruh')
+      return;
     }
-  }
+    Geocode.fromAddress(props.eventDict[props.recenter].address).then(
+      (response) => {
+        const {lat, lng} = response.results[0].geometry.location;
+        console.log('test1')
+        console.log(lat, lng)
+        map.panTo({lat: lat, lng: lng})
+      },
+      (error) => {console.error(error)}
+    )
+  }, [props.recenter])
 
   useEffect(() => {
     Geocode.fromAddress(props.zipcode).then(
       (response) => {
         const {lat, lng} = response.results[0].geometry.location;
         changeCenter({lat: lat, lng: lng})
-        setMarkers(current => [...current, {
-          lat: lat,
-          lng: lng,
-          key: 'center'
-        }])
+        console.log('test3')
       },
       (error) => {console.error(error)}
     )
 
-    props.eventNames.map((eventName, idx) => {
+    props.eventNames.map((eventName, idx) => (
       Geocode.fromAddress(props.eventDict[eventName].address).then(
         (response) => {
           const {lat, lng} = response.results[0].geometry.location;
@@ -59,7 +62,7 @@ function MyMap(props) {
         },
         (error) => {console.error(error)}
       )
-    })
+    ))
   }, [])
 
   const { isLoaded } = useJsApiLoader({
@@ -88,7 +91,6 @@ function MyMap(props) {
           zoom={15}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          componentWillReceiveProps={componentWillReceiveProps}
           options={options}
         >
           {markers.map((marker) => (

@@ -27,13 +27,12 @@ class EventList extends Component {
 
     render() {
         const { suggestions, eventMap, register } = this.props;
-        console.log(suggestions)
         const list = suggestions.map((name, idx) => {
             return <div><MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={eventMap} suggestions={suggestions} register={register} handleCardClick={this.props.handleCardClick} /> </div>
         })
 
         return (
-            <div>{list}</div>
+            <div className="myTray">{list}</div>
         )
     }
 

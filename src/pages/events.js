@@ -163,11 +163,10 @@ class Events extends React.Component {
   }
 
   handleCardClick(zc) {
-    console.log('prt', zc)
     this.setState({
       recenter: zc
     })
-    console.log('WORK', zc)
+    console.log('prt', zc)
   }
 
   render() {
