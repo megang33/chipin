@@ -14,9 +14,10 @@ const EventList = (props) => {
         const setUp = async () => {
             let list
             list = await sortByDistance(props.suggestions, props.zc)
+            console.log(list)
             await setOrderedSuggestions(list.map((name) => {
-                    return <div><MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={eventMap} 
-                    suggestions={suggestions} register={register} handleCardClick={this.props.handleCardClick} /> </div>
+                    return <div><MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={props.eventMap} 
+                    suggestions={list} register={props.register} handleCardClick={props.handleCardClick} /> </div>
                 })
             )
         }
