@@ -7,43 +7,41 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './MyCard.css'
 
-class ExpandedCard extends React.Component {
-    render() {
-        const { event } = this.props;
-        return (
+export default function ExpandedCard(props, {
+    showCard
+}) {
+    const { event } = props;
+    return (
+        <Card sx={{ maxWidth: 350, backgroundColor: "#FFB743", borderRadius: 5, boxShadow: 20 }}>
+            <CardMedia
+                component="img"
+                height="140"
+                image="https://picsum.photos/200.jpg"
+                //should be {event.banner}
+                alt={event.event_name}
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div" className="spacing">
+                    {event.event_name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" className="spacing">
+                    date: {event.date} | hours: {event.hours} | capacity: {event.capacity}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" className="spacing">
+                    phone: {event.phone}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" className="spacing">
+                    email: {event.email}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" className="spacing">
+                    {event.description}
+                </Typography>
+            </CardContent>
 
-            <Card sx={{ maxWidth: 350, backgroundColor: "#FFB743", borderRadius: 5, boxShadow: 20 }}>
-                <CardMedia
-                    component="img"
-                    height="140"
-                    image="https://picsum.photos/200.jpg"
-                    //should be {event.banner}
-                    alt={event.event_name}
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className="spacing">
-                        {event.event_name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" className="spacing">
-                        date: {event.date} | hours: {event.hours} | capacity: {event.capacity}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" className="spacing">
-                        phone: {event.phone}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" className="spacing">
-                        email: {event.email}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" className="spacing">
-                        {event.description}
-                    </Typography>
-                </CardContent>
-
-                <CardActions>
-                    <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small">Register</Button>
-                </CardActions>
-            </Card>
-        );
-    }
+            <CardActions>
+                <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small">Register</Button>
+                <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small" onClick={props.showCard}>Close</Button>
+            </CardActions>
+        </Card>
+    );
 }
-
-export default ExpandedCard;

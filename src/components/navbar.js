@@ -5,7 +5,7 @@ import './navbar.css';
 const NavBar = (props) => {
   console.log(props.role)
 
-  if (props.signedIn && props.registered) {
+  if (props.signedIn && props.registered && props.role) {
     return (
       <div className='bar-rectangle' id='navbar-in'>
         <div>
@@ -15,14 +15,13 @@ const NavBar = (props) => {
           <Link to="/community" className='nav-item'>community</Link>
           <Link to="/timeline" className='nav-item'>timeline</Link>
           <Link to="/events" className='nav-item'>find an event</Link>
-          {/* have to change link to maps page */}
           <Link to="/profile" className='nav-item'>you</Link>
           <Link to="/" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
         </div>
       </div>
     );
   }
-  else if (props.signedIn && props.role && props.registered) {
+  else if (props.signedIn && props.registered) {
     return (
       <div className='bar-rectangle' id='navbar-in'>
         <div>
