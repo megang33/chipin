@@ -89,14 +89,16 @@ const GroupCard = (props) => {
             <p>{props.purpose}</p>
           </div>
           <h2>Events</h2>
-          <div>
+          <div className='scroll-container'>
             <EventCard />
           </div>
         </div>
 
         <div className='group-info-member-list'>
           <h2>Member List</h2>
-          {members}
+          <div className='scroll-container'>
+            {members}
+          </div>
         </div>
       </div>
     )
@@ -281,7 +283,7 @@ const Community = (props) => {
         </div>
         <div className='group-bar-contain'>
           <div className='group-bar-inner'>
-            <h2 className='groupsHeader'>Your Groups</h2>
+            <h2 className='groups-header'>Your Groups</h2>
             <GroupBar uid={props.uid} setDisplay={(display) => showPage(display)} />
           </div>
         </div>
