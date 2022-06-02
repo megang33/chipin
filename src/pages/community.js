@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { initializeGroup, updateGroup, updateDBdoc, getDocInfo, getDocSnap, removeDoc, uploadFile, getImageByFile, db } from '../utils/firebase';
-import '../index.css'
-import EventCard from '../components/eventCard.js'
+import '../index.css';
+import EventCard from '../components/eventCard.js';
 import { arrayRemove } from 'firebase/firestore';
 
 const GroupCard = (props) => {
@@ -71,8 +71,35 @@ const GroupCard = (props) => {
   const getEvents = async () => {
     console.log(props.id)
     const events = await getDocInfo("groups", props.id, "currentEvents")
-    return events.map((event) => {
-      return <div><EventCard eid={event}></EventCard></div>
+    console.log(events)
+    const eventMap = []
+    for (var i = 0; i < events.length; i++) {
+      const eventName = await getDocInfo("events", events[i], "eventName")
+      const date = await getDocInfo("events", events[i], "date")
+      const capacity = await getDocInfo("events", events[i], "capacity")
+      const description = await getDocInfo("events", events[i], "description")
+      const registered = await getDocInfo("events", events[i], "registered")
+      const location = await getDocInfo("events", events[i], "location")
+      const email = await getDocInfo("events", events[i], "email")
+      const timeStart = await getDocInfo("events", events[i], "timeStart")
+      const timeEnd = await getDocInfo("events", events[i], "timeEnd")
+      const eventInfo = {
+        id: events[i],
+        eventName: eventName,
+        date: date,
+        capacity: capacity,
+        description: description,
+        registered: registered,
+        location: location,
+        email: email,
+        timeStart: timeStart,
+        timeEnd: timeEnd
+      }
+      eventMap[i] = eventInfo;
+    }
+
+    return eventMap.map((event) => {
+      return <div><EventCard eventData={event}></EventCard></div>
     });
   }
 

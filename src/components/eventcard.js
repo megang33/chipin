@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -6,18 +6,18 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { getDoc, doc } from 'firebase/firestore';
-import { db, getDocSnap, getDocInfo } from '../utils/firebase.js'
-
-const getEventInfo = async (eid) => {
-    const date = await getDocInfo("events", eid, "date")
-    //continue here
-    console.log(date)
-    return date
-}
+import { registerToEvent } from '../pages/events.js';
 
 export default function EventCard(props) {
-    getEventInfo(props.eid);
+
+    const alertPopup = async (e) => {
+        e.preventDefault();
+        const uid = localStorage.getItem("user-login");
+        await registerToEvent(uid, props.eventData.id);
+        const content = "Succssfully registered for " + props.eventData.eventName + ". Navigate to your timeline to see your upcoming events!";
+        alert(content);
+    }
+
     return (
 
         <Card sx={{
@@ -36,22 +36,25 @@ export default function EventCard(props) {
                 <CardMedia
                     component="img"
                     height="250"
-                    image="https://picsum.photos/200.jpg"
-                    alt="green iguana"
+                    image={props.eventData.banner}
+                    alt={props.eventData.eventName}
                 />
             </div>
             <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
 
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" color="white">
-                        Lizard
+                        {props.eventData.eventName}
                     </Typography>
 
                     <Typography variant="body2" color="white" maxWidth={400} fontSize="5">
-                        Date/Time: June 5th 1PM-3PM
+                        Date/Time: {props.eventData.date} {props.eventData.timeStart}-{props.eventData.timeEnd}
                     </Typography>
                     <Typography variant="body2" color="white" maxWidth={400}>
-                        Location: UCLA,
+                        Location: {props.eventData.location}
+                    </Typography>
+                    <Typography variant="body2" color="white" maxWidth={400}>
+                        {props.eventData.description}
                     </Typography>
                 </CardContent>
                 <CardActions
@@ -64,17 +67,6 @@ export default function EventCard(props) {
                         borderRadius: 10,
                     }}
                 >
-
-                    <Button
-                        sx={{
-                            outline: 'outset',
-                            width: 70,
-                            padding: 2,
-                            marginTop: 2,
-                            marginBottom: 2
-                        }}
-                        size="small"
-                    >Locate</Button>
                     <Button
                         sx={{
                             outline: 'outset',
@@ -82,7 +74,7 @@ export default function EventCard(props) {
                             padding: 2,
                             marginBottom: 2
                         }}
-                        size="small">Register</Button>
+                        size="small" onClick={(e) => alertPopup(e)}>Register</Button>
                 </CardActions>
             </Box>
         </Card >
