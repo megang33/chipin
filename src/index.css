@@ -71,12 +71,12 @@ form {
 
   position: absolute;
   width: 84%;
-  height: 110%;
+  height: 150%;
   left: 8%;
   top: 175px;
   padding-bottom: 20px;
 
-  border: 15px solid #7F867B;
+  border: 15px solid #7B7B7B;
   border-radius: 104px;
 }
 
@@ -184,7 +184,7 @@ form {
   right: 0px;
   height: 100%;
   border-radius: 50px;
-  max-height: 700px;
+  height: 700px;
   width: 320px;
   /* width: 500px; */
   overflow-y: scroll;
@@ -259,8 +259,8 @@ form {
 
 .group-create-bar {
   display: flex;
-  margin-right: 50rem;
-  background-color: #D9BFB1;
+  width: 40rem;
+  background-color: black;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -269,6 +269,7 @@ form {
   margin-right: 0px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  margin-left: -100px;
 }
 
 .group-details-buttons {
@@ -281,19 +282,17 @@ form {
 .group-info-round-rect {
   box-sizing: border-box;
   width: 70%;
-  height: 650px;
+  height: 150%;
   margin-top: 30px;
   position: absolute;
   padding-bottom: 20px;
   margin-top: 75px;
 
-  border: 15px solid #7F867B;
+  border: 15px solid #7B7B7B;
   border-radius: 104px;
   /* display: flex;
   flex-direction: row; */
 }
-
-
 
 .scroll-container {
   overflow-y: scroll;
@@ -552,13 +551,13 @@ form {
 .conf-round-rect {
   box-sizing: border-box;
   width: 70%;
-  height: 670px;
+  height: 150%;
   margin-top: 30px;
   position: absolute;
   padding-bottom: 20px;
   margin-top: 75px;
   left: 15%;
 
-  border: 15px solid #7F867B;
+  border: 15px solid #7B7B7B;
   border-radius: 104px;
 }
