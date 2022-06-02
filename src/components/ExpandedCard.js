@@ -16,7 +16,7 @@ export default function ExpandedCard(props, {
         const uid = localStorage.getItem("user-login");
         console.log(uid)
         await register(uid, event.id);
-        const content = "Succssfully registered for " + event.evenName + ". Navigate to your timeline to see your upcoming events!";
+        const content = "Succssfully registered for " + event.eventName + ". Navigate to your timeline to see your upcoming events!";
         alert(content);
     }
 
@@ -27,7 +27,7 @@ export default function ExpandedCard(props, {
                     component="img"
                     height="140"
                     image={event.banner}
-                    alt={event.event_name}
+                    alt={event.eventName}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" className="spacing">
