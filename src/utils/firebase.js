@@ -130,6 +130,7 @@ export const addDBdoc = async (c, body) => {
   try {
     const docRef = await addDoc(collection(db, c), body);
     console.log("Document added: ", docRef.id);
+    return docRef.id
   } catch (e) {
     console.error("Error adding doc: ", e);
   }
@@ -157,4 +158,16 @@ export const getImageByFile = async (name, setLink) => {
       }
     })
   })
+}
+
+export const addOrg = async (affiliation) => {
+  const newOrg = doc(collection(db, "organizations"))
+  const data = {
+    events: [],
+    name: affiliation,
+    numEvents: 0,
+    upcomingEvents: []
+  }
+  await setDoc(newOrg, data)
+  return newOrg.id
 }

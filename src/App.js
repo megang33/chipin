@@ -67,8 +67,10 @@ class App extends React.Component {
     if (user === null && this.state.online) {
       localStorage.setItem("user-login", doc.get("uid"))
     }
-    if (this.state.online === true)
+    if (this.state.online === true){
       console.log(doc.get("uid"))
+      console.log(doc.get("affiliation"))
+    }
     return (
       <React.StrictMode>
         <Router>
@@ -77,7 +79,7 @@ class App extends React.Component {
             numGroups={this.state.online ? doc.get("numGroups") : null} userInfo={this.state.userInfo} 
             handleSignIn={() => this.handleSignIn()} loggedIn={this.state.online} orgName={this.state.online ? doc.get("affiliation") : null}
             registered={this.state.online ? doc.get("registered") : null} role={this.state.online ? doc.get("role") : null}
-            handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)} />
+            handleSignOut={() => this.handleSignOut()} updateInfo={(newDoc) => this.updateInfo(newDoc)} oid = {this.state.online ? doc.get("oid") : null}/>
         </Router>
       </React.StrictMode>
     );
