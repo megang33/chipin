@@ -3,18 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs, setDoc, getDoc, query, where, doc, updateDoc, arrayUnion, FieldValue, DocumentSnapshot, deleteDoc } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getStorage, listAll, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyA76jduRFf8rn1o_u3WFYYpIm-LgkGpmqg",
-  authDomain: "chipin-e812c.firebaseapp.com",
-  projectId: "chipin-e812c",
-  storageBucket: "chipin-e812c.appspot.com",
-  messagingSenderId: "682897930529",
-  appId: "1:682897930529:web:64348b7083650d9001a660"
-};
+import { firebaseConfig } from './config.js'
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -56,6 +45,15 @@ export const getDocInfo = async (collection, id, field) => {
     const docSnap = await getDoc(docRef);
     const data = await docSnap.get(field);
     return data;
+  }
+}
+
+export const getDocData = async (collection, id) => {
+  console.log(collection + ", " + id)
+  if (id != null) {
+    const docRef = doc(db, collection, id);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
   }
 }
 
@@ -115,7 +113,7 @@ export const updateGroup = async (docUser, docGroup) => {
 }
 
 export const getDocSnap = (collection, docs) => {
-  if (docs){
+  if (docs) {
     const docRef = doc(db, collection, docs);
     const docSnap = getDoc(docRef);
     console.log(docSnap)
@@ -151,7 +149,7 @@ export const getImageByFile = async (name, setLink) => {
   const imgref = ref(storage, "images/")
   await listAll(imgref).then((res) => {
     res.items.forEach((item) => {
-      if (item.name === name){
+      if (item.name === name) {
         getDownloadURL(item).then((url) => {
           setLink(url)
         })

@@ -27,7 +27,7 @@ const StatsBar = (props) => {
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "55.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.numGroups < 10) ? "0": ""}{ props.numGroups }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>{(props.numGroups == 1) ? "group joined" : "groups joined"}</div>
+                        <div className='unit-text' style={{ left: "2%" }}>{(props.numGroups == 1) ? "Group Joined" : "Groups Joined"}</div>
                     </div>
                     <div className='solid-rect' style={{ left: "55%" }}/>
                 </div>
@@ -53,7 +53,7 @@ const StatsBar = (props) => {
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "55.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.numGroups < 10) ? "0": ""}{ props.numGroups }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>{(props.numGroups == 1) ? "group joined" : "groups joined"}</div>
+                        <div className='unit-text' style={{ left: "2%" }}>{(props.numGroups == 1) ? "Group Joined" : "Groups Joined"}</div>
                     </div>
                     <div className='solid-rect' style={{ left: "55%" }}/>
                 </div>
@@ -236,19 +236,19 @@ export default class TimeLine extends React.Component {
         const future = !this.state.role ? "Upcoming Events:" : "Registered Events"
         return(
             <div>
-                <h1 style={{ paddingLeft: "13%", paddingTop: "25px" }}>Hi { this.state.name }, here's your timeline.</h1>
+                <h1 style={{ paddingLeft: "13%", paddingTop: "25px" }}>Hi { this.state.name }, here's your timeline!</h1>
                 <div className='round-rect'>
                     <StatsBar role={this.state.role} numGroups={this.state.numGroups} name={this.state.name}
                     numHours={this.state.numHours} pastEvents={this.state.pastEvents} numEvents={this.state.numEvents}
                     upcomingEvents={this.state.upcomingEvents}></StatsBar>
                     <div>
                         <div style={{ display: "flex", flexDirection: "row" }}>
-                            <h1 className='internal-header' id='community-head'>community</h1>
+                            <h1 className='internal-header' id='community-head'>Community</h1>
                             <FontAwesomeIcon icon={faUser} style={{ position: "absolute", left: "257px", top: "142px" }}/>
                             <FontAwesomeIcon icon={faUser} style={{ position: "absolute", left: "268px", top: "142px" }}/>
                         </div>
                         <div>
-                            <p style={{ position: "absolute", left: "80px", top: "145px" }}>what's new with your groups</p>
+                            <p style={{ position: "absolute", left: "80px", top: "145px" }}>What's new with your groups</p>
                         </div>
                         <div>
                             {all}

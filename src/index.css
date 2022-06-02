@@ -71,12 +71,12 @@ form {
 
   position: absolute;
   width: 84%;
-  height: 110%;
+  height: 150%;
   left: 8%;
   top: 175px;
   padding-bottom: 20px;
 
-  border: 15px solid #7F867B;
+  border: 15px solid #7B7B7B;
   border-radius: 104px;
 }
 
@@ -184,7 +184,7 @@ form {
   right: 0px;
   height: 100%;
   border-radius: 50px;
-  max-height: 700px;
+  height: 700px;
   width: 320px;
   /* width: 500px; */
   overflow-y: scroll;
@@ -259,8 +259,8 @@ form {
 
 .group-create-bar {
   display: flex;
-  margin-right: 50rem;
-  background-color: #D9BFB1;
+  width: 40rem;
+  background-color: black;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -269,6 +269,7 @@ form {
   margin-right: 0px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  margin-left: -100px;
 }
 
 .group-details-buttons {
@@ -281,19 +282,17 @@ form {
 .group-info-round-rect {
   box-sizing: border-box;
   width: 70%;
-  height: 650px;
+  height: 150%;
   margin-top: 30px;
   position: absolute;
   padding-bottom: 20px;
   margin-top: 75px;
 
-  border: 15px solid #7F867B;
+  border: 15px solid #7B7B7B;
   border-radius: 104px;
   /* display: flex;
   flex-direction: row; */
 }
-
-
 
 .scroll-container {
   overflow-y: scroll;
@@ -343,7 +342,6 @@ form {
   background: #000;
   border:0;
   color: #fff;
-  text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   letter-spacing: 3px;
@@ -414,16 +412,23 @@ form {
 .event-page-title {
   padding: 0%;
   position: absolute;
-  left: 40%;
-  font-size: large;
-  font-family: Arial, Helvetica, sans-serif;
-  width: 300px;
+  left: 84.5%;
+  font-size: 15px;
+  width: 150px;
+  top: 60px;
+}
+
+.event-right-bar {
+  left: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Autocomplete CSS */
 .autocomplete-input {
   position: absolute;
-  top: 20%;
+  top: 12.5%;
   left: 1%;
   border: 2px solid #999;
   border-radius: 10px;
@@ -436,14 +441,14 @@ form {
   color: #999;
   padding: 0.5rem;
   position: absolute;
-  top: 24.7%;
+  top: 17.5%;
   left: 1%;
   z-index: 10;
 }
 
 .suggestions {
   position: absolute;
-  top: 24.7%;
+  top: 17.5%;
   left: 1%;
   border: 2px solid #999;
   background-color: #D9BFB1;
@@ -509,21 +514,20 @@ form {
 }
 
 .event-bar-contain {
+  position: absolute;
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: #D9BFB1;
   position: absolute;
-  right: 10px;
+  right: 0px;
   height: 100%;
-  width: 300px;
-  border-radius: 50px;
+  width: 20%;
+  /* border-radius: 50px; */
 }
 
 .event-bar-inner {
-  position: relative;
   top: 0px;
-  margin-left: 25px;
 }
 
 .group-card-container {
@@ -546,13 +550,13 @@ form {
 .conf-round-rect {
   box-sizing: border-box;
   width: 70%;
-  height: 670px;
+  height: 150%;
   margin-top: 30px;
   position: absolute;
   padding-bottom: 20px;
   margin-top: 75px;
   left: 15%;
 
-  border: 15px solid #7F867B;
+  border: 15px solid #7B7B7B;
   border-radius: 104px;
 }

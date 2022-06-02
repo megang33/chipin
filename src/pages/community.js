@@ -4,7 +4,8 @@ import { initializeGroup, updateGroup, updateDBdoc, getDocInfo, getDocSnap, remo
 import '../index.css'
 import './community.css'
 import EventCard from '../components/eventcard.js'
-import { arrayRemove, getDoc } from 'firebase/firestore';
+import { arrayRemove } from 'firebase/firestore';
+import { getDocData } from '../utils/firebase.js'
 
 const GroupCard = (props) => {
   const [image, setImage] = useState()
@@ -75,26 +76,19 @@ const GroupCard = (props) => {
     console.log(events)
     const eventMap = []
     for (var i = 0; i < events.length; i++) {
-      const eventName = await getDocInfo("events", events[i], "eventName")
-      const date = await getDocInfo("events", events[i], "date")
-      const capacity = await getDocInfo("events", events[i], "capacity")
-      const description = await getDocInfo("events", events[i], "description")
-      const registered = await getDocInfo("events", events[i], "registered")
-      const location = await getDocInfo("events", events[i], "location")
-      const email = await getDocInfo("events", events[i], "email")
-      const timeStart = await getDocInfo("events", events[i], "timeStart")
-      const timeEnd = await getDocInfo("events", events[i], "timeEnd")
+      const data = await getDocData("events", events[i]);
       const eventInfo = {
         id: events[i],
-        eventName: eventName,
-        date: date,
-        capacity: capacity,
-        description: description,
-        registered: registered,
-        location: location,
-        email: email,
-        timeStart: timeStart,
-        timeEnd: timeEnd
+        eventName: data.eventName,
+        date: data.date,
+        capacity: data.capacity,
+        description: data.description,
+        registered: data.registered,
+        location: data.location,
+        email: data.email,
+        timeStart: data.timeStart,
+        timeEnd: data.timeEnd,
+        banner: data.banner
       }
       eventMap[i] = eventInfo;
     }
@@ -265,10 +259,10 @@ const Community = (props) => {
         <div style={{ marginLeft: "-270px" }} className="form-header">
           <h1>Create your own group</h1>
         </div>
-        
+
         <div className='create-group-round-rect'>
           <div style={{ paddingTop: "30px" }} className="form-body">
-            <form style={{ display: "flex", flexDirection: "column", alignItems: "center"}} onSubmit={(e) => { handleSubmit(props.uid, name, description, link, purpose, e) }}>
+            <form style={{ display: "flex", flexDirection: "column", alignItems: "center" }} onSubmit={(e) => { handleSubmit(props.uid, name, description, link, purpose, e) }}>
               {/* Insert icons representing each field later */}
               <div style={{ display: "flex", flexDirection: "row" }} className="form-row">
                 <label style={{ width: "95px", margin: "7px", lineHeight: "34px" }}>Group Name:</label>
@@ -280,7 +274,7 @@ const Community = (props) => {
               </div>
               <div style={{ marginLeft: "70px", display: "flex", flexDirection: "row" }} className="form-row">
                 <label style={{ margin: "7px", lineHeight: "5px", marginRight: "15px" }}>Image: </label>
-                <input style={{  }} type="file" placeholder='Upload Image' onChange={e => { link = e.target.files[0].name; uploadFile(e.target.files[0]) }}></input>
+                <input style={{}} type="file" placeholder='Upload Image' onChange={e => { link = e.target.files[0].name; uploadFile(e.target.files[0]) }}></input>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }} className="form-row">
                 <label style={{ width: "95px", margin: "7px", lineHeight: "34px" }}>Purpose:</label>
@@ -293,8 +287,6 @@ const Community = (props) => {
             <div>{name} {description} {link} {purpose}</div>
           </div>
         </div>
-        
-        
       </div>
     )
   }
