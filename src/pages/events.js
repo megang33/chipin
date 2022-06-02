@@ -2,9 +2,7 @@ import React from 'react'
 import MyMap from '../components/map.js'
 import Autocomplete from '../components/Autocomplete.js'
 import { sort, sqrt } from 'mathjs'
-import MyCard from '../components/MyCard.js'
 import Geocode from 'react-geocode'
-import { useJsApiLoader } from '@react-google-maps/api'
 import { db, getDocInfo, updateDBdoc } from '../utils/firebase';
 import { collection, query, onSnapshot, arrayUnion, arrayRemove, getDoc, deleteDoc } from "firebase/firestore";
 import EventList from '../components/EventList.js'
@@ -249,9 +247,9 @@ class Events extends React.Component {
 
           </div>
           <div>
-            <div className='event-bar-contain' style={{ display: "flex", flexDirection: "column", marginTop: "0px" }}>
+            <div className='event-bar-contain' style={{ display: "flex", flexDirection: "column", marginTop: "-0.2%" }}>
               <div>
-                <h2>Find an Event</h2>
+                <h2>Events</h2>
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <div className='event-bar-inner'>

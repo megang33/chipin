@@ -31,7 +31,7 @@ class Autocomplete extends Component {
 
         this.setState({
             activeSuggestion: 0,
-            filteredSuggestions,
+            filteredSuggestions: filteredSuggestions,
             showSuggestions: true,
             userInput: e.currentTarget.value,
         });
@@ -121,6 +121,7 @@ class Autocomplete extends Component {
                     <input
                         className="autocomplete-input"
                         type="text"
+                        placeholder="Search for an event"
                         onChange={onChange}
                         onClick={onClick}
                         onKeyDown={onKeyDown}
