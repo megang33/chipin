@@ -79,7 +79,7 @@ class MyCard extends Component {
                                 component="img"
                                 width="10"
                                 image={eventImage}
-                                alt="green iguana"
+                                alt="eggy"
                                 className="mycard-img"
                             />
                         </div>
