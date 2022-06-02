@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import '../index.css'
 import PropTypes from "prop-types";
+import EventList from "./EventList";
 
 class Autocomplete extends Component {
     static propTypes = {
@@ -35,7 +36,12 @@ class Autocomplete extends Component {
             showSuggestions: true,
             userInput: e.currentTarget.value,
         });
+
+        this.props.handleAutoComplete(filteredSuggestions)
     };
+
+
+
 
     onClick = e => {
         this.setState({
@@ -103,7 +109,7 @@ class Autocomplete extends Component {
             }
             else {
                 suggestionsListComponent = (
-                    <div class="no-suggestions">
+                    <div className="no-suggestions">
                         <em>No suggestions available.</em>
                     </div>
                 );
@@ -113,6 +119,7 @@ class Autocomplete extends Component {
         return (
             <Fragment>
                 <input
+                    className="autocomplete-input"
                     type="text"
                     onChange={onChange}
                     onClick={onClick}
