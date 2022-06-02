@@ -11,7 +11,7 @@ import ExpandedCard from './ExpandedCard.js';
 
 
 
-class MyCard extends Component {
+export class MyCard extends Component {
     static propTypes = {
         eventName: PropTypes.instanceOf(String),
         eventLocation: PropTypes.instanceOf(String),

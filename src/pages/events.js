@@ -130,17 +130,22 @@ export const checkIn = async (uid, eid) => {
   updateDBdoc("events", eid, registeredUsers)
 }
 
-export const deleteEvent = async (eid) => {
-  if (isActive(eid)) {
+export const deleteEvent = async (oid, eid) => {
+  if (await isActive(eid)) {
     return
   }
   const registered = await getDocInfo("events", eid, "registered")
+  console.log(registered)
   for (let i = 0; i < registered.length; i++) {
     let updateUser = {
       currentEvents: arrayRemove(eid)
     }
-    updateDBdoc("users", registered[i], updateUser)
+    await updateDBdoc("users", registered[i], updateUser)
   }
+  let updateOrg = {
+    events: arrayRemove(eid)
+  }
+  await updateDBdoc("organizations", oid, updateOrg)
   deleteDoc("events", eid)
 }
 

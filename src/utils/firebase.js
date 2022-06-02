@@ -158,3 +158,15 @@ export const getImageByFile = async (name, setLink) => {
     })
   })
 }
+
+export const addOrg = async (affiliation) => {
+  const newOrg = doc(collection(db, "organizations"))
+  const data = {
+    events: [],
+    name: affiliation,
+    numEvents: 0,
+    upcomingEvents: []
+  }
+  await setDoc(newOrg, data)
+  return newOrg.id
+}
