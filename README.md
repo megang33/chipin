@@ -34,15 +34,15 @@ ChipIn is a web application to connect organizations with volunteers for local e
 
 3. Set up Backend
 - set up a new firebase project at https://firebase.google.com/ and add a web app to your project
-- add a new file named "config.js" in the utils folder (where firebase.js is) and paste in your unique Firebase config object like the following:
+- add a new file named **"config.js"** in the **utils** folder (where firebase.js is located) and paste in your unique Firebase config object like the following:
 
-const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "YOUR_APP_ID"
+const firebaseConfig = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apiKey: "YOUR_FIREBASE_API_KEY",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authDomain: "YOUR_PROJECT_ID.firebaseapp.com",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;projectId: "YOUR_PROJECT_ID",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;storageBucket: "YOUR_PROJECT_ID.appspot.com",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messagingSenderId: "SENDER_ID",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appId: "YOUR_APP_ID"<br/>
 };
 
 4. In the project directory, you can run:
