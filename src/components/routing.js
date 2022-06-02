@@ -26,7 +26,7 @@ export const Routing = (props) => {
         <Route path='/events' element={<Event uid={props.uid}/>} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/signout' element={<SignOut />} />
-        <Route path='/event-creation' element={<EventCreation />} />
+        <Route path='/event-creation' element={<EventCreation oid={props.oid}/>} />
       </Routes>
     </div>
   );

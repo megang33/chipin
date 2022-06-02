@@ -96,6 +96,7 @@ export default class EventCreation extends React.Component {
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         values={values}
+                        oid = {this.props.oid}
                     //confirmation
                     />
                 )

@@ -130,6 +130,7 @@ export const addDBdoc = async (c, body) => {
   try {
     const docRef = await addDoc(collection(db, c), body);
     console.log("Document added: ", docRef.id);
+    return docRef.id
   } catch (e) {
     console.error("Error adding doc: ", e);
   }
