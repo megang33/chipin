@@ -38,7 +38,7 @@ const EventList = (props) => {
 
             await setOrderedSuggestions(list1.map((name) => {
                 return (
-                    <div style={{}}>
+                    <div>
                         <MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={props.eventMap}
                             suggestions={list} register={props.register} handleCardClick={props.handleCardClick} />
                     </div>

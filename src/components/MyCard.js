@@ -69,9 +69,8 @@ class MyCard extends Component {
                 <div style={{ paddingBottom: "10px" }} onClick={this.onClick}>
                     <Card sx={{
                         width: 250,
-                        height: 220,
-                        boxShadow: 20,
-                        backgroundColor: "#AEC6CF",
+                        height: 210,
+                        backgroundColor: "#D2D2D2",
                         borderRadius: 3,
                         display: 'flex',
                         display: 'inline-flex',
@@ -92,14 +91,14 @@ class MyCard extends Component {
                         <div>
                             <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div" color="white" fontSize="18px">
-                                        {eventName}
+                                    <Typography gutterBottom variant="h5" component="div" color="black" fontSize="18px">
+                                        <b>{eventName}</b>
                                     </Typography>
 
-                                    <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
+                                    <Typography variant="body2" color="black" maxWidth={100} fontSize="10px">
                                         Date: {eventDate}
                                     </Typography>
-                                    <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
+                                    <Typography variant="body2" color="black" maxWidth={200} fontSize="10px">
                                         Location: {eventLocation}
                                     </Typography>
                                 </CardContent>
