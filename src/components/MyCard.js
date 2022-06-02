@@ -52,41 +52,46 @@ class MyCard extends Component {
         // console.log({ eventLocation })
         if (!this.state.showComponent) {
             return (
-                <div onClick={this.onClick}>
+                <div style={{ paddingBottom: "10px" }} onClick={this.onClick}>
                     <Card sx={{
-                        maxWidth: 400,
-                        maxHeight: 200,
+                        width: 250,
+                        height: 220,
                         boxShadow: 20,
                         backgroundColor: "#AEC6CF",
                         borderRadius: 3,
                         display: 'flex',
                         display: 'inline-flex',
+                        flexDirection: 'column',
                         positon: 'absolute',
 
                     }}>
-                        <CardMedia
-                            component="img"
-                            width="50"
-                            image="https://picsum.photos/200.jpg"
-                            alt="green iguana"
-                        />
-                        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                        <div>
+                            <CardMedia
+                                component="img"
+                                width="10"
+                                image="https://picsum.photos/200.jpg"
+                                alt="green iguana"
+                                className="mycard-img"
+                            />
+                        </div>
+                        <div>
+                            <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div" color="white" fontSize="18px">
+                                        {eventName}
+                                    </Typography>
 
-                            <CardContent>
-
-                                <Typography gutterBottom variant="h5" component="div" color="white">
-                                    {eventName}
-                                </Typography>
-
-
-                                <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
-                                    Date: {eventDate}
-                                </Typography>
-                                <Typography variant="body2" color="white" maxWidth={100}>
-                                    Location: {eventLocation}
-                                </Typography>
-                            </CardContent>
-                        </Box>
+                                    <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
+                                        Date: {eventDate}
+                                    </Typography>
+                                    
+                                    <Typography variant="body2" color="white" maxWidth={100}>
+                                        Location: {eventLocation}
+                                    </Typography>
+                                </CardContent>
+                            </Box>
+                        </div>
+                            
                     </Card >
                 </div>
             );

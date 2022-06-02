@@ -483,6 +483,18 @@ form {
   border-radius: 50px;
 }
 
+.event-bar-contain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #D9BFB1;
+  position: absolute;
+  right: 10px;
+  height: 100%;
+  width: 300px;
+  border-radius: 50px;
+}
+
 .group-card-container {
   position: relative;
   width: 265px;
