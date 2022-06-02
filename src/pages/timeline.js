@@ -2,9 +2,11 @@ import { async } from '@firebase/util';
 import React, { useState } from 'react'
 import { getDocInfo } from '../utils/firebase';
 import EventCard from '../components/eventcard';
+import { getDocData } from '../utils/firebase';
 import "./timeline.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import { getDoc } from 'firebase/firestore';
 
 const StatsBar = (props) => {
     if (props.role) {
@@ -91,27 +93,28 @@ export default class TimeLine extends React.Component {
 
             let pastArray = []
             for (var i = 0; i < past.length; i++) {
-                const eventName = await getDocInfo("events", past[i], "eventName")
-                const date = await getDocInfo("events", past[i], "date")
-                const capacity = await getDocInfo("events", past[i], "capacity")
-                const description = await getDocInfo("events", past[i], "description")
-                const registered = await getDocInfo("events", past[i], "registered")
-                const location = await getDocInfo("events", past[i], "location")
-                const email = await getDocInfo("events", past[i], "email")
-                const timeStart = await getDocInfo("events", past[i], "timeStart")
-                const timeEnd = await getDocInfo("events", past[i], "timeEnd")
-                const eventInfo = {
-                  id: past[i],
-                  eventName: eventName,
-                  date: date,
-                  capacity: capacity,
-                  description: description,
-                  registered: registered,
-                  location: location,
-                  email: email,
-                  timeStart: timeStart,
-                  timeEnd: timeEnd
-                }
+                const eventInfo = getDocData("events", past[i])
+                // const eventName = await getDocInfo("events", past[i], "eventName")
+                // const date = await getDocInfo("events", past[i], "date")
+                // const capacity = await getDocInfo("events", past[i], "capacity")
+                // const description = await getDocInfo("events", past[i], "description")
+                // const registered = await getDocInfo("events", past[i], "registered")
+                // const location = await getDocInfo("events", past[i], "location")
+                // const email = await getDocInfo("events", past[i], "email")
+                // const timeStart = await getDocInfo("events", past[i], "timeStart")
+                // const timeEnd = await getDocInfo("events", past[i], "timeEnd")
+                // const eventInfo = {
+                //   id: past[i],
+                //   eventName: eventName,
+                //   date: date,
+                //   capacity: capacity,
+                //   description: description,
+                //   registered: registered,
+                //   location: location,
+                //   email: email,
+                //   timeStart: timeStart,
+                //   timeEnd: timeEnd
+                // }
                 pastArray[i] = eventInfo;
             }
             let allEventsDisplay = pastArray.map((card) => {
@@ -120,27 +123,7 @@ export default class TimeLine extends React.Component {
 
             let currentArray = []
             for (var i = 0; i < current.length; i++) {
-                const eventName = await getDocInfo("events", current[i], "eventName")
-                const date = await getDocInfo("events", current[i], "date")
-                const capacity = await getDocInfo("events", current[i], "capacity")
-                const description = await getDocInfo("events", current[i], "description")
-                const registered = await getDocInfo("events", current[i], "registered")
-                const location = await getDocInfo("events", current[i], "location")
-                const email = await getDocInfo("events", current[i], "email")
-                const timeStart = await getDocInfo("events", current[i], "timeStart")
-                const timeEnd = await getDocInfo("events", current[i], "timeEnd")
-                const eventInfo = {
-                  id: current[i],
-                  eventName: eventName,
-                  date: date,
-                  capacity: capacity,
-                  description: description,
-                  registered: registered,
-                  location: location,
-                  email: email,
-                  timeStart: timeStart,
-                  timeEnd: timeEnd
-                }
+                const eventInfo = getDocData("events", current[i])
                 currentArray[i] = eventInfo;
             }
             let futureEventsDisplay = currentArray.map((card) => {
@@ -164,27 +147,7 @@ export default class TimeLine extends React.Component {
 
             let eventsArray = []
             for (var i = 0; i < events.length; i++) {
-                const eventName = await getDocInfo("events", events[i], "eventName")
-                const date = await getDocInfo("events", events[i], "date")
-                const capacity = await getDocInfo("events", events[i], "capacity")
-                const description = await getDocInfo("events", events[i], "description")
-                const registered = await getDocInfo("events", events[i], "registered")
-                const location = await getDocInfo("events", events[i], "location")
-                const email = await getDocInfo("events", events[i], "email")
-                const timeStart = await getDocInfo("events", events[i], "timeStart")
-                const timeEnd = await getDocInfo("events", events[i], "timeEnd")
-                const eventInfo = {
-                  id: events[i],
-                  eventName: eventName,
-                  date: date,
-                  capacity: capacity,
-                  description: description,
-                  registered: registered,
-                  location: location,
-                  email: email,
-                  timeStart: timeStart,
-                  timeEnd: timeEnd
-                }
+                const eventInfo = await getDocData("events", events[i])
                 eventsArray[i] = eventInfo;
             }
             let allEventsDisplay = eventsArray.map((card) => {
@@ -193,27 +156,7 @@ export default class TimeLine extends React.Component {
 
             let upcomingEventsArray = []
             for (var i = 0; i < upcomingEvents.length; i++) {
-                const eventName = await getDocInfo("events", upcomingEvents[i], "eventName")
-                const date = await getDocInfo("events", upcomingEvents[i], "date")
-                const capacity = await getDocInfo("events", upcomingEvents[i], "capacity")
-                const description = await getDocInfo("events", upcomingEvents[i], "description")
-                const registered = await getDocInfo("events", upcomingEvents[i], "registered")
-                const location = await getDocInfo("events", upcomingEvents[i], "location")
-                const email = await getDocInfo("events", upcomingEvents[i], "email")
-                const timeStart = await getDocInfo("events", upcomingEvents[i], "timeStart")
-                const timeEnd = await getDocInfo("events", upcomingEvents[i], "timeEnd")
-                const eventInfo = {
-                  id: upcomingEvents[i],
-                  eventName: eventName,
-                  date: date,
-                  capacity: capacity,
-                  description: description,
-                  registered: registered,
-                  location: location,
-                  email: email,
-                  timeStart: timeStart,
-                  timeEnd: timeEnd
-                }
+                const eventInfo = await getDocData("events", upcomingEvents[i])
                 upcomingEventsArray[i] = eventInfo;
             }
             let futureEventsDisplay = upcomingEventsArray.map((card) => {
