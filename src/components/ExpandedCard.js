@@ -31,7 +31,7 @@ export default function ExpandedCard(props, {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" className="spacing">
-                        {event.event_name}
+                        {event.eventName}
                     </Typography>
                     <Typography variant="body2" color="black" className="spacing">
                         <b>Date: </b>{event.date}
