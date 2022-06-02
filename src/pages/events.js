@@ -227,7 +227,7 @@ class Events extends React.Component {
   }
 
   render() {
-    const elnull = this.state.zipcode ? <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} zc={this.state.zipcode} /> : <h2>List loading...</h2>
+    const elnull = this.state.zipcode ? <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} zc={this.state.zipcode} searchInfo={this.state.autocomplete_list} /> : <h2>List loading...</h2>
     console.log("eventszc: ", this.state.zipcode);
     const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions} /> : <h2>Map loading..</h2>;
     return (

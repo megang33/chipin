@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import '../index.css'
 import PropTypes from "prop-types";
+import EventList from "./EventList";
 
 class Autocomplete extends Component {
     static propTypes = {
@@ -117,7 +118,7 @@ class Autocomplete extends Component {
 
         return (
             <Fragment>
-                <input 
+                <input
                     className="autocomplete-input"
                     type="text"
                     onChange={onChange}
