@@ -3,7 +3,7 @@ import { useState } from 'react';
 import '../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard, faBriefcase } from '@fortawesome/free-solid-svg-icons'
-import { updateDBdoc, addDBdoc } from '../utils/firebase.js';
+import { updateDBdoc, addDBdoc, addOrg } from '../utils/firebase.js';
 
 const SignUp = (props) => {
   const [name, setName] = useState();
@@ -12,33 +12,46 @@ const SignUp = (props) => {
   const [zipcode, setZip] = useState();
   const [role, setRole] = useState();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     // console.log(props.doc.get("uid"));
     //add stuff to firebase
     e.preventDefault();
-    const body = {
-      name: name,
-      affiliation: affiliation,
-      number: number,
-      zipcode: zipcode,
-      registered: true,
-      groups: [],
-      numGroups: 0,
-      numHours: 0,
-      role: role,
-      pastEvents: [],
-      currentEvents: [],
-      eventsCompleted: 0,
+    let body
+    if (role){
+      body = {
+        name: name,
+        oid: null,
+        affiliation: affiliation,
+        number: number,
+        zipcode: zipcode,
+        registered: true,
+        groups: [],
+        numGroups: 0,
+        numHours: 0,
+        role: role,
+        pastEvents: [],
+        currentEvents: [],
+        eventsCompleted: 0,
+      }
+    }else{
+      const oid = await addOrg(affiliation)
+      body = {
+        name: name,
+        oid: oid,
+        affiliation: affiliation,
+        number: number,
+        zipcode: zipcode,
+        registered: true,
+        groups: [],
+        numGroups: 0,
+        numHours: 0,
+        role: role,
+        pastEvents: [],
+        currentEvents: [],
+        eventsCompleted: 0,
+      }
     }
-    const orgBody = {
-      events: [],
-      name: affiliation,
-      numEvents: 0,
-      upcomingEvents: []
-    }
-
     updateDBdoc("users", props.uid, body);
-    addDBdoc("organizations", orgBody);
     props.updateInfo(props.uid);
   }
 

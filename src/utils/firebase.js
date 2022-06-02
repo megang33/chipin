@@ -115,7 +115,7 @@ export const updateGroup = async (docUser, docGroup) => {
 }
 
 export const getDocSnap = (collection, docs) => {
-  if (docs){
+  if (docs) {
     const docRef = doc(db, collection, docs);
     const docSnap = getDoc(docRef);
     console.log(docSnap)
@@ -130,6 +130,7 @@ export const addDBdoc = async (c, body) => {
   try {
     const docRef = await addDoc(collection(db, c), body);
     console.log("Document added: ", docRef.id);
+    return docRef.id
   } catch (e) {
     console.error("Error adding doc: ", e);
   }
@@ -150,11 +151,23 @@ export const getImageByFile = async (name, setLink) => {
   const imgref = ref(storage, "images/")
   await listAll(imgref).then((res) => {
     res.items.forEach((item) => {
-      if (item.name === name){
+      if (item.name === name) {
         getDownloadURL(item).then((url) => {
           setLink(url)
         })
       }
     })
   })
+}
+
+export const addOrg = async (affiliation) => {
+  const newOrg = doc(collection(db, "organizations"))
+  const data = {
+    events: [],
+    name: affiliation,
+    numEvents: 0,
+    upcomingEvents: []
+  }
+  await setDoc(newOrg, data)
+  return newOrg.id
 }

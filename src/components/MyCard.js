@@ -12,17 +12,13 @@ import { getDocInfo } from "../utils/firebase.js";
 
 
 
-class MyCard extends Component {
+export class MyCard extends Component {
     static propTypes = {
         eventName: PropTypes.instanceOf(String),
-        eventLocation: PropTypes.instanceOf(String),
-        eventDate: PropTypes.instanceOf(String)
     };
 
     static defaultProps = {
         eventName: "",
-        eventLocation: "",
-        eventDate: ""
     }
 
     constructor(props) {

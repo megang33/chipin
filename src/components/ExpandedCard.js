@@ -13,8 +13,10 @@ export default function ExpandedCard(props, {
     const { event, register } = props;
     const alertPopup = async (e) => {
         e.preventDefault();
-        await register("FdAp9fMre3ZPEOTNkQgPYBgHnQC3", event.id);
-        const content = "Succssfully registered for " + event.event_name + ". Navigate to your timeline to see your upcoming events!";
+        const uid = localStorage.getItem("user-login");
+        console.log(uid)
+        await register(uid, event.id);
+        const content = "Succssfully registered for " + event.evenName + ". Navigate to your timeline to see your upcoming events!";
         alert(content);
     }
 

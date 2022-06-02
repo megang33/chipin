@@ -1,7 +1,7 @@
     .myTray {
-        max-height: 600px;
-        width: 500px;
+        max-height: 80vh;
+        width: 250px;
         overflow-y: scroll;
         max-width: 400px;
-        padding-bottom: 60px;
+        padding-bottom: 10px;
     }

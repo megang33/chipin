@@ -2,3 +2,24 @@
     top: 3px;
     height: 100%;
 }
+
+.create-group-contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -40px;
+}
+
+.create-group-round-rect {
+    box-sizing: border-box;
+    width: 50%;
+    height: 150%;
+    margin-top: 30px;
+    position: absolute;
+    padding-bottom: 20px;
+    margin-top: 75px;
+    left: 15%;
+  
+    border: 15px solid #7F867B;
+    border-radius: 104px;
+}
