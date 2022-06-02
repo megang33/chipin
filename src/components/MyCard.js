@@ -78,9 +78,6 @@ class MyCard extends Component {
                                     {eventName}
                                 </Typography>
 
-                                <Typography gutterBottom variant="h5" component="div" color="white">
-                                    {eventName}
-                                </Typography>
 
                                 <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
                                     Date: {eventDate}
