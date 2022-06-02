@@ -49,9 +49,6 @@ class MyCard extends Component {
         const { eventName, eventMap, register } = this.props;
         const eventDate = eventMap[eventName].date;
         const eventLocation = eventMap[eventName].address;
-        // console.log({ eventName })
-        // console.log({ eventDate })
-        // console.log({ eventLocation })
         if (!this.state.showComponent) {
             return (
                 <div onClick={this.onClick}>
@@ -89,7 +86,7 @@ class MyCard extends Component {
                                 </Typography>
                             </CardContent>
                         </Box>
-                    </Card >
+                    </Card>
                 </div>
             );
         }

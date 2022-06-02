@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import '../index.css'
 import PropTypes from "prop-types";
-import EventList from "./EventList";
 
 class Autocomplete extends Component {
     static propTypes = {
@@ -118,15 +117,19 @@ class Autocomplete extends Component {
 
         return (
             <Fragment>
-                <input
-                    className="autocomplete-input"
-                    type="text"
-                    onChange={onChange}
-                    onClick={onClick}
-                    onKeyDown={onKeyDown}
-                    value={userInput}
-                />
-                {suggestionsListComponent}
+                <div>
+                    <input
+                        className="autocomplete-input"
+                        type="text"
+                        onChange={onChange}
+                        onClick={onClick}
+                        onKeyDown={onKeyDown}
+                        value={userInput}
+                    />
+                    <div>
+                        {suggestionsListComponent}
+                    </div>
+                </div>
             </Fragment>
         );
     }

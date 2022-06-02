@@ -235,8 +235,8 @@ class Events extends React.Component {
       <div>
         <div className='horizontal'>
           <div className='vertical'>
-            <div>
-              <h3>Find an Event</h3>
+            <div className='event-page-title'>
+              <h2>Find an Event</h2>
             </div>
             <div>
               <Autocomplete suggestions={suggestions} handleAutoComplete={this.handleAutoComplete} />
@@ -248,9 +248,9 @@ class Events extends React.Component {
           </div>
           <div style={{ marginTop: 80 }}>
             {elnull}
-          </div >
-        </div >
-      </div >
+          </div>
+        </div>
+      </div>
     )
   }
 }

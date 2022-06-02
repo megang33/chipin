@@ -410,27 +410,50 @@ form {
   margin: auto;
 }
 
+/* Event page CSS */
+.event-page-title {
+  position:sticky;
+  margin-left: 45%;
+  font-size: large;
+  font-family: American Typewriter;
+}
+
 /* Autocomplete CSS */
 .autocomplete-input {
-  border: 1px solid #999;
+  position: absolute;
+  top: 18%;
+  left: 1%;
+  border: 2px solid #999;
+  border-radius: 10px;
   padding: 0.5rem;
   width: 300px;
+  z-index: 10;
 }
 
 .no-suggestions {
   color: #999;
   padding: 0.5rem;
+  position: absolute;
+  top: 21.3%;
+  left: 1%;
+  z-index: 10;
 }
 
 .suggestions {
-  border: 1px solid #999;
+  position: absolute;
+  top: 21.6%;
+  left: 1%;
+  border: 2px solid #999;
+  background-color: #D9BFB1;
   border-top-width: 0;
+  border-radius: 10px;
   list-style: none;
   margin-top: 0;
   max-height: 143px;
   overflow-y: auto;
-  padding-left: 0;
-  width: calc(300px + 1rem);
+  padding: 0.5rem;
+  width: 300px;
+  z-index: 10;
 }
 
 .suggestions li {
