@@ -148,10 +148,12 @@ class Events extends React.Component {
     this.state = {
       zipcode: null,
       uid: props.uid,
-      recenter: null
+      recenter: null,
+      autocomplete_list: [],
     };
 
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleAutoComplete = this.handleAutoComplete.bind(this)
   }
 
   async componentDidMount() {
@@ -170,9 +172,19 @@ class Events extends React.Component {
     console.log('WORK', zc)
   }
 
+  handleAutoComplete(ac) {
+    console.log("$$$$$$")
+    this.setState({
+      autocomplete_list: ac
+    })
+    console.log('AC###', ac)
+  }
+
   render() {
     //console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
+
+    console.log("AC!!!", this.state.autocomplete_list);
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions} /> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>
@@ -181,7 +193,7 @@ class Events extends React.Component {
               <h3>Find an Event</h3>
             </div>
             <div>
-              <Autocomplete suggestions={suggestions} />
+              <Autocomplete suggestions={suggestions} handleAutoComplete={this.handleAutoComplete} />
             </div>
             <div>
               {zcnull}
@@ -189,7 +201,7 @@ class Events extends React.Component {
 
           </div>
           <div style={{ marginTop: 80 }}>
-            <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} />
+            <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} autocomp={this.state.autocomplete_list} />
           </div>
         </div>
       </div>

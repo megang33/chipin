@@ -35,7 +35,12 @@ class Autocomplete extends Component {
             showSuggestions: true,
             userInput: e.currentTarget.value,
         });
+
+        this.props.handleAutoComplete(filteredSuggestions)
     };
+
+
+
 
     onClick = e => {
         this.setState({

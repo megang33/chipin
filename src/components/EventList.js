@@ -26,14 +26,26 @@ class EventList extends Component {
     }
 
     render() {
-        const { suggestions, eventMap, register } = this.props;
-        console.log(suggestions)
+        const { suggestions, eventMap, register, autocomp } = this.props;
+        console.log("!!!")
+        console.log(this.props.autocomp)
+
+        console.log(typeof autocomp)
+        console.log(autocomp.length)
+        console.log(autocomp.includes("hellooooo"))
+
+
+
         const list = suggestions.map((name, idx) => {
+            console.log({ name })
             return <div><MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={eventMap} suggestions={suggestions} register={register} handleCardClick={this.props.handleCardClick} /> </div>
+
         })
 
+
         return (
-            <div>{list}</div>
+            <div className="myTray">{list}</div>
+
         )
     }
 
