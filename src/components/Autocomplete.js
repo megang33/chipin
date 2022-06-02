@@ -108,7 +108,7 @@ class Autocomplete extends Component {
             }
             else {
                 suggestionsListComponent = (
-                    <div class="no-suggestions">
+                    <div className="no-suggestions">
                         <em>No suggestions available.</em>
                     </div>
                 );
@@ -117,7 +117,8 @@ class Autocomplete extends Component {
 
         return (
             <Fragment>
-                <input
+                <input 
+                    className="autocomplete-input"
                     type="text"
                     onChange={onChange}
                     onClick={onClick}

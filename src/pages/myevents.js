@@ -22,11 +22,10 @@ const MyEventCard = (props) => {
                 </div>
                 <div style={{ marginTop: "20px" }}>
                     <div className='myevent-buttons-container'>
-                        <button className='myevent-button' id='manage-attendees'>manage attendees</button>
-                        <div className='myevent-lower-buttons'>
-                            <button className='myevent-button' id='edit-myevent'>edit details</button>
-                            <button className='myevent-button' id='delete-myevent' onClick={deleteEvent(props.eid)}>delete</button>
+                        <div style={{ width: "80%", paddingBottom: "15px" }}>
+                            <button className='myevent-button' id='manage-attendees'>event details</button>
                         </div>
+                        <button className='myevent-button' id='delete-myevent' onClick={deleteEvent(props.eid)}>delete</button>
                     </div>
                 </div>
             </div>
