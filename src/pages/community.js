@@ -58,18 +58,54 @@ const GroupCard = (props) => {
     console.log("hi")
     const members = await getDocInfo("groups", gid, "members")
     console.log(members)
-    for (let i = 0; i < members.length; i++){
-      let updateUser = { 
-                        groups: arrayRemove(gid),
-                        numGroups: await getDocInfo("users", members[i], "numGroups") - 1 
-                       }
+    for (let i = 0; i < members.length; i++) {
+      let updateUser = {
+        groups: arrayRemove(gid),
+        numGroups: await getDocInfo("users", members[i], "numGroups") - 1
+      }
       console.log(members[i])
       await updateDBdoc("users", members[i], updateUser)
     }
     removeDoc("groups", gid)
   }
 
+  const getEvents = async () => {
+    console.log(props.id)
+    const events = await getDocInfo("groups", props.id, "currentEvents")
+    console.log(events)
+    const eventMap = []
+    for (var i = 0; i < events.length; i++) {
+      const eventName = await getDocInfo("events", events[i], "eventName")
+      const date = await getDocInfo("events", events[i], "date")
+      const capacity = await getDocInfo("events", events[i], "capacity")
+      const description = await getDocInfo("events", events[i], "description")
+      const registered = await getDocInfo("events", events[i], "registered")
+      const location = await getDocInfo("events", events[i], "location")
+      const email = await getDocInfo("events", events[i], "email")
+      const timeStart = await getDocInfo("events", events[i], "timeStart")
+      const timeEnd = await getDocInfo("events", events[i], "timeEnd")
+      const eventInfo = {
+        id: events[i],
+        eventName: eventName,
+        date: date,
+        capacity: capacity,
+        description: description,
+        registered: registered,
+        location: location,
+        email: email,
+        timeStart: timeStart,
+        timeEnd: timeEnd
+      }
+      eventMap[i] = eventInfo;
+    }
+
+    return eventMap.map((event) => {
+      return <div><EventCard eventData={event}></EventCard></div>
+    });
+  }
+
   const displayInfo = async () => {
+    const eventCards = await getEvents()
     let hours = await getCumHours(props.id)
     let members = await getMemList(props.id)
     const founder = await getDocInfo("groups", props.id, "founder")
@@ -79,7 +115,7 @@ const GroupCard = (props) => {
         <div style={{ marginLeft: "60px" }}>
           <h1>{props.name}</h1>
         </div>
-        
+
         <div className='group-info-round-rect'>
           <div style={{ width: "700px" }}>
             <div style={{ position: "relative", top: "5%", left: "10%" }}>
@@ -89,9 +125,9 @@ const GroupCard = (props) => {
             <div className='group-details-buttons'>
               <button className='forward-button'>Edit</button>
               <button className='forward-button' onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
-              { canDeleteGroup }
+              {canDeleteGroup}
             </div>
-            
+
             <div style={{ paddingLeft: "10%" }}>
               <p>{props.description}</p>
               <p>{props.purpose}</p>
@@ -100,7 +136,7 @@ const GroupCard = (props) => {
             <div style={{ paddingLeft: "10%" }}>
               <h2>Events</h2>
               <div className='scroll-container'>
-                <EventCard />
+                {eventCards}
               </div>
             </div>
           </div>
@@ -200,11 +236,6 @@ const Community = (props) => {
   const front = <div style={{ marginLeft: "5%" }}>
     <h1>Welcome to your Community Page!</h1>
     <h2>Use the group bar to navigate between groups!</h2>
-    {/* <text>
-      This is going to be filler text for where all group activity is going to take place,
-      where all relevant event details will appear and where you can navigate to individual
-      group pages!
-      </text> */}
   </div>
 
   const [groupCode, setCode] = useState();
