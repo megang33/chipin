@@ -7,8 +7,8 @@ Geocode.setApiKey("AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho");
 const containerStyle = {
   position: 'absolute',
   bottom: '0',
-  height: '82vh',
-  width: '75%'
+  height: '90.25vh',
+  width: '83%'
 };
 
 const options = {

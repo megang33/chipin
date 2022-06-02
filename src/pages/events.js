@@ -235,9 +235,6 @@ class Events extends React.Component {
       <div>
         <div className='horizontal'>
           <div className='vertical'>
-            <div className='event-page-title'>
-              <h2>Find an Event</h2>
-            </div>
             <div>
               <Autocomplete suggestions={suggestions} handleAutoComplete={this.handleAutoComplete} />
             </div>
@@ -246,9 +243,16 @@ class Events extends React.Component {
             </div>
 
           </div>
-          <div className='event-bar-contain' style={{ marginTop: "20px" }}>
-            <div className='event-bar-inner'>
-              {elnull}
+          <div>
+            <div className='event-bar-contain' style={{ display: "flex", flexDirection: "column", marginTop: "0px" }}>
+              <div>
+                <h2>Find an Event</h2>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <div className='event-bar-inner'>
+                  {elnull}
+                </div>
+              </div>
             </div>
           </div>
         </div>
