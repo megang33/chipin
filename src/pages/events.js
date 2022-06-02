@@ -2,11 +2,9 @@ import React from 'react'
 import MyMap from '../components/map.js'
 import Autocomplete from '../components/Autocomplete.js'
 import { sort, sqrt } from 'mathjs'
-import MyCard from '../components/MyCard.js'
 import Geocode from 'react-geocode'
-import { useJsApiLoader } from '@react-google-maps/api'
 import { db, getDocInfo, updateDBdoc } from '../utils/firebase';
-import { collection, query, where, getDocs, documentId, onSnapshot, arrayUnion, arrayRemove, getDoc, deleteDoc } from "firebase/firestore";
+import { collection, query, onSnapshot, arrayUnion, arrayRemove, deleteDoc } from "firebase/firestore";
 import EventList from '../components/EventList.js'
 import '../components/EventList.css'
 import '../components/map.css'

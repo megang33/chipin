@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, InfoBox, InfoWindow } from '@react-google-maps/api';
 import Geocode from "react-geocode";
 
 Geocode.setApiKey("AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho");
@@ -20,13 +20,10 @@ const options = {
 function MyMap(props) {
   const [center, changeCenter] = useState();
   const [markers, setMarkers] = useState([]);
-  const [recenter, setRecenter] = useState(null);
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    console.log('test0')
-    setRecenter(props.recenter)
     console.log('props', props.recenter)
-    console.log('center', recenter)
     if (props.recenter === null) {
       console.log('bruh')
       return;
@@ -34,8 +31,6 @@ function MyMap(props) {
     Geocode.fromAddress(props.eventDict[props.recenter].address).then(
       (response) => {
         const {lat, lng} = response.results[0].geometry.location;
-        console.log('test1')
-        console.log(lat, lng)
         map.panTo({lat: lat, lng: lng})
       },
       (error) => {console.error(error)}
@@ -61,9 +56,6 @@ function MyMap(props) {
             lng: lng,
             key: idx,
             name: eventName,
-            infowindow: new window.google.maps.InfoWindow({
-              content: eventName
-            })
           }])
         },
         (error) => {console.error(error)}
@@ -108,11 +100,28 @@ function MyMap(props) {
                 url: "/chipinArrow.png",
                 scaledSize: new window.google.maps.Size(30,50)
               }}
-              onMouseOver={() => {
-                marker.infowindow.open(map, marker)
+              onClick={() => {
+                setSelected(marker);
               }}
             />
           ))}
+          {selected ?
+                (<InfoWindow
+                  position={{
+                    lat: selected.lat,
+                    lng: selected.lng,
+                  }}
+                  onCloseClick={() => {
+                    setSelected(null);
+                  }}
+                >
+                  <div className='info-window'>
+                    <div style={{padding: '5px', paddingRight: '15px', marginTop: '-10px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                      <h3>Event  Name</h3>
+                      <p style={{marginTop: '-5px'}}>{selected.name}</p>
+                    </div>
+                  </div>
+                </InfoWindow>) : null}
         </GoogleMap>
       </div>
     </div>

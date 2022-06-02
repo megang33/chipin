@@ -12,21 +12,21 @@ const StatsBar = (props) => {
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "5.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>69</p>
-                        <div className='unit-text' style={{ left: "2%" }}>hrs completed</div>
+                        <div className='unit-text' style={{ left: "2%" }}>Hours Completed</div>
                     </div>
                     <div className='solid-rect' style={{ left: "5%" }}/>
                 </div>
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "30.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>12</p>
-                        <div className='unit-text' style={{ left: "2%" }}>events attended</div>
+                        <div className='unit-text' style={{ left: "2%" }}>Events Attended</div>
                     </div>
                     <div className='solid-rect' style={{ left: "30%" }}/>
                 </div>
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "55.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.numGroups < 10) ? "0": ""}{ props.numGroups }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>{(props.numGroups == 1) ? "group joined" : "groups joined"}</div>
+                        <div className='unit-text' style={{ left: "2%" }}>{(props.numGroups == 1) ? "Group Joined" : "Groups Joined"}</div>
                     </div>
                     <div className='solid-rect' style={{ left: "55%" }}/>
                 </div>
@@ -38,21 +38,21 @@ const StatsBar = (props) => {
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "5.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>69</p>
-                        <div className='unit-text' style={{ left: "2%" }}>events created</div>
+                        <div className='unit-text' style={{ left: "2%" }}>Events Created</div>
                     </div>
                     <div className='solid-rect' style={{ left: "5%" }}/>
                 </div>
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "30.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>12</p>
-                        <div className='unit-text' style={{ left: "2%" }}>upcoming events</div>
+                        <div className='unit-text' style={{ left: "2%" }}>Upcoming Events</div>
                     </div>
                     <div className='solid-rect' style={{ left: "30%" }}/>
                 </div>
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "55.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.numGroups < 10) ? "0": ""}{ props.numGroups }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>{(props.numGroups == 1) ? "group joined" : "groups joined"}</div>
+                        <div className='unit-text' style={{ left: "2%" }}>{(props.numGroups == 1) ? "Group Joined" : "Groups Joined"}</div>
                     </div>
                     <div className='solid-rect' style={{ left: "55%" }}/>
                 </div>
@@ -86,7 +86,7 @@ export default class TimeLine extends React.Component {
     render() {
         return(
             <div>
-                <h1 style={{ paddingLeft: "13%", paddingTop: "25px" }}>Hi { this.state.name }, here's your timeline.</h1>
+                <h1 style={{ paddingLeft: "13%", paddingTop: "25px" }}>Hi { this.state.name }, here's your timeline!</h1>
                 <div className='round-rect'>
                     {/* <div>
                         <div className='stats-wrapper'>
@@ -114,12 +114,12 @@ export default class TimeLine extends React.Component {
                     <StatsBar role={this.state.role} numGroups={this.state.numGroups}></StatsBar>
                     <div>
                         <div style={{ display: "flex", flexDirection: "row" }}>
-                            <h1 className='internal-header' id='community-head'>community</h1>
+                            <h1 className='internal-header' id='community-head'>Community</h1>
                             <FontAwesomeIcon icon={faUser} style={{ position: "absolute", left: "257px", top: "142px" }}/>
                             <FontAwesomeIcon icon={faUser} style={{ position: "absolute", left: "268px", top: "142px" }}/>
                         </div>
                         <div>
-                            <p style={{ position: "absolute", left: "80px", top: "145px" }}>what's new with your groups</p>
+                            <p style={{ position: "absolute", left: "80px", top: "145px" }}>What's new with your groups</p>
                         </div>
                     </div>
                 </div>
