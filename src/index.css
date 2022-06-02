@@ -344,7 +344,7 @@ form {
   border:0;
   color: #fff;
   text-transform: uppercase;
-  font-family: helvetica;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   letter-spacing: 3px;
   position: relative;
@@ -401,7 +401,7 @@ form {
   border:0;
   color: #fff;
   text-transform: uppercase;
-  font-family: helvetica;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   letter-spacing: 3px;
   position: relative;
@@ -412,16 +412,18 @@ form {
 
 /* Event page CSS */
 .event-page-title {
-  position:sticky;
-  margin-left: 45%;
+  padding: 0%;
+  position: absolute;
+  left: 40%;
   font-size: large;
-  font-family: American Typewriter;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 300px;
 }
 
 /* Autocomplete CSS */
 .autocomplete-input {
   position: absolute;
-  top: 18%;
+  top: 20%;
   left: 1%;
   border: 2px solid #999;
   border-radius: 10px;
@@ -434,14 +436,14 @@ form {
   color: #999;
   padding: 0.5rem;
   position: absolute;
-  top: 21.3%;
+  top: 24.7%;
   left: 1%;
   z-index: 10;
 }
 
 .suggestions {
   position: absolute;
-  top: 21.6%;
+  top: 24.7%;
   left: 1%;
   border: 2px solid #999;
   background-color: #D9BFB1;
@@ -503,6 +505,18 @@ form {
   position: absolute;
   right: 10px;
   height: 100%;
+  border-radius: 50px;
+}
+
+.event-bar-contain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #D9BFB1;
+  position: absolute;
+  right: 10px;
+  height: 100%;
+  width: 300px;
   border-radius: 50px;
 }
 

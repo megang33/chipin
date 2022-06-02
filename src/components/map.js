@@ -5,8 +5,10 @@ import Geocode from "react-geocode";
 Geocode.setApiKey("AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho");
 
 const containerStyle = {
-  height: '80vh',
-  width: '1300px'
+  position: 'absolute',
+  bottom: '0',
+  height: '82vh',
+  width: '75%'
 };
 
 const options = {

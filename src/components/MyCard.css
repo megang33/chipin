@@ -31,3 +31,13 @@
 .spacing{
     margin-bottom: 10px;
 }
+
+.mycard-contain {
+    display: flex;
+    flex-direction: column;
+}
+
+.mycard-img {
+    object-fit: cover;
+    height: 100px;
+}
