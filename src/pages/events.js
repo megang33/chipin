@@ -18,10 +18,10 @@ const eventMap = {};
 const q = query(collection(db, "events"));
 const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
-    suggestions.push(doc.data().event_name);
+    suggestions.push(doc.data().eventName);
     const fields = {
       'id': doc.id,
-      'event_name': doc.data().event_name,
+      'eventName': doc.data().eventName,
       'date': doc.data().date,
       'capacity': doc.data().capacity,
       'description': doc.data().description,
@@ -33,9 +33,9 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
       'timeStart': doc.data().timeStart,
       'timeEnd': doc.data().timeEnd,
     }
-    eventMap[doc.data().event_name] = fields;
-    //console.log("event obj:", eventMap[doc.data().event_name])
-    console.log("ADDRESSES: ", eventMap[doc.data().event_name].address)
+    eventMap[doc.data().eventName] = fields;
+    //console.log("event obj:", eventMap[doc.data().eventName])
+    console.log("ADDRESSES: ", eventMap[doc.data().eventName].address)
   });
   console.log("Events: ", suggestions);
   console.log("event map:", eventMap);

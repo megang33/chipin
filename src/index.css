@@ -252,8 +252,48 @@ form {
 }
 
 .group-info-member-list {
-  padding-left: 50px;
+  margin-top: 95px;
+  /* float: right; */
+  margin-left: 500px;
 }
+
+.group-create-bar {
+  display: flex;
+  margin-right: 50rem;
+  background-color: #D9BFB1;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#create-group-button {
+  margin-right: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.group-details-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  padding-left: 5%;
+}
+
+.group-info-round-rect {
+  box-sizing: border-box;
+  width: 70%;
+  height: 650px;
+  margin-top: 30px;
+  position: absolute;
+  padding-bottom: 20px;
+  margin-top: 75px;
+
+  border: 15px solid #7F867B;
+  border-radius: 104px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+
 
 .scroll-container {
   overflow-y: scroll;
@@ -445,4 +485,24 @@ form {
   position: relative;
   width: 100%;
   margin-left: 10px;
+}
+
+.conf-list {
+  list-style-type: none;
+  text-align: center;
+  padding-right: 35px;
+}
+
+.conf-round-rect {
+  box-sizing: border-box;
+  width: 70%;
+  height: 670px;
+  margin-top: 30px;
+  position: absolute;
+  padding-bottom: 20px;
+  margin-top: 75px;
+  left: 15%;
+
+  border: 15px solid #7F867B;
+  border-radius: 104px;
 }
