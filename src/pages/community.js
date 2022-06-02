@@ -136,7 +136,7 @@ const GroupCard = (props) => {
             <div style={{ paddingLeft: "10%" }}>
               <h2>Events</h2>
               <div className='scroll-container'>
-                <EventCard />
+                {eventCards}
               </div>
             </div>
           </div>
