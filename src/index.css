@@ -520,6 +520,12 @@ form {
   border-radius: 50px;
 }
 
+.event-bar-inner {
+  position: relative;
+  top: 0px;
+  margin-left: 25px;
+}
+
 .group-card-container {
   position: relative;
   width: 265px;

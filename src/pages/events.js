@@ -247,7 +247,7 @@ class Events extends React.Component {
 
           </div>
           <div className='event-bar-contain' style={{ marginTop: "20px" }}>
-            <div style={{ marginTop: "-150px", height: "500px", paddingLeft: "25px" }}>
+            <div className='event-bar-inner'>
               {elnull}
             </div>
           </div>
