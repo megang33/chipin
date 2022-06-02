@@ -19,7 +19,7 @@ export default function ExpandedCard(props, {
     }
 
     return (
-        <Card sx={{ maxWidth: 350, backgroundColor: "#FFB743", borderRadius: 5, boxShadow: 20 }}>
+        <Card sx={{ maxWidth: 350, backgroundColor: "#AEC6CF", borderRadius: 5, boxShadow: 20 }}>
             <CardMedia
                 component="img"
                 height="140"

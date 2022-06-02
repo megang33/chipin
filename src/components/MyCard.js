@@ -46,7 +46,9 @@ class MyCard extends Component {
 
     render() {
         const { alpha } = "test";
-        const { eventName, eventMap, eventLocation, eventDate, register } = this.props
+        const { eventName, eventMap, register } = this.props;
+        const eventDate = eventMap[eventName].date;
+        const eventLocation = eventMap[eventName].address;
         // console.log({ eventName })
         // console.log({ eventDate })
         // console.log({ eventLocation })
@@ -82,7 +84,7 @@ class MyCard extends Component {
                                 <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
                                     Date: {eventDate}
                                 </Typography>
-                                <Typography variant="body2" color="white" maxWidth={100}>
+                                <Typography variant="body2" color="white" maxWidth={100} fontSize="5">
                                     Location: {eventLocation}
                                 </Typography>
                             </CardContent>
