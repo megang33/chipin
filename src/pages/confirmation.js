@@ -1,6 +1,6 @@
 import React from 'react'
 import { addDBdoc } from '../utils/firebase.js';
-
+import '../index.css';
 
 export default class MiscDetails extends React.Component {
     submit = async (e) => {
@@ -26,7 +26,7 @@ export default class MiscDetails extends React.Component {
             registered: []
         }
         await addDBdoc("events", body);
-        window.location = "/events";
+        window.location = "/my-events";
     }
 
     previous = e => {
@@ -41,21 +41,26 @@ export default class MiscDetails extends React.Component {
         //banner doesn't work
         return (
             <div>
-                <h1 style={{ textAlign: "center" }}>Confirmation Details</h1>
-                <ul>
-                    <li>{values.eventName}</li>
-                    <li>{values.date}</li>
-                    <li>{values.capacity}</li>
-                    <li>{values.description}</li>
-                    <li>{values.primaryContact}</li>
-                    <li>{values.secondaryContact}</li>
-                    <li>{values.location}</li>
-                    <li>
-                        <div>Image: </div>
-                        <img src={values.banner} width="400px" />
-                    </li>
-                </ul>
-                <button onClick={this.submit}>submit</button>
+                <h1 style={{ textAlign: "center", marginBottom: "-50px" }}>Confirmation Details</h1>
+                <div className='conf-round-rect'>
+                    <ul className='conf-list'>
+                        <li><h1>{values.eventName}</h1></li>
+                        <li><b>Date: </b>{values.date}</li>
+                        <li><b>Capacity: </b>{values.capacity}</li>
+                        <li><b>Description: </b>{values.description}</li>
+                        <li><div>
+                            <b>Contact: </b>
+                            {values.primaryContact}, {values.secondaryContact}
+                        </div></li>
+                        
+                        <li><b>Location: </b>{values.location}</li>
+                        <li style={{ paddingTop: "20px" }}>
+                            <div><b>Image: </b></div>
+                            <img src={values.banner} width="400px" />
+                        </li>
+                    </ul>
+                    <button className='forward-button' onClick={this.submit}>submit</button>
+                </div>
             </div>
         )
     }

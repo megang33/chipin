@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { initializeGroup, updateGroup, updateDBdoc, getDocInfo, getDocSnap, removeDoc, uploadFile, getImageByFile } from '../utils/firebase';
 import '../index.css'
+import './community.css'
 import EventCard from '../components/eventcard.js'
 import { arrayRemove, getDoc } from 'firebase/firestore';
 
@@ -72,25 +73,36 @@ const GroupCard = (props) => {
     let hours = await getCumHours(props.id)
     let members = await getMemList(props.id)
     const founder = await getDocInfo("groups", props.id, "founder")
-    let canDeleteGroup = (founder == props.uid) ? <button onClick={() => deleteGroup(props.id)}>Delete</button> : null
+    let canDeleteGroup = (founder == props.uid) ? <button className='forward-button' onClick={() => deleteGroup(props.id)}>Delete</button> : null
     props.setDisplay(
       <div className='group-info' style={{ marginLeft: "5%" }}>
-        <div>
-          <div>
-            <h1>{props.name}</h1>
-            <p>Group code: {props.id}</p>
-            <p>Collective Hours: {hours}</p>
-          </div>
-          <button>Edit</button>
-          <button onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
-          { canDeleteGroup }
-          <div>
-            <p>{props.description}</p>
-            <p>{props.purpose}</p>
-          </div>
-          <h2>Events</h2>
-          <div className='scroll-container'>
-            <EventCard />
+        <div style={{ marginLeft: "60px" }}>
+          <h1>{props.name}</h1>
+        </div>
+        
+        <div className='group-info-round-rect'>
+          <div style={{ width: "700px" }}>
+            <div style={{ position: "relative", top: "5%", left: "10%" }}>
+              <p>Group code: {props.id}</p>
+              <p>Collective Hours: {hours}</p>
+            </div>
+            <div className='group-details-buttons'>
+              <button className='forward-button'>Edit</button>
+              <button className='forward-button' onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
+              { canDeleteGroup }
+            </div>
+            
+            <div style={{ paddingLeft: "10%" }}>
+              <p>{props.description}</p>
+              <p>{props.purpose}</p>
+            </div>
+
+            <div style={{ paddingLeft: "10%" }}>
+              <h2>Events</h2>
+              <div className='scroll-container'>
+                <EventCard />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -251,12 +263,12 @@ const Community = (props) => {
     return (
       <div>
         <h3>Welcome to your community.</h3>
-        <div style={{ display: 'flex', marginRight: '50rem', backgroundColor: "#D9BFB1" }}>
+        <div className='group-create-bar'>
           <form onSubmit={(e) => joinGroup(props.uid, e)} style={{ display: "flex" }}>
-            <input name="input" type="text" placeholder='group code...' onChange={(e) => setCode(e.target.value)} ></input>
-            <input type="submit" value="Join Group"></input>
+            <input className='input-field' name="input" type="text" placeholder='group code' onChange={(e) => setCode(e.target.value)} ></input>
+            <input className='forward-button' type="submit" value="Join Group"></input>
           </form>
-          <button onClick={() => createGroup()}>Create A Group</button>
+          <button id='create-group-button' className='forward-button' onClick={() => createGroup()}>Create A Group</button>
         </div>
         <div className='group-bar-contain'>
           <div className='group-bar-inner'>
@@ -274,12 +286,12 @@ const Community = (props) => {
     return (
       <div>
         <h3>Welcome to your community.</h3>
-        <div style={{ display: 'flex', marginRight: '50rem', backgroundColor: "#D9BFB1" }}>
+        <div className='group-create-bar'>
           <form onSubmit={(e) => joinGroup(props.uid, e)} style={{ display: "flex" }}>
-            <input name="input" type="text" placeholder='group code...' onChange={(e) => setCode(e.target.value)} ></input>
-            <input type="submit" value="Join Group"></input>
+            <input className='input-field' id='create-group-input' name="input" type="text" placeholder='group code' onChange={(e) => setCode(e.target.value)} ></input>
+            <input className='forward-button' type="submit" value="Join Group"></input>
           </form>
-          <button onClick={() => createGroup()}>Create A Group</button>
+          <button id='create-group-button' className='forward-button' onClick={() => createGroup()}>Create A Group</button>
         </div>
         <div className='group-bar-contain'>
           <div className='group-bar-inner'>

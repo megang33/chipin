@@ -5,8 +5,10 @@ import Geocode from "react-geocode";
 Geocode.setApiKey("AIzaSyCjR09fOMTXIOF3vvAjn0fpa8A7Rrb-uho");
 
 const containerStyle = {
-  height: '80vh',
-  width: '1300px'
+  position: 'absolute',
+  bottom: '0',
+  height: '82vh',
+  width: '75%'
 };
 
 const options = {
@@ -57,7 +59,11 @@ function MyMap(props) {
           setMarkers(current => [...current, {
             lat: lat,
             lng: lng,
-            key: idx
+            key: idx,
+            name: eventName,
+            infowindow: new window.google.maps.InfoWindow({
+              content: eventName
+            })
           }])
         },
         (error) => {console.error(error)}
@@ -96,7 +102,15 @@ function MyMap(props) {
           {markers.map((marker) => (
             <Marker
               //key={marker.key}
+              title={marker.name}
               position={{ lat: marker.lat, lng: marker.lng }}
+              icon={{
+                url: "/chipinArrow.png",
+                scaledSize: new window.google.maps.Size(30,50)
+              }}
+              onMouseOver={() => {
+                marker.infowindow.open(map, marker)
+              }}
             />
           ))}
         </GoogleMap>

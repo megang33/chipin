@@ -252,8 +252,48 @@ form {
 }
 
 .group-info-member-list {
-  padding-left: 50px;
+  margin-top: 95px;
+  /* float: right; */
+  margin-left: 500px;
 }
+
+.group-create-bar {
+  display: flex;
+  margin-right: 50rem;
+  background-color: #D9BFB1;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#create-group-button {
+  margin-right: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.group-details-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  padding-left: 5%;
+}
+
+.group-info-round-rect {
+  box-sizing: border-box;
+  width: 70%;
+  height: 650px;
+  margin-top: 30px;
+  position: absolute;
+  padding-bottom: 20px;
+  margin-top: 75px;
+
+  border: 15px solid #7F867B;
+  border-radius: 104px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+
 
 .scroll-container {
   overflow-y: scroll;
@@ -304,7 +344,7 @@ form {
   border:0;
   color: #fff;
   text-transform: uppercase;
-  font-family: helvetica;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   letter-spacing: 3px;
   position: relative;
@@ -361,7 +401,7 @@ form {
   border:0;
   color: #fff;
   text-transform: uppercase;
-  font-family: helvetica;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   letter-spacing: 3px;
   position: relative;
@@ -370,20 +410,52 @@ form {
   margin: auto;
 }
 
+/* Event page CSS */
+.event-page-title {
+  padding: 0%;
+  position: absolute;
+  left: 40%;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 300px;
+}
+
+/* Autocomplete CSS */
+.autocomplete-input {
+  position: absolute;
+  top: 20%;
+  left: 1%;
+  border: 2px solid #999;
+  border-radius: 10px;
+  padding: 0.5rem;
+  width: 300px;
+  z-index: 10;
+}
+
 .no-suggestions {
   color: #999;
   padding: 0.5rem;
+  position: absolute;
+  top: 24.7%;
+  left: 1%;
+  z-index: 10;
 }
 
 .suggestions {
-  border: 1px solid #999;
+  position: absolute;
+  top: 24.7%;
+  left: 1%;
+  border: 2px solid #999;
+  background-color: #D9BFB1;
   border-top-width: 0;
+  border-radius: 10px;
   list-style: none;
   margin-top: 0;
   max-height: 143px;
   overflow-y: auto;
-  padding-left: 0;
-  width: calc(300px + 1rem);
+  padding: 0.5rem;
+  width: 300px;
+  z-index: 10;
 }
 
 .suggestions li {
@@ -436,6 +508,24 @@ form {
   border-radius: 50px;
 }
 
+.event-bar-contain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #D9BFB1;
+  position: absolute;
+  right: 10px;
+  height: 100%;
+  width: 300px;
+  border-radius: 50px;
+}
+
+.event-bar-inner {
+  position: relative;
+  top: 0px;
+  margin-left: 25px;
+}
+
 .group-card-container {
   position: relative;
   width: 265px;
@@ -445,4 +535,24 @@ form {
   position: relative;
   width: 100%;
   margin-left: 10px;
+}
+
+.conf-list {
+  list-style-type: none;
+  text-align: center;
+  padding-right: 35px;
+}
+
+.conf-round-rect {
+  box-sizing: border-box;
+  width: 70%;
+  height: 670px;
+  margin-top: 30px;
+  position: absolute;
+  padding-bottom: 20px;
+  margin-top: 75px;
+  left: 15%;
+
+  border: 15px solid #7F867B;
+  border-radius: 104px;
 }

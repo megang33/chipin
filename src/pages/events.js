@@ -5,7 +5,7 @@ import { sort, sqrt } from 'mathjs'
 import MyCard from '../components/MyCard.js'
 import Geocode from 'react-geocode'
 import { useJsApiLoader } from '@react-google-maps/api'
-import { db, getDocInfo, updateDBdoc} from '../utils/firebase';
+import { db, getDocInfo, updateDBdoc } from '../utils/firebase';
 import { collection, query, where, getDocs, documentId, onSnapshot, arrayUnion, arrayRemove, getDoc, deleteDoc } from "firebase/firestore";
 import EventList from '../components/EventList.js'
 import '../components/EventList.css'
@@ -18,10 +18,10 @@ const eventMap = {};
 const q = query(collection(db, "events"));
 const querySnapshot = onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
-    suggestions.push(doc.data().event_name);
+    suggestions.push(doc.data().eventName);
     const fields = {
       'id': doc.id,
-      'event_name': doc.data().event_name,
+      'eventName': doc.data().eventName,
       'date': doc.data().date,
       'capacity': doc.data().capacity,
       'description': doc.data().description,
@@ -33,9 +33,9 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
       'timeStart': doc.data().timeStart,
       'timeEnd': doc.data().timeEnd,
     }
-    eventMap[doc.data().event_name] = fields;
-    //console.log("event obj:", eventMap[doc.data().event_name])
-    console.log("ADDRESSES: ", eventMap[doc.data().event_name].address)
+    eventMap[doc.data().eventName] = fields;
+    //console.log("event obj:", eventMap[doc.data().eventName])
+    console.log("ADDRESSES: ", eventMap[doc.data().eventName].address)
   });
   console.log("Events: ", suggestions);
   console.log("event map:", eventMap);
@@ -162,23 +162,23 @@ export const sortByDistance = async (events, zc) => {
 
   await Geocode.fromAddress(zc).then(
     (response) => {
-      const {lat, lng} = response.results[0].geometry.location;
+      const { lat, lng } = response.results[0].geometry.location;
       setLatLng(lat, lng)
     },
-    (error) => {console.error(error)}
+    (error) => { console.error(error) }
   )
 
-  for (let i = 0; i < events.length; i++){
+  for (let i = 0; i < events.length; i++) {
     await Geocode.fromAddress(eventMap[events[i]].address).then(
       (response) => {
-        const {lat, lng} = response.results[0].geometry.location;
+        const { lat, lng } = response.results[0].geometry.location;
         map.set(events[i], [lat, lng])
       },
-      (error) => {console.error(error)}
+      (error) => { console.error(error) }
     )
   }
-  
-  await map.forEach((value, key) =>{
+
+  await map.forEach((value, key) => {
     let tempLat = ziplat - value[0]
     let tempLng = ziplng - value[1]
     tempLat = tempLat * tempLat
@@ -187,10 +187,10 @@ export const sortByDistance = async (events, zc) => {
     mapDistanced.set(key, distance)
   })
 
-  const sortedMap = new Map([...mapDistanced.entries()].sort((a,b) => b[1] - a[1]).reverse())
+  const sortedMap = new Map([...mapDistanced.entries()].sort((a, b) => b[1] - a[1]).reverse())
   let sortedList = new Array()
   sortedMap.forEach((value, key) => {
-     sortedList.push(key)
+    sortedList.push(key)
   })
   return sortedList
 }
@@ -206,6 +206,7 @@ class Events extends React.Component {
     };
 
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleAutoComplete = this.handleAutoComplete.bind(this)
   }
 
   async componentDidMount() {
@@ -223,27 +224,37 @@ class Events extends React.Component {
     console.log('prt', zc)
   }
 
+  handleAutoComplete(ac) {
+    console.log("$$$$$$")
+    this.setState({
+      autocomplete_list: ac
+    })
+    console.log('AC###', ac)
+  }
+
   render() {
-    const elnull = this.state.zipcode ? <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} zc={this.state.zipcode}/> : <h2>List loading...</h2>
+    const elnull = this.state.zipcode ? <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} zc={this.state.zipcode} searchInfo={this.state.autocomplete_list} /> : <h2>List loading...</h2>
     console.log("eventszc: ", this.state.zipcode);
-    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions}/> : <h2>Map loading..</h2>;
+    const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions} /> : <h2>Map loading..</h2>;
     return (
       <div>
         <div className='horizontal'>
           <div className='vertical'>
-            <div>
-              <h3>Find an Event</h3>
+            <div className='event-page-title'>
+              <h2>Find an Event</h2>
             </div>
             <div>
-              <Autocomplete suggestions={suggestions} />
+              <Autocomplete suggestions={suggestions} handleAutoComplete={this.handleAutoComplete} />
             </div>
             <div>
               {zcnull}
             </div>
 
           </div>
-          <div style={{ marginTop: 80 }}>
-            {elnull}
+          <div className='event-bar-contain' style={{ marginTop: "20px" }}>
+            <div className='event-bar-inner'>
+              {elnull}
+            </div>
           </div>
         </div>
       </div>
