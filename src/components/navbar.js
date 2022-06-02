@@ -13,11 +13,11 @@ const NavBar = (props) => {
           <Link to="/" className='logo-link'><img className='logo' src={require('./logo.png')} alt="ChipIn Logo" /></Link>
         </div>
         <div className='links'>
-          <Link to="/community" className='nav-item'>community</Link>
-          <Link to="/timeline" className='nav-item'>timeline</Link>
-          <Link to="/events" className='nav-item'>find an event</Link>
+          <Link to="/community" className='nav-item'>Community</Link>
+          <Link to="/timeline" className='nav-item'>Timeline</Link>
+          <Link to="/events" className='nav-item'>Find an Event</Link>
           {/* <Link to="/profile" className='nav-item'>you</Link> */}
-          <Link to="/" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
+          <Link to="/" className='nav-item' id='sign-button' onClick={props.handleSignOut}>Log Out</Link>
         </div>
       </div>
     );
@@ -29,12 +29,12 @@ const NavBar = (props) => {
           <Link to="/" className='logo-link'><img className='logo' src={require('./logo.png')} alt="ChipIn Logo" /></Link>
         </div>
         <div className='links'>
-          <Link to="/community" className='nav-item'>community</Link>
-          <Link to="/timeline" className='nav-item'>timeline</Link>
-          <Link to="/event-creation" className='nav-item'>make an event</Link>
-          <Link to="/my-events" className='nav-item'>my events</Link>
+          <Link to="/community" className='nav-item'>Community</Link>
+          <Link to="/timeline" className='nav-item'>Timeline</Link>
+          <Link to="/event-creation" className='nav-item'>Make an Event</Link>
+          <Link to="/my-events" className='nav-item'>My Events</Link>
           {/* <Link to="/profile" className='nav-item'>you</Link> */}
-          <Link to="/" className='nav-item' id='sign-button' onClick={props.handleSignOut}>log out</Link>
+          <Link to="/" className='nav-item' id='sign-button' onClick={props.handleSignOut}>Log Out</Link>
         </div>
       </div>
     );
@@ -47,7 +47,7 @@ const NavBar = (props) => {
         </div>
         <div className='links'>
           {/* <Link to="/community" className='nav-item'>community</Link> */}
-          <Link to="/" id='sign-button' className='nav-item' onClick={props.handleSignIn}>sign in</Link>
+          <Link to="/" id='sign-button' className='nav-item' onClick={props.handleSignIn}>Sign In</Link>
           {/* <button onClick={signInWithGoogle}> Sign in with Google </button> */}
         </div>
       </div>
