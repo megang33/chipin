@@ -5,6 +5,8 @@ import { sortByDistance } from "../pages/events.js";
 import './EventList.css'
 import PropTypes from "prop-types";
 import { List } from "@mui/material";
+import { getDocInfo } from "../utils/firebase.js";
+
 
 
 const EventList = (props) => {
@@ -16,7 +18,6 @@ const EventList = (props) => {
             let list
             let list1 = []
             list = await sortByDistance(props.suggestions, props.zc)
-
             console.log(list)
             let temp_arr = props.searchInfo || []
             if ((temp_arr.length) != 0) {
@@ -30,18 +31,16 @@ const EventList = (props) => {
             } else {
                 list1 = list
             }
-            console.log("JJJ")
-            console.log(">>>" + list)
-            console.log("<<<" + list1)
+
 
 
 
 
             await setOrderedSuggestions(list1.map((name) => {
                 return (
-                    <div style={{  }}>
+                    <div style={{}}>
                         <MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={props.eventMap}
-                        suggestions={list} register={props.register} handleCardClick={props.handleCardClick} />
+                            suggestions={list} register={props.register} handleCardClick={props.handleCardClick} />
                     </div>
                 )
             })
