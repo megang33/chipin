@@ -1,5 +1,5 @@
 import React from 'react'
-import { addDBdoc, updateDBdoc } from '../utils/firebase.js';
+import { addDBdoc, getDocInfo, updateDBdoc } from '../utils/firebase.js';
 import '../index.css';
 import { arrayRemove, arrayUnion } from 'firebase/firestore';
 
@@ -27,7 +27,8 @@ export default class MiscDetails extends React.Component {
             registered: []
         }
         const eventID = await addDBdoc("events", body);
-        updateDBdoc("organizations", this.props.oid, { events: arrayUnion(eventID), upcomingEvents: arrayUnion(eventID)})
+        updateDBdoc("organizations", this.props.oid, { events: arrayUnion(eventID), upcomingEvents: arrayUnion(eventID), 
+            numEvent: await getDocInfo("organizations", this.props.oid, "numEvents") + 1,})
         window.location = "/my-events";
     }
 

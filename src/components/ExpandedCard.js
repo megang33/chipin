@@ -13,8 +13,8 @@ export default function ExpandedCard(props, {
     const { event, register } = props;
     const alertPopup = async (e) => {
         e.preventDefault();
-        await register("FdAp9fMre3ZPEOTNkQgPYBgHnQC3", event.id);
-        const content = "Succssfully registered for " + event.event_name + ". Navigate to your timeline to see your upcoming events!";
+        await register(localStorage.getItem("user-login"), event.id);
+        const content = "Succssfully registered for " + event.eventName + ". Navigate to your timeline to see your upcoming events!";
         alert(content);
     }
 
@@ -25,11 +25,11 @@ export default function ExpandedCard(props, {
                     component="img"
                     height="140"
                     image={event.banner}
-                    alt={event.event_name}
+                    alt={event.eventName}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" className="spacing">
-                        {event.event_name}
+                        {event.eventName}
                     </Typography>
                     <Typography variant="body2" color="black" className="spacing">
                         <b>Date: </b>{event.date}
