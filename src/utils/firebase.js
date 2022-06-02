@@ -48,6 +48,15 @@ export const getDocInfo = async (collection, id, field) => {
   }
 }
 
+export const getDocData = async (collection, id) => {
+  console.log(collection + ", " + id)
+  if (id != null) {
+    const docRef = doc(db, collection, id);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+  }
+}
+
 export const initializeGroup = async (uid, name, desc, img, purpose) => {
   console.log(name + " " + desc + " " + img + " " + purpose)
   const newGroup = doc(collection(db, "groups"))    // Each group will guarantee have unique IDs. No chance for overlap.
