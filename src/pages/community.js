@@ -73,7 +73,8 @@ const GroupCard = (props) => {
   }
 
   const getEvents = async () => {
-    const events = await getDocInfo("groups", props.id, "currentEvents")
+    const founder = await getDocInfo("groups", props.id, "founder")
+    const events = await getDocInfo("users", founder, "currentEvents")
     let oid = await getDocInfo("groups", localStorage.getItem("user-login"), "oid")
     if (typeof(oid) === 'undefined'){
       oid = null
@@ -103,8 +104,8 @@ const GroupCard = (props) => {
         </div>
 
         <div className='group-info-round-rect'>
-          <div style={{ width: "700px" }}>
-            <div style={{ position: "relative", top: "5%", left: "10%" }}>
+          <div style={{ width: "700px", height: "500px", overflowY: "scroll"}}>
+            <div style={{ position: "relative", top: "-1%", left: "10%" }}>
               <p>Group code: {props.id}</p>
               <p>Collective Hours: {hours}</p>
             </div>
@@ -120,7 +121,7 @@ const GroupCard = (props) => {
 
             <div style={{ paddingLeft: "10%" }}>
               <h2>Events</h2>
-              <div className='scroll-container'>
+              <div>
                 {eventCards}
               </div>
             </div>
