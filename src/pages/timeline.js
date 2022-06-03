@@ -16,7 +16,7 @@ const StatsBar = (props) => {
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "5.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.numHours < 10) ? "0": ""}{ props.numHours }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>hrs completed</div>
+                        <div className='unit-text' style={{ left: "2%" }}>hours completed</div>
                     </div>
                     <div className='solid-rect' style={{ left: "5%" }}/>
                 </div>
@@ -98,7 +98,7 @@ export default class TimeLine extends React.Component {
                 pastArray[i] = eventInfo;
             }
             let allEventsDisplay = pastArray.map((card) => {
-                return <div className='card-scroll'><EventCard eventData={card}></EventCard></div>
+                return <div><EventCard eventData={card}></EventCard></div>
             })
 
             let currentArray = []
@@ -107,7 +107,7 @@ export default class TimeLine extends React.Component {
                 currentArray[i] = eventInfo;
             }
             let futureEventsDisplay = currentArray.map((card) => {
-                return <div className='card-scroll'><EventCard eventData={card}></EventCard></div>
+                return <div><EventCard eventData={card}></EventCard></div>
             })
 
             this.setState({
@@ -131,7 +131,7 @@ export default class TimeLine extends React.Component {
                 eventsArray[i] = eventInfo;
             }
             let allEventsDisplay = eventsArray.map((card) => {
-                return <div className='card-scroll'><EventCard eventData={card}></EventCard></div>
+                return <div><EventCard eventData={card}></EventCard></div>
             })
 
             let upcomingEventsArray = []
@@ -140,7 +140,7 @@ export default class TimeLine extends React.Component {
                 upcomingEventsArray[i] = eventInfo;
             }
             let futureEventsDisplay = upcomingEventsArray.map((card) => {
-                return <div className='card-scroll'><EventCard eventData={card}></EventCard></div>
+                return <div><EventCard eventData={card}></EventCard></div>
             })
 
             this.setState({
@@ -176,13 +176,13 @@ export default class TimeLine extends React.Component {
                         <div style={{ display: "flex", alignContent: "center" }}>
                             <div className='user-events-container'>
                                 <div style={{ marginRight: "30px" }}>
-                                    <div style={{ marginLeft: "180px", marginBottom: "20px" }}>{all}</div>
-                                    { this.state.allEventsDisplay }
-                                    {/* <div style={{ marginLeft: "160px" }}>{future}</div>
-                                    { this.state.futureEventsDisplay } */}
+                                    <div style={{ marginLeft: "180px", marginBottom: "20px" }}><b>{all}</b></div>
+                                    <div className='card-scroll'>
+                                        { this.state.allEventsDisplay }
+                                    </div>
                                 </div>
                                 <div style={{ marginLeft: "30px" }}>
-                                    <div style={{ marginLeft: "160px", marginBottom: "20px" }}>{future}</div>
+                                    <div style={{ marginLeft: "160px", marginBottom: "20px" }}><b>{future}</b></div>
                                     <div className='card-scroll'>
                                         { this.state.futureEventsDisplay }
                                     </div>

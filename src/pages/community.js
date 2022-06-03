@@ -160,14 +160,12 @@ const GroupCard = (props) => {
             <img className='group-img' src={image} />
           </div>
           <div className='group-card-text'>
-            <div style={{ position: "relative", width: "100%" }}>
+            <div style={{ position: "relative", width: "94%", marginTop: "7px" }}>
               <h2 className='group-card-name'>{props.name}</h2>
             </div>
-            <text className='group-card-desc'>filler description</text>
           </div>
           <div>
             {/* insert an icon here */}
-            {props.numMembers}
           </div>
         </div>
 
