@@ -26,19 +26,18 @@ export default function EventCard(props) {
     return (
         <div style={{ paddingBottom: "10px" }}>
             <Card sx={{
-                width: 950,
+                width: 450,
                 maxHeight: 600,
-                boxShadow: 10,
-                backgroundColor: "#D2D2D2",
+                boxShadow: 2,
+                backgroundColor: "none",
                 borderRadius: 3,
                 display: 'flex',
                 display: 'inline-flex',
-                flexDirection: 'row',
+                flexDirection: 'column',
                 positon: 'absolute',
 
             }}>
                 <div>
-
                     <CardMedia
                         component="img"
                         width="10"
@@ -51,19 +50,17 @@ export default function EventCard(props) {
 
                 <div>
                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div" color="white">
-                                {props.eventData.eventName}
+                            <Typography gutterBottom variant="h5" component="div" color="black">
+                                <b>{props.eventData.eventName}</b>
                             </Typography>
-
-                            <Typography variant="body2" color="white" maxWidth={400} fontSize="5">
+                            <Typography variant="body2" color="black" maxWidth={400} fontSize="5">
                                 Date/Time: {props.eventData.date} {props.eventData.timeStart}-{props.eventData.timeEnd}
                             </Typography>
-                            <Typography variant="body2" color="white" maxWidth={400}>
+                            <Typography variant="body2" color="black" maxWidth={400}>
                                 Location: {props.eventData.location}
                             </Typography>
-                            <Typography variant="body2" color="white" maxWidth={400}>
+                            <Typography variant="body2" color="black" maxWidth={400}>
                                 {props.eventData.description}
                             </Typography>
                         </CardContent>
