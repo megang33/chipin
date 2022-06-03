@@ -86,15 +86,15 @@ export default function EventCard(props) {
                 </div>
                 <div>
                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                        <CardContent>
+                        <CardContent className='eventcard-details'>
                             <Typography gutterBottom variant="h5" component="div" color="black">
                                 <b>{props.eventData.eventName}</b>
                             </Typography>
                             <Typography variant="body2" color="black" maxWidth={400} fontSize="5">
-                                Date/Time: {props.eventData.date} {props.eventData.timeStart}-{props.eventData.timeEnd}
+                                <b>Date/Time: </b>{props.eventData.date} {props.eventData.timeStart}-{props.eventData.timeEnd}
                             </Typography>
                             <Typography variant="body2" color="black" maxWidth={400}>
-                                Location: {props.eventData.location}
+                                <b>Location: </b>{props.eventData.location}
                             </Typography>
                             <Typography variant="body2" color="black" maxWidth={400}>
                                 {props.eventData.description}
