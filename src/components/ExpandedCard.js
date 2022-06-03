@@ -6,11 +6,21 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './MyCard.css'
+import { display } from '@mui/system';
 
 export default function ExpandedCard(props, {
     showCard
 }) {
-    const { event, register } = props;
+    const { event, register, hasEventStarted, registered } = props;
+    let userHasRegistered = false
+    for(let i = 0; i < registered.length; i++){
+        if (props.uid === registered[i]){
+            userHasRegistered = true
+            break;
+        }
+    }
+    let displayRegister = hasEventStarted ? (userHasRegistered ? "Registered!" : "Cannot Register") : (userHasRegistered ? "Registered" : <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small" onClick={(e) => alertPopup(e)}>Register</Button>)
+    console.log(displayRegister)
     const alertPopup = async (e) => {
         e.preventDefault();
         await register(localStorage.getItem("user-login"), event.id);
@@ -52,7 +62,7 @@ export default function ExpandedCard(props, {
                 </CardContent>
 
                 <CardActions>
-                    <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small" onClick={(e) => alertPopup(e)}>Register</Button>
+                    {displayRegister}
                     <Button className="reg-button" style={{ margin: "auto", marginBottom: 5 }} size="small" onClick={props.showCard}>Close</Button>
                 </CardActions>
             </Card>

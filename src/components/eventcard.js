@@ -6,14 +6,51 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { getDocInfo } from '../utils/firebase.js';
 import { registerToEvent } from '../pages/events.js';
-import PropTypes from "prop-types";
-import { getDocInfo } from "../utils/firebase.js";
-
-
-
+import PropTypes from 'prop-types';
+import { display } from '@mui/system';
 
 export default function EventCard(props) {
+    let canRegister = true
+    let isOrg = props.oid === null ? false : true
+    for(let i = 0; i < props.eventData.registered.length; i++){
+        if (localStorage.getItem("user-login") === props.eventData.registered[i]){
+            canRegister = false
+            break;
+        }
+    }
+    console.log(canRegister)
+    let displayRegister
+    if (isOrg) {
+         displayRegister = <div></div>
+    } else if (canRegister){
+        displayRegister = <div>
+            <CardActions
+                sx={{
+                    display: 'flex',
+                    alignContent: 'space-around',
+                    flexDirection: 'column',
+                    p: 1,
+                    m: 1,
+                    borderRadius: 10,
+                }}
+            >
+                <Button
+                    sx={{
+                        outline: 'outset',
+                        width: 70,
+                        padding: 2,
+                        marginBottom: 2
+                    }}
+                    size="small" onClick={(e) => alertPopup(e)}>Register</Button>
+            </CardActions>
+        </div>
+    } else {
+         displayRegister = "Registered"
+    }
+    console.log(displayRegister)
+
     const alertPopup = async (e) => {
         e.preventDefault();
         const uid = localStorage.getItem("user-login");
@@ -47,7 +84,6 @@ export default function EventCard(props) {
                         className="mycard-img"
                     />
                 </div>
-
                 <div>
                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                         <CardContent>
@@ -64,25 +100,7 @@ export default function EventCard(props) {
                                 {props.eventData.description}
                             </Typography>
                         </CardContent>
-                        <CardActions
-                            sx={{
-                                display: 'flex',
-                                alignContent: 'space-around',
-                                flexDirection: 'column',
-                                p: 1,
-                                m: 1,
-                                borderRadius: 10,
-                            }}
-                        >
-                            <Button
-                                sx={{
-                                    outline: 'outset',
-                                    width: 70,
-                                    padding: 2,
-                                    marginBottom: 2
-                                }}
-                                size="small" onClick={(e) => alertPopup(e)}>Register</Button>
-                        </CardActions>
+                        {displayRegister}
                     </Box>
                 </div>
             </Card >

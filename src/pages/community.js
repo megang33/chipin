@@ -11,6 +11,7 @@ const GroupCard = (props) => {
   const [image, setImage] = useState()
 
   const leaveGroup = async (user, group) => {
+    const groupName = await getDocInfo("groups", group, "name")
     const numGroups = await getDocInfo("users", user, "numGroups")
     const groupsArray = await getDocInfo("users", user, "groups")
     const numUsers = await getDocInfo("groups", group, "numMembers")
@@ -28,6 +29,7 @@ const GroupCard = (props) => {
 
     updateDBdoc("users", user, userBody);
     updateDBdoc("groups", group, groupBody);
+    alert("Sucessfully left " + groupName)
   }
 
   const getCumHours = async (group) => {
@@ -71,31 +73,19 @@ const GroupCard = (props) => {
   }
 
   const getEvents = async () => {
-    console.log(props.id)
     const events = await getDocInfo("groups", props.id, "currentEvents")
-    console.log(events)
+    let oid = await getDocInfo("groups", localStorage.getItem("user-login"), "oid")
+    if (typeof(oid) === 'undefined'){
+      oid = null
+    }
     const eventMap = []
     for (var i = 0; i < events.length; i++) {
       const data = await getDocData("events", events[i]);
-      const eventInfo = {
-        id: events[i],
-        eventName: data.eventName,
-        date: data.date,
-        capacity: data.capacity,
-        description: data.description,
-        registered: data.registered,
-        location: data.location,
-        email: data.email,
-        timeStart: data.timeStart,
-        timeEnd: data.timeEnd,
-        banner: data.banner,
-        phone: data.phone
-      }
-      eventMap[i] = eventInfo;
+      eventMap[i] = data;
     }
 
     return eventMap.map((event) => {
-      return <div><EventCard eventData={event}></EventCard></div>
+      return <div><EventCard eventData={event} oid={oid}></EventCard></div>
     });
 
   }
@@ -119,7 +109,6 @@ const GroupCard = (props) => {
               <p>Collective Hours: {hours}</p>
             </div>
             <div className='group-details-buttons'>
-              <button className='forward-button'>Edit</button>
               <button className='forward-button' onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
               {canDeleteGroup}
             </div>
@@ -235,18 +224,20 @@ const Community = (props) => {
   const [groupCode, setCode] = useState();
   const [display, setDisplay] = useState(front);
 
-  const joinGroup = (uid, e) => {
+  const joinGroup = async (uid, e) => {
     e.preventDefault();
     const success = updateGroup(uid, groupCode)
     if (success)
       props.updateInfo(props.uid);
+    const name = await getDocInfo("groups", groupCode, "name")
+    alert("Succcessfully joined " + name + "! Reload to show your groups.")
   }
 
-  const handleSubmit = (uid, name, desc, link, purpose, e) => {
+  const handleSubmit = async (uid, name, desc, link, purpose, e) => {
     e.preventDefault();
     console.log(uid + " " + name + " " + desc + " " + link + " " + purpose)
     initializeGroup(uid, name, desc, link, purpose)
-    setDisplay(front);
+    alert("Succcessfully created group: " + name + "! Reload to update.")
   }
 
   const createGroup = async () => {

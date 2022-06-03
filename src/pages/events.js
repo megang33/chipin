@@ -28,8 +28,11 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
       'address': doc.data().location,
       'banner': doc.data().banner,
       'hours': doc.data().hours,
+      'registered': doc.data().registered,
       'timeStart': doc.data().timeStart,
       'timeEnd': doc.data().timeEnd,
+      'hasEventStarted' : doc.data().hasEventStarted,
+      'hasEventEnded' : doc.data().hasEventEnded
     }
     eventMap[doc.data().eventName] = fields;
     //console.log("event obj:", eventMap[doc.data().eventName])
@@ -42,17 +45,21 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
 // Implement using time-based API? Note: more complicated, will require more research
 export const initiateEvent = async (eid) => {
   const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
+  if (hasEventEnded){
+    return
+  }
   const eventDate = await getDocInfo("events", eid, "date");
   const startTime = await getDocInfo("events", eid, "timeStart")
 
   const ctime = new Date();
   var currentDate = new Date(Date.UTC(ctime.getFullYear(), ctime.getMonth(), ctime.getDate(), ctime.getTimezoneOffset() / 60 + ctime.getHours(), ctime.getMinutes(), ctime.getSeconds()))
 
-  const yymmdd = eventDate.split('-')
-  const st = startTime.split(':')
+  const yymmdd = await eventDate.split('-')
+  const st = await startTime.split(':')
   var eventStart = new Date(Date.UTC(Number(yymmdd[0]), Number(yymmdd[1]) - 1, Number(yymmdd[2]), ctime.getTimezoneOffset() / 60 + Number(st[0]), Number(st[1]), 0))
 
   if (eventStart <= currentDate && hasEventEnded != true) {
+    console.log("event initiated")
     updateDBdoc("events", eid, { hasEventStarted: true })
   }
 }
@@ -61,11 +68,12 @@ export const isActive = async (eid) => {
   return await getDocInfo("events", eid, "hasEventStarted")
 }
 
-export const endEvent = async (uid, eid) => {
+export const endEvent = async (eid) => {
   const hasEventEnded = await getDocInfo("events", eid, "hasEventEnded")
   const eventDate = await getDocInfo("events", eid, "date");
   const endTime = await getDocInfo("events", eid, "timeEnd")
-
+  const registered = await getDocInfo("events", eid, "registered")
+  const organizer = await getDocInfo("events", eid, "organizer")
   const ctime = new Date();
   var currentDate = new Date(Date.UTC(ctime.getFullYear(), ctime.getMonth(), ctime.getDate(), ctime.getTimezoneOffset() / 60 + ctime.getHours(), ctime.getMinutes(), ctime.getSeconds()))
 
@@ -76,13 +84,20 @@ export const endEvent = async (uid, eid) => {
     const updateEvent = {
       hasEventEnded: true,
     }
-    const updateUser = {
-      currentEvents: arrayRemove(eid),
-      pastEvents: arrayUnion(eid),
-      eventsCompleted: await getDocInfo("users", uid, "eventsCompleted") + 1,
+    registered.map(async (user) => {
+      const updateUser = {
+        currentEvents: arrayRemove(eid),
+        pastEvents: arrayUnion(eid),
+        eventsCompleted: await getDocInfo("users", user, "eventsCompleted") + 1,
+      }
+      updateDBdoc("users", user, updateUser)
+    })
+    const updateOrg = {
+      events: arrayUnion(eid),
+      upcomingEvents: arrayRemove(eid)
     }
+    updateDBdoc("organizations", organizer, updateOrg)
     updateDBdoc("events", eid, updateEvent)
-    updateDBdoc("users", uid, updateUser)
   }
 }
 
@@ -211,7 +226,7 @@ class Events extends React.Component {
     let uid = localStorage.getItem("user-login");
     let zc = await getDocInfo("users", uid, "zipcode")
     this.setState({
-      zipcode: zc
+      zipcode: zc,
     })
   }
 
@@ -231,7 +246,7 @@ class Events extends React.Component {
   }
 
   render() {
-    const elnull = this.state.zipcode ? <EventList suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} zc={this.state.zipcode} searchInfo={this.state.autocomplete_list} /> : <h2>List loading...</h2>
+    const elnull = this.state.zipcode ? <EventList uid={localStorage.getItem("user-login")} suggestions={suggestions} eventMap={eventMap} register={registerToEvent} handleCardClick={this.handleCardClick} zc={this.state.zipcode} searchInfo={this.state.autocomplete_list} /> : <h2>List loading...</h2>
     console.log("eventszc: ", this.state.zipcode);
     const zcnull = this.state.zipcode ? <MyMap zipcode={this.state.zipcode} recenter={this.state.recenter} eventDict={eventMap} eventNames={suggestions} /> : <h2>Map loading..</h2>;
     return (

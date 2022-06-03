@@ -1,7 +1,7 @@
 import React from 'react'
 import { addDBdoc, getDocInfo, updateDBdoc } from '../utils/firebase.js';
 import '../index.css';
-import { arrayRemove, arrayUnion } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, getDoc } from 'firebase/firestore';
 
 export default class MiscDetails extends React.Component {
     submit = async (e) => {
@@ -12,6 +12,7 @@ export default class MiscDetails extends React.Component {
         //last step should redirect to landing page or events page?
         console.log(values)
         const body = {
+            organizer: this.props.oid,
             eventName: values.eventName,
             date: values.date,
             capacity: values.capacity,
@@ -26,9 +27,10 @@ export default class MiscDetails extends React.Component {
             hasEventEnded: values.hasEventEnded,
             registered: []
         }
+        console.log("added event")
         const eventID = await addDBdoc("events", body);
-        updateDBdoc("organizations", this.props.oid, { events: arrayUnion(eventID), upcomingEvents: arrayUnion(eventID), 
-            numEvent: await getDocInfo("organizations", this.props.oid, "numEvents") + 1,})
+        const numEvent = await getDocInfo("organizations", this.props.oid, "numEvents") + 1
+        updateDBdoc("organizations", this.props.oid, { events: arrayUnion(eventID), upcomingEvents: arrayUnion(eventID), numEvent: numEvent })
         window.location = "/my-events";
     }
 

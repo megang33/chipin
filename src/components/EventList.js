@@ -11,7 +11,6 @@ import { getDocInfo } from "../utils/firebase.js";
 
 const EventList = (props) => {
     const [orderedSuggestions, setOrderedSuggestions] = useState([])
-
     React.useEffect(() => {
 
         const setUp = async () => {
@@ -36,7 +35,7 @@ const EventList = (props) => {
                 return (
                     <div>
                         <MyCard style={{ marginRight: 5, marginTop: 2 }} eventName={name} eventMap={props.eventMap}
-                            suggestions={list} register={props.register} handleCardClick={props.handleCardClick} />
+                            uid={props.uid} suggestions={list} register={props.register} handleCardClick={props.handleCardClick} />
                     </div>
                 )
             })

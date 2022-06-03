@@ -29,7 +29,6 @@ const NavBar = (props) => {
           <Link to="/" className='logo-link'><img className='logo' src={require('./logo.png')} alt="ChipIn Logo" /></Link>
         </div>
         <div className='links'>
-          <Link to="/community" className='nav-item'>Community</Link>
           <Link to="/timeline" className='nav-item'>Timeline</Link>
           <Link to="/event-creation" className='nav-item'>Make an Event</Link>
           <Link to="/my-events" className='nav-item'>My Events</Link>

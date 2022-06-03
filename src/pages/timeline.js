@@ -91,14 +91,14 @@ export default class TimeLine extends React.Component {
             let pastEvents = await getDocInfo("users", id, "eventsCompleted")
             let current = await getDocInfo("users", id, "currentEvents")
             let past = await getDocInfo("users", id, "pastEvents")
-
             let pastArray = []
             for (var i = 0; i < past.length; i++) {
                 const eventInfo = await getDocData("events", past[i])
                 pastArray[i] = eventInfo;
             }
             let allEventsDisplay = pastArray.map((card) => {
-                return <div><EventCard eventData={card}></EventCard></div>
+                console.log(card)
+                return <div><EventCard eventData={card} oid={null}></EventCard></div>
             })
 
             let currentArray = []
@@ -107,7 +107,7 @@ export default class TimeLine extends React.Component {
                 currentArray[i] = eventInfo;
             }
             let futureEventsDisplay = currentArray.map((card) => {
-                return <div><EventCard eventData={card}></EventCard></div>
+                return <div><EventCard eventData={card} oid={null}></EventCard></div>
             })
 
             this.setState({
@@ -131,7 +131,7 @@ export default class TimeLine extends React.Component {
                 eventsArray[i] = eventInfo;
             }
             let allEventsDisplay = eventsArray.map((card) => {
-                return <div><EventCard eventData={card}></EventCard></div>
+                return <div><EventCard eventData={card} oid={card.oid}></EventCard></div>
             })
 
             let upcomingEventsArray = []
@@ -140,7 +140,7 @@ export default class TimeLine extends React.Component {
                 upcomingEventsArray[i] = eventInfo;
             }
             let futureEventsDisplay = upcomingEventsArray.map((card) => {
-                return <div><EventCard eventData={card}></EventCard></div>
+                return <div><EventCard eventData={card} oid={card.oid}></EventCard></div>
             })
 
             this.setState({
