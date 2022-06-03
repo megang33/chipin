@@ -5,6 +5,7 @@ import EventCard from '../components/eventcard';
 import "./timeline.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import MyCard from '../components/MyCard';
 
 const StatsBar = (props) => {
     if (props.role) {
@@ -250,14 +251,22 @@ export default class TimeLine extends React.Component {
                         <div>
                             <p style={{ position: "absolute", left: "80px", top: "145px" }}>What's new with your groups</p>
                         </div>
-                        <div>
-                            {all}
-                            { this.state.allEventsDisplay }
+                        <div style={{ display: "flex", alignContent: "center" }}>
+                            <div className='user-events-container'>
+                                <div style={{ marginRight: "10px" }}>
+                                    {/* {all}
+                                    { this.state.allEventsDisplay } */}
+                                    {future}
+                                    { this.state.futureEventsDisplay }
+                                </div>
+                                <div style={{ marginLeft: "10px" }}>
+                                    {future}
+                                    { this.state.futureEventsDisplay }
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            {future}
-                            { this.state.futureEventsDisplay }
-                        </div>
+                        
+                        
                     </div>
                 </div>
             </div>
