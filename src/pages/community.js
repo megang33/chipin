@@ -217,8 +217,7 @@ class GroupBar extends React.Component {
 
 const Community = (props) => {
   const front = <div style={{ marginLeft: "5%" }}>
-    <h1>Welcome to your Community Page!</h1>
-    <h2>Use the group bar to navigate between groups!</h2>
+    <h2>Use the group bar to navigate between groups</h2>
   </div>
 
   const [groupCode, setCode] = useState();
@@ -288,7 +287,7 @@ const Community = (props) => {
 
   return (
     <div>
-      <h3>Welcome to your community.</h3>
+      <h1 style={{marginLeft: '2.5%'}}>Welcome to your community!</h1>
       <div className='group-create-bar'>
         <form onSubmit={(e) => joinGroup(props.uid, e)} style={{ display: "flex" }}>
           <input style={{ marginLeft: "-60px", width: "200px" }} className='input-field' id='create-group-input' name="input" type="text" placeholder='group code' onChange={(e) => setCode(e.target.value)} ></input>

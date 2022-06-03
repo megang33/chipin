@@ -166,12 +166,12 @@ export default class TimeLine extends React.Component {
                     upcomingEvents={this.state.upcomingEvents}></StatsBar>
                     <div>
                         <div style={{ display: "flex", flexDirection: "row" }}>
-                            <h1 className='internal-header' id='community-head'>Community</h1>
-                            <FontAwesomeIcon icon={faUser} style={{ position: "absolute", left: "257px", top: "142px" }}/>
-                            <FontAwesomeIcon icon={faUser} style={{ position: "absolute", left: "268px", top: "142px" }}/>
+                            <h1 className='internal-header' id='community-head'>Communities</h1>
+                            <FontAwesomeIcon icon={faUser} style={{ position: "absolute", left: "287px", top: "142px" }}/>
+                            <FontAwesomeIcon icon={faUser} style={{ position: "absolute", left: "298px", top: "142px" }}/>
                         </div>
                         <div>
-                            <p style={{ position: "absolute", left: "80px", top: "145px" }}>What's new with your groups</p>
+                            <p style={{ position: "absolute", left: "80px", top: "145px" }}>Your involvements in service</p>
                         </div>
                         <div style={{ display: "flex", alignContent: "center" }}>
                             <div className='user-events-container'>

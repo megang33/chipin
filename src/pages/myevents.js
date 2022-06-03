@@ -11,14 +11,14 @@ import { display } from '@mui/system';
 const MyEventCard = (props) => {
     const [display, setDisplay] = useState(
         <div style={{ width: "80%", paddingBottom: "15px" }}>
-            <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails(false)}>event details</button>
+            <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails(false)}>Event Details</button>
         </div>
     )
     async function displayDetails(moreDetails){
         if (moreDetails){
             setDisplay(
                 <div style={{ width: "80%", paddingBottom: "15px" }}>
-                    <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails()}>event details</button>
+                    <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails()}>Event Details</button>
                 </div>
             )
         } else {
@@ -31,7 +31,7 @@ const MyEventCard = (props) => {
                         <b>Phone: </b>{props.phone} | <b>Email: </b>{props.email}
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", width: "100%", alignItems: "center", paddingTop: "15px", paddingBottom: "15px" }}>
-                        <button className='close-button' onClick={() => {displayDetails(true)}}>close</button>
+                        <button className='close-button' onClick={() => {displayDetails(true)}}>Close</button>
                     </div>
                 </div>
             )
@@ -52,7 +52,15 @@ const MyEventCard = (props) => {
                 <div style={{ marginTop: "20px" }}>
                     <div className='myevent-buttons-container'>
                         {display}
-                        <button className='myevent-button' id='delete-myevent' onClick={() => {deleteEvent(props.oid, props.eid)}}>delete</button>
+                        <button
+                        className='myevent-button'
+                        id='delete-myevent'
+                        onClick={() => {
+                            deleteEvent(props.oid, props.eid)
+                            alert('You have deleted the event. Please refresh.')
+                        }}>
+                        Delete
+                        </button>
                     </div>
                 </div>
             </div>

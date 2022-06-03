@@ -47,7 +47,7 @@ export default function EventCard(props) {
             </CardActions>
         </div>
     } else {
-         displayRegister = "Registered"
+         displayRegister = ""
     }
     console.log(displayRegister)
 
@@ -96,15 +96,15 @@ export default function EventCard(props) {
                             <Typography variant="body2" color="black" maxWidth={400}>
                                 <b>Location: </b>{props.eventData.location}
                             </Typography>
-                            <Typography variant="body2" color="black" maxWidth={400}>
+                            <Typography paddingTop="10px" variant="body2" color="text.secondary" maxWidth={400}>
                                 {props.eventData.description}
                             </Typography>
                         </CardContent>
                         {displayRegister}
                     </Box>
                 </div>
-            </Card >
-        </div >
+            </Card>
+        </div>
     );
 
 }
