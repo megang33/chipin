@@ -93,6 +93,7 @@ export default class EventCreation extends React.Component {
             case 3:
                 return (
                     <Confirmation
+                        style={{ overflowY: "scroll" }}
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         values={values}

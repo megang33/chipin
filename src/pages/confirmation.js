@@ -43,7 +43,7 @@ export default class MiscDetails extends React.Component {
         //contacts, banner, address
         //banner doesn't work
         return (
-            <div>
+            <div style={{ overflowY: "scroll" }}>
                 <h1 style={{ textAlign: "center", marginBottom: "-50px" }}>Confirmation Details</h1>
                 <div className='conf-round-rect'>
                     <ul className='conf-list'>
