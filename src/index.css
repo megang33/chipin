@@ -174,13 +174,13 @@ form {
   height: 100%;
   flex-basis: 100%;
   flex-grow: 1;
-  background-color: #D9BFB1;
+  background-color: #a4b5ce;
   padding-top: 5px;
   padding-bottom: 50px;
 }
 
 .group-bar-contain {
-  background-color: #D9BFB1;
+  background-color: #a4b5ce;
   position: absolute;
   right: 0px;
   height: 100%;
@@ -506,11 +506,11 @@ form {
   height: 100%;
   flex-basis: 100%;
   flex-grow: 1;
-  background-color: #D9BFB1;
+  background-color: #a4b5ce;
 }
 
 .group-bar-contain {
-  background-color: #D9BFB1;
+  background-color: #a4b5ce;
   position: absolute;
   right: 10px;
   height: 100%;
@@ -532,6 +532,11 @@ form {
 
 .event-bar-inner {
   top: 0px;
+}
+
+.eventcard-details {
+  position: relative;
+  width: 70%;
 }
 
 .group-card-container {
