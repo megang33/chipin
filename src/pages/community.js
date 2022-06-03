@@ -73,7 +73,8 @@ const GroupCard = (props) => {
   }
 
   const getEvents = async () => {
-    const events = await getDocInfo("groups", props.id, "currentEvents")
+    const founder = await getDocInfo("groups", props.id, "founder")
+    const events = await getDocInfo("users", founder, "currentEvents")
     let oid = await getDocInfo("groups", localStorage.getItem("user-login"), "oid")
     if (typeof(oid) === 'undefined'){
       oid = null
@@ -81,11 +82,10 @@ const GroupCard = (props) => {
     const eventMap = []
     for (var i = 0; i < events.length; i++) {
       const data = await getDocData("events", events[i]);
-      eventMap[i] = data;
+      eventMap[i] = [data, events[i]]
     }
-
     return eventMap.map((event) => {
-      return <div><EventCard eventData={event} oid={oid}></EventCard></div>
+      return <div><EventCard eventData={event[0]} eid={event[1]} oid={oid}></EventCard></div>
     });
 
   }
@@ -103,14 +103,15 @@ const GroupCard = (props) => {
         </div>
 
         <div className='group-info-round-rect'>
-          <div style={{ width: "700px" }}>
-            <div style={{ position: "relative", top: "5%", left: "10%" }}>
+          <div className='group-details-left'>
+            <div style={{ position: "relative", top: "30px", left: "10%", paddingBottom: "30px" }}>
               <p>Group code: {props.id}</p>
               <p>Collective Hours: {hours}</p>
             </div>
+
             <div className='group-details-buttons'>
               <button className='forward-button' onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
-              {canDeleteGroup}
+              <div>{canDeleteGroup}</div>
             </div>
 
             <div style={{ paddingLeft: "10%" }}>
@@ -120,19 +121,20 @@ const GroupCard = (props) => {
 
             <div style={{ paddingLeft: "10%" }}>
               <h2>Events</h2>
-              <div className='scroll-container'>
+              <div>
                 {eventCards}
               </div>
             </div>
           </div>
-        </div>
 
-        <div className='group-info-member-list'>
-          <h2>Member List</h2>
-          <div className='scroll-container'>
-            {members}
+          <div className='group-info-member-list'>
+            <h2>Member List</h2>
+            <div className='scroll-container'>
+              {members}
+            </div>
           </div>
         </div>
+        
       </div>
     )
   }
