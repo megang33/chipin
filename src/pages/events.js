@@ -24,7 +24,7 @@ const querySnapshot = onSnapshot(q, (querySnapshot) => {
       'capacity': doc.data().capacity,
       'description': doc.data().description,
       'email': doc.data().email,
-      'phone': doc.data().phone_number,
+      'phone': doc.data().phoneNumber,
       'address': doc.data().location,
       'banner': doc.data().banner,
       'hours': doc.data().hours,
