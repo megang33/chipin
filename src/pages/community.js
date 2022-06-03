@@ -104,7 +104,7 @@ const GroupCard = (props) => {
         </div>
 
         <div className='group-info-round-rect'>
-          <div style={{ width: "700px" }}>
+          <div className='group-details-left'>
             <div style={{ position: "relative", top: "30px", left: "10%", paddingBottom: "30px" }}>
               <p>Group code: {props.id}</p>
               <p>Collective Hours: {hours}</p>

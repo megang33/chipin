@@ -280,7 +280,12 @@ form {
   flex-direction: row;
   max-width: 280px;
   margin-left: 69px;
-  
+}
+
+.group-details-left {
+  width: 70%;
+  height: 44.1%;
+  overflow-y: scroll;
 }
 
 .group-info-round-rect {
