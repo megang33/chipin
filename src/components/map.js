@@ -21,7 +21,6 @@ function MyMap(props) {
   const [center, changeCenter] = useState();
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
-
   useEffect(() => {
     console.log('props', props.recenter)
     if (props.recenter === null) {
@@ -31,7 +30,7 @@ function MyMap(props) {
     Geocode.fromAddress(props.eventDict[props.recenter].address).then(
       (response) => {
         const {lat, lng} = response.results[0].geometry.location;
-        map.panTo({lat: lat, lng: lng})
+        map.panTo({lat: lat, lng: lng});
       },
       (error) => {console.error(error)}
     )
@@ -56,6 +55,7 @@ function MyMap(props) {
             lng: lng,
             key: idx,
             name: eventName,
+            location: props.eventDict[eventName].address
           }])
         },
         (error) => {console.error(error)}
@@ -117,8 +117,8 @@ function MyMap(props) {
                 >
                   <div className='info-window'>
                     <div style={{padding: '5px', paddingRight: '15px', marginTop: '-10px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                      <h3>Event  Name</h3>
-                      <p style={{marginTop: '-5px'}}>{selected.name}</p>
+                      <h3>{selected.name}</h3>
+                      <p style={{marginTop: '-5px'}}>{selected.location}</p>
                     </div>
                   </div>
                 </InfoWindow>) : null}

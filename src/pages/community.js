@@ -88,7 +88,8 @@ const GroupCard = (props) => {
         email: data.email,
         timeStart: data.timeStart,
         timeEnd: data.timeEnd,
-        banner: data.banner
+        banner: data.banner,
+        phone: data.phone
       }
       eventMap[i] = eventInfo;
     }
@@ -96,6 +97,7 @@ const GroupCard = (props) => {
     return eventMap.map((event) => {
       return <div><EventCard eventData={event}></EventCard></div>
     });
+
   }
 
   const displayInfo = async () => {
