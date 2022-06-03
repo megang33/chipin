@@ -443,17 +443,17 @@ form {
   color: #999;
   padding: 0.5rem;
   position: absolute;
-  top: 17.5%;
+  top: 16.5%;
   left: 1%;
   z-index: 10;
 }
 
 .suggestions {
   position: absolute;
-  top: 17.5%;
+  top: 17.3%;
   left: 1%;
   border: 2px solid #999;
-  background-color: #D9BFB1;
+  background-color: #D2D2D2;
   border-top-width: 0;
   border-radius: 10px;
   list-style: none;
@@ -471,8 +471,8 @@ form {
 
 .suggestion-active,
 .suggestions li:hover {
-  background-color: #008f68;
-  color: #fae042;
+  background-color: #698bbe;
+  color: whitesmoke;
   cursor: pointer;
   font-weight: 700;
 }
@@ -520,7 +520,7 @@ form {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #D9BFB1;
+  background-color: #a4b5ce;
   position: absolute;
   right: 0px;
   height: 100%;
