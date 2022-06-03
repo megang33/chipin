@@ -66,7 +66,7 @@ export default function EventCard(props) {
                 width: 450,
                 maxHeight: 600,
                 boxShadow: 2,
-                backgroundColor: "none",
+                backgroundColor: "#D2D2D2",
                 borderRadius: 3,
                 display: 'flex',
                 display: 'inline-flex',

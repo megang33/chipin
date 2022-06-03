@@ -16,14 +16,14 @@ const StatsBar = (props) => {
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "5.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.numHours < 10) ? "0": ""}{ props.numHours }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>hours completed</div>
+                        <div className='unit-text' style={{ left: "2%" }}>Hours Completed</div>
                     </div>
                     <div className='solid-rect' style={{ left: "5%" }}/>
                 </div>
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "30.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.pastEvents < 10) ? "0": ""}{ props.pastEvents }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>events attended</div>
+                        <div className='unit-text' style={{ left: "2%" }}>Events Attended</div>
                     </div>
                     <div className='solid-rect' style={{ left: "30%" }}/>
                 </div>
@@ -42,14 +42,14 @@ const StatsBar = (props) => {
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "5.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.numEvents < 10) ? "0": ""}{ props.numEvents }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>events created</div>
+                        <div className='unit-text' style={{ left: "2%" }}>Events Created</div>
                     </div>
                     <div className='solid-rect' style={{ left: "5%" }}/>
                 </div>
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "30.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.upcomingEvents < 10) ? "0": ""}{ props.upcomingEvents }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>upcoming events</div>
+                        <div className='unit-text' style={{ left: "2%" }}>Upcoming Events</div>
                     </div>
                     <div className='solid-rect' style={{ left: "30%" }}/>
                 </div>
