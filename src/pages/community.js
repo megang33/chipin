@@ -82,11 +82,10 @@ const GroupCard = (props) => {
     const eventMap = []
     for (var i = 0; i < events.length; i++) {
       const data = await getDocData("events", events[i]);
-      eventMap[i] = data;
+      eventMap[i] = [data, events[i]]
     }
-
     return eventMap.map((event) => {
-      return <div><EventCard eventData={event} oid={oid}></EventCard></div>
+      return <div><EventCard eventData={event[0]} eid={event[1]} oid={oid}></EventCard></div>
     });
 
   }

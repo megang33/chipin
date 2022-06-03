@@ -299,6 +299,7 @@ form {
 
 .scroll-container {
   overflow-y: scroll;
+  height: 285px;
 }
 
 /* Event Details */

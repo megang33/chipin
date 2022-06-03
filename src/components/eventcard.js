@@ -53,8 +53,9 @@ export default function EventCard(props) {
 
     const alertPopup = async (e) => {
         e.preventDefault();
+        console.log("adding to the events")
         const uid = localStorage.getItem("user-login");
-        await registerToEvent(uid, props.eventData.id);
+        await registerToEvent(uid, props.eid);
         const content = "Succssfully registered for " + props.eventData.eventName + ". Navigate to your timeline to see your upcoming events!";
         alert(content);
     }
