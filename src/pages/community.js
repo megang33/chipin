@@ -73,7 +73,8 @@ const GroupCard = (props) => {
   }
 
   const getEvents = async () => {
-    const events = await getDocInfo("groups", props.id, "currentEvents")
+    const founder = await getDocInfo("groups", props.id, "founder")
+    const events = await getDocInfo("users", founder, "currentEvents")
     let oid = await getDocInfo("groups", localStorage.getItem("user-login"), "oid")
     if (typeof(oid) === 'undefined'){
       oid = null
@@ -121,7 +122,7 @@ const GroupCard = (props) => {
 
             <div style={{ paddingLeft: "10%" }}>
               <h2>Events</h2>
-              <div className='scroll-container'>
+              <div>
                 {eventCards}
               </div>
             </div>
