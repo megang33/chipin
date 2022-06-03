@@ -255,9 +255,8 @@ form {
 }
 
 .group-info-member-list {
-  margin-top: 95px;
+  margin-top: 20px;
   /* float: right; */
-  margin-left: 500px;
 }
 
 .group-create-bar {
@@ -276,13 +275,17 @@ form {
 }
 
 .group-details-buttons {
+  /* background-color: black; */
   display: flex;
   flex-direction: row;
-  width: 70%;
-  margin-left: -100px;
+  max-width: 280px;
+  margin-left: 69px;
+  
 }
 
 .group-info-round-rect {
+  display: flex;
+  flex-direction: row;
   box-sizing: border-box;
   width: 70%;
   height: 150%;
