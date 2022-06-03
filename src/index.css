@@ -564,3 +564,8 @@ form {
   border: 15px solid #7B7B7B;
   border-radius: 104px;
 }
+
+.conf-inner {
+  height: 50%;
+  overflow-y: scroll;
+}

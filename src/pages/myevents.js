@@ -11,17 +11,17 @@ import { display } from '@mui/system';
 const MyEventCard = (props) => {
     const [display, setDisplay] = useState(
         <div style={{ width: "80%", paddingBottom: "15px" }}>
-                            <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails(false)}>event details</button>
+            <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails(false)}>event details</button>
         </div>
     )
     async function displayDetails(moreDetails){
         if (moreDetails){
             setDisplay(
                 <div style={{ width: "80%", paddingBottom: "15px" }}>
-                            <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails()}>event details</button>
+                    <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails()}>event details</button>
                 </div>
             )
-        }else{
+        } else {
             setDisplay(
                 <div>
                     <div>
@@ -76,7 +76,7 @@ export default function MyEvents(props) {
             const email = await getDocInfo("events", events[i], "email")
             const date = await getDocInfo("events", events[i], "date")
             const capacity = await getDocInfo("events", events[i], "capacity")
-            store[i] = <div><MyEventCard oid = {oid} eid = {events[i]} img = {img} title = {title} desc = {desc}
+            store[i] = <div className='test'><MyEventCard oid = {oid} eid = {events[i]} img = {img} title = {title} desc = {desc}
             timeStart={timeStart} timeEnd={timeEnd} phone={phone} email={email} date={date} capacity={capacity}></MyEventCard></div>
         }
         setList(store)
