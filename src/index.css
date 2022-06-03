@@ -96,50 +96,6 @@ form {
 
 /* Timeline page */
 
-/* position: absolute;
-  width: 84%;
-  height: 110%;
-  left: 8%;
-  top: 200px;
-  padding-bottom: 20px;
-
-  border: 15px solid #7F867B;
-  border-radius: 104px;
-} */
-
-/* Community GroupsBar
-
-.groupsHeader {
-  flex-grow: 1;   
-}
-
-.groups {
-  margin-right: 10%;
-  flex-grow: 1;
-  background-color: lightgrey;
-  max-height: 600px;
-  width: 300px;
-  overflow-y: scroll;
-  max-width: 400px;
-}
-
-.stats-wrapper {
-  position: relative;
-}
-
-.big-num {
-  position: absolute;
-  top: -12px;
-  z-index: 2;
-}
-
-.unit-text {
-  position: absolute;
-  top: 69px;
-  width: 130px;
-  z-index: 2;
-} */
-
 .solid-rect {
   position: absolute;
   width: 18%;
