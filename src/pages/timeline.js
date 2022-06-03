@@ -6,6 +6,7 @@ import { getDocData } from '../utils/firebase';
 import "./timeline.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLocationDot, faPhone, faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import MyCard from '../components/MyCard';
 import { getDoc } from 'firebase/firestore';
 
 const StatsBar = (props) => {
@@ -15,7 +16,7 @@ const StatsBar = (props) => {
                 <div className='stats-wrapper'>
                     <div className='big-num' style={{ left: "5.5%" }}>
                         <p style={{ fontSize: "50px", lineHeight: "0.7" }}>{ (props.numHours < 10) ? "0": ""}{ props.numHours }</p>
-                        <div className='unit-text' style={{ left: "2%" }}>hrs completed</div>
+                        <div className='unit-text' style={{ left: "2%" }}>hours completed</div>
                     </div>
                     <div className='solid-rect' style={{ left: "5%" }}/>
                 </div>
@@ -172,14 +173,25 @@ export default class TimeLine extends React.Component {
                         <div>
                             <p style={{ position: "absolute", left: "80px", top: "145px" }}>What's new with your groups</p>
                         </div>
-                        <div>
-                            {all}
-                            { this.state.allEventsDisplay }
+                        <div style={{ display: "flex", alignContent: "center" }}>
+                            <div className='user-events-container'>
+                                <div style={{ marginRight: "30px" }}>
+                                    <div style={{ marginLeft: "180px", marginBottom: "20px" }}><b>{all}</b></div>
+                                    <div className='card-scroll'>
+                                        { this.state.allEventsDisplay }
+                                    </div>
+                                </div>
+                                <div style={{ marginLeft: "30px" }}>
+                                    <div style={{ marginLeft: "160px", marginBottom: "20px" }}><b>{future}</b></div>
+                                    <div className='card-scroll'>
+                                        { this.state.futureEventsDisplay }
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            {future}
-                            { this.state.futureEventsDisplay }
-                        </div>
+                        
+                        
                     </div>
                 </div>
             </div>

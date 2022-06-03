@@ -11,28 +11,27 @@ import { display } from '@mui/system';
 const MyEventCard = (props) => {
     const [display, setDisplay] = useState(
         <div style={{ width: "80%", paddingBottom: "15px" }}>
-                            <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails(false)}>event details</button>
+            <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails(false)}>event details</button>
         </div>
     )
     async function displayDetails(moreDetails){
         if (moreDetails){
             setDisplay(
                 <div style={{ width: "80%", paddingBottom: "15px" }}>
-                            <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails()}>event details</button>
+                    <button className='myevent-button' id='manage-attendees' onClick={() => displayDetails()}>event details</button>
                 </div>
             )
-        }else{
+        } else {
             setDisplay(
                 <div>
                     <div>
-                        date: {props.date} | Start: {props.startTime} | End: {props.endTime}| capacity: {props.capacity}
+                        <b>Date: </b>{props.date} | <b>Start: </b>{props.timeStart} <b>End: </b>{props.timeEnd} | <b>Capacity: </b>{props.capacity}
                     </div>
                     <div>
-                        phone: {props.phone}
-                        email: {props.email}
+                        <b>Phone: </b>{props.phone} | <b>Email: </b>{props.email}
                     </div>
-                    <div>
-                        <button onClick={() => {displayDetails(true)}}>close</button>
+                    <div style={{ display: "flex", flexDirection: "column", width: "100%", alignItems: "center", paddingTop: "15px", paddingBottom: "15px" }}>
+                        <button className='close-button' onClick={() => {displayDetails(true)}}>close</button>
                     </div>
                 </div>
             )
@@ -77,7 +76,7 @@ export default function MyEvents(props) {
             const email = await getDocInfo("events", events[i], "email")
             const date = await getDocInfo("events", events[i], "date")
             const capacity = await getDocInfo("events", events[i], "capacity")
-            store[i] = <div><MyEventCard oid = {oid} eid = {events[i]} img = {img} title = {title} desc = {desc}
+            store[i] = <div className='test'><MyEventCard oid = {oid} eid = {events[i]} img = {img} title = {title} desc = {desc}
             timeStart={timeStart} timeEnd={timeEnd} phone={phone} email={email} date={date} capacity={capacity}></MyEventCard></div>
         }
         setList(store)

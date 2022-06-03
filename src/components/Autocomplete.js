@@ -3,13 +3,13 @@ import '../index.css'
 import PropTypes from "prop-types";
 
 class Autocomplete extends Component {
-    static propTypes = {
-        suggestions: PropTypes.instanceOf(Array)
-    };
+    // static propTypes = {
+    //     suggestions: PropTypes.instanceOf(Array)
+    // };
 
-    static defaultProps = {
-        suggestions: []
-    };
+    // static defaultProps = {
+    //     suggestions: []
+    // };
 
     constructor(props) {
         super(props);

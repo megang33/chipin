@@ -31,10 +31,6 @@ const EventList = (props) => {
                 list1 = list
             }
 
-
-
-
-
             await setOrderedSuggestions(list1.map((name) => {
                 return (
                     <div>

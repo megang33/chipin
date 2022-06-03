@@ -48,23 +48,26 @@ export default class MiscDetails extends React.Component {
             <div>
                 <h1 style={{ textAlign: "center", marginBottom: "-50px" }}>Confirmation Details</h1>
                 <div className='conf-round-rect'>
-                    <ul className='conf-list'>
-                        <li><h1>{values.eventName}</h1></li>
-                        <li><b>Date: </b>{values.date}</li>
-                        <li><b>Capacity: </b>{values.capacity}</li>
-                        <li><b>Description: </b>{values.description}</li>
-                        <li><div>
-                            <b>Contact: </b>
-                            {values.primaryContact}, {values.secondaryContact}
-                        </div></li>
-                        
-                        <li><b>Location: </b>{values.location}</li>
-                        <li style={{ paddingTop: "20px" }}>
-                            <div><b>Image: </b></div>
-                            <img src={values.banner} width="400px" />
-                        </li>
-                    </ul>
-                    <button className='forward-button' onClick={this.submit}>submit</button>
+                    <div className='conf-inner'>
+                        <ul className='conf-list'>
+                            <li><h1>{values.eventName}</h1></li>
+                            <li><b>Date: </b>{values.date}</li>
+                            <li><b>Capacity: </b>{values.capacity}</li>
+                            <li><b>Description: </b>{values.description}</li>
+                            <li><div>
+                                <b>Contact: </b>
+                                {values.primaryContact}, {values.secondaryContact}
+                            </div></li>
+                            
+                            <li><b>Location: </b>{values.location}</li>
+                            <li style={{ paddingTop: "20px" }}>
+                                <div style={{ paddingBottom: "10px" }}><b>Image</b></div>
+                                <img src={values.banner} width="400px" />
+                            </li>
+                        </ul>
+                        <button className='forward-button' onClick={this.submit}>submit</button>
+                    </div>
+                    
                 </div>
             </div>
         )

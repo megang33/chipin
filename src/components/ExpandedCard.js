@@ -30,7 +30,7 @@ export default function ExpandedCard(props, {
 
     return (
         <div style={{ paddingBottom: "10px" }}>
-            <Card sx={{ width: 250, backgroundColor: "#AEC6CF", borderRadius: 5, paddingBottom: "5px" }}>
+            <Card sx={{ width: 250, backgroundColor: "#D2D2D2", borderRadius: 5, paddingBottom: "5px" }}>
                 <CardMedia
                     component="img"
                     height="140"
@@ -45,13 +45,16 @@ export default function ExpandedCard(props, {
                         <b>Date: </b>{event.date}
                     </Typography>
                     <Typography variant="body2" color="black" className="spacing">
-                        <b>Hours: </b>{event.hours} | <b>Capacity: </b>{event.capacity}
+                        <b>Start: </b>{event.timeStart} <b>  |  End: </b>{event.timeEnd}
                     </Typography>
                     <Typography variant="body2" color="black" className="spacing">
                         <b>Phone: </b>{event.phone}
                     </Typography>
                     <Typography variant="body2" color="black" className="spacing">
                         <b>Email: </b>{event.email}
+                    </Typography>
+                    <Typography variant="body2" color="black" className="spacing">
+                        <b>Capacity: </b>{event.capacity}
                     </Typography>
                     <Typography paddingTop="10px" variant="body2" color="text.secondary" className="spacing">
                         {event.description}
