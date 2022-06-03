@@ -84,6 +84,7 @@ const GroupCard = (props) => {
       const email = await getDocInfo("events", events[i], "email")
       const timeStart = await getDocInfo("events", events[i], "timeStart")
       const timeEnd = await getDocInfo("events", events[i], "timeEnd")
+      const banner = await getDocInfo("events", events[i], "banner")
       const eventInfo = {
         id: events[i],
         eventName: eventName,
@@ -94,7 +95,8 @@ const GroupCard = (props) => {
         location: location,
         email: email,
         timeStart: timeStart,
-        timeEnd: timeEnd
+        timeEnd: timeEnd,
+        banner: banner
       }
       eventMap[i] = eventInfo;
     }
@@ -102,6 +104,7 @@ const GroupCard = (props) => {
     return eventMap.map((event) => {
       return <div><EventCard eventData={event}></EventCard></div>
     });
+
   }
 
   const displayInfo = async () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component, Fragment, useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,9 +7,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { registerToEvent } from '../pages/events.js';
+import PropTypes from "prop-types";
+import { getDocInfo } from "../utils/firebase.js";
+
+
+
 
 export default function EventCard(props) {
-
     const alertPopup = async (e) => {
         e.preventDefault();
         const uid = localStorage.getItem("user-login");
@@ -17,66 +21,75 @@ export default function EventCard(props) {
         const content = "Succssfully registered for " + props.eventData.eventName + ". Navigate to your timeline to see your upcoming events!";
         alert(content);
     }
+    console.log(props.eventData)
 
     return (
+        <div style={{ paddingBottom: "10px" }}>
+            <Card sx={{
+                width: 950,
+                maxHeight: 600,
+                boxShadow: 10,
+                backgroundColor: "#D2D2D2",
+                borderRadius: 3,
+                display: 'flex',
+                display: 'inline-flex',
+                flexDirection: 'row',
+                positon: 'absolute',
 
-        <Card sx={{
-            maxWidth: 950,
-            maxHeight: 150,
-            boxShadow: 20,
-            backgroundColor: "#FFB743",
-            borderRadius: 3,
-            display: 'flex',
-            display: 'inline-flex',
-            positon: 'absolute',
+            }}>
+                <div>
 
-        }}>
-            <div className="Centering">
+                    <CardMedia
+                        component="img"
+                        width="10"
+                        height="20"
+                        image={props.eventData.banner}
+                        alt={props.eventData.eventName}
+                        className="mycard-img"
+                    />
+                </div>
 
-                <CardMedia
-                    component="img"
-                    height="250"
-                    image={props.eventData.banner}
-                    alt={props.eventData.eventName}
-                />
-            </div>
-            <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                <div>
+                    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
 
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" color="white">
-                        {props.eventData.eventName}
-                    </Typography>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div" color="white">
+                                {props.eventData.eventName}
+                            </Typography>
 
-                    <Typography variant="body2" color="white" maxWidth={400} fontSize="5">
-                        Date/Time: {props.eventData.date} {props.eventData.timeStart}-{props.eventData.timeEnd}
-                    </Typography>
-                    <Typography variant="body2" color="white" maxWidth={400}>
-                        Location: {props.eventData.location}
-                    </Typography>
-                    <Typography variant="body2" color="white" maxWidth={400}>
-                        {props.eventData.description}
-                    </Typography>
-                </CardContent>
-                <CardActions
-                    sx={{
-                        display: 'flex',
-                        alignContent: 'space-around',
-                        flexDirection: 'column',
-                        p: 1,
-                        m: 1,
-                        borderRadius: 10,
-                    }}
-                >
-                    <Button
-                        sx={{
-                            outline: 'outset',
-                            width: 70,
-                            padding: 2,
-                            marginBottom: 2
-                        }}
-                        size="small" onClick={(e) => alertPopup(e)}>Register</Button>
-                </CardActions>
-            </Box>
-        </Card >
+                            <Typography variant="body2" color="white" maxWidth={400} fontSize="5">
+                                Date/Time: {props.eventData.date} {props.eventData.timeStart}-{props.eventData.timeEnd}
+                            </Typography>
+                            <Typography variant="body2" color="white" maxWidth={400}>
+                                Location: {props.eventData.location}
+                            </Typography>
+                            <Typography variant="body2" color="white" maxWidth={400}>
+                                {props.eventData.description}
+                            </Typography>
+                        </CardContent>
+                        <CardActions
+                            sx={{
+                                display: 'flex',
+                                alignContent: 'space-around',
+                                flexDirection: 'column',
+                                p: 1,
+                                m: 1,
+                                borderRadius: 10,
+                            }}
+                        >
+                            <Button
+                                sx={{
+                                    outline: 'outset',
+                                    width: 70,
+                                    padding: 2,
+                                    marginBottom: 2
+                                }}
+                                size="small" onClick={(e) => alertPopup(e)}>Register</Button>
+                        </CardActions>
+                    </Box>
+                </div>
+            </Card >
+        </div >
     );
+
 }

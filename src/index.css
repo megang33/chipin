@@ -7,7 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden; /* Used to prevent scroll */
+  overflow: hidden;
+  /* Used to prevent scroll */
 }
 
 code {
@@ -59,7 +60,7 @@ form {
   margin-left: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  
+
 }
 
 .check-text {
@@ -95,7 +96,7 @@ form {
 
 /* Timeline page */
 
-  /* position: absolute;
+/* position: absolute;
   width: 84%;
   height: 110%;
   left: 8%;
@@ -303,25 +304,25 @@ form {
 .form-header {
   margin-bottom: 25px;
   text-align: center;
-  border-bottom:1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
 }
 
 .form-body {
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-row {
-  flex:1;  
-  display:flex;
-  flex-direction:column; 
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   margin: 10px 5px;
 }
 
 .input-line {
-  flex:1;
-  display:flex;
-  flex-direction:row; 
+  flex: 1;
+  display: flex;
+  flex-direction: row;
   margin: 10px 5px;
 }
 
@@ -341,21 +342,21 @@ form {
 .forward-button {
   padding: 15px 30px;
   background: #000;
-  border:0;
+  border: 0;
   color: #fff;
   text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   letter-spacing: 3px;
   position: relative;
-  transition:         all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: pointer;
   display: block;
   margin: auto;
 }
 
 .forward-button span:after,
-.forward-button span:before{
+.forward-button span:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -364,32 +365,33 @@ form {
   opacity: 0;
 }
 
-.forward-button span:after{
-    width: 30px;
-    height: 1px;
-    background: white;
-    transform: translateX(-3px);
-    margin-top: 0px;
-    opacity: 0;
+.forward-button span:after {
+  width: 30px;
+  height: 1px;
+  background: white;
+  transform: translateX(-3px);
+  margin-top: 0px;
+  opacity: 0;
 }
-.forward-button span:before{
-    content: "";
-    transform: rotate(-135deg) translateX(50%);
-    width: 11px;
-    height: 11px;
-    background: transparent;
-    border-left: 1px solid white;
-    border-bottom: 1px solid white;
-    margin-top: -1px;
+
+.forward-button span:before {
+  content: "";
+  transform: rotate(-135deg) translateX(50%);
+  width: 11px;
+  height: 11px;
+  background: transparent;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  margin-top: -1px;
 }
 
 
-.forward-button:hover span{
+.forward-button:hover span {
   padding: 15px 40px 15px 5px;
 }
 
 .forward-button:hover span:after,
-.forward-button:hover span:before{
+.forward-button:hover span:before {
   opacity: 1;
   right: 15px;
 }
@@ -398,7 +400,7 @@ form {
 .back-button {
   padding: 15px 20px;
   background: #000;
-  border:0;
+  border: 0;
   color: #fff;
   text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
