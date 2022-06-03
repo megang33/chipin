@@ -103,14 +103,15 @@ const GroupCard = (props) => {
         </div>
 
         <div className='group-info-round-rect'>
-          <div style={{ width: "700px", height: "500px", overflowY: "scroll"}}>
-            <div style={{ position: "relative", top: "-1%", left: "10%" }}>
+          <div className='group-details-left'>
+            <div style={{ position: "relative", top: "30px", left: "10%", paddingBottom: "30px" }}>
               <p>Group code: {props.id}</p>
               <p>Collective Hours: {hours}</p>
             </div>
+
             <div className='group-details-buttons'>
               <button className='forward-button' onClick={() => leaveGroup(props.uid, props.id)}>Leave Group</button>
-              {canDeleteGroup}
+              <div>{canDeleteGroup}</div>
             </div>
 
             <div style={{ paddingLeft: "10%" }}>
@@ -125,14 +126,15 @@ const GroupCard = (props) => {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className='group-info-member-list'>
-          <h2>Member List</h2>
-          <div className='scroll-container'>
-            {members}
+          <div className='group-info-member-list'>
+            <h2>Member List</h2>
+            <div className='scroll-container'>
+              {members}
+            </div>
           </div>
         </div>
+        
       </div>
     )
   }
