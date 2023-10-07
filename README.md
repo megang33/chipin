@@ -2,6 +2,8 @@
 
 ChipIn is a web application to connect organizations with volunteers for local events. It provides a space for organizations to interface directly with volunteers and create and promote their events. ChipIn encourages peer-to-peer interaction through social volunteering groups. Organizations can create new groups and volunteers can join existing groups to connect with other volunteers and register for upcoming events with their group.
 
+See the full presentation [here](https://docs.google.com/presentation/d/1jecW7fxHrA0GNcVPWc9xbd76hirpZJ1_0u-6q5xpMfo/edit?usp=sharing)
+
 ## Key Features
 1. User accounts which allows for signup, registration, and login/logout for volunteers and organizations
 2. Search for events filtered by distance with specific names and register for an event
